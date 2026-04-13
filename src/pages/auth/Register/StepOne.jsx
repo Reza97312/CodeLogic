@@ -22,9 +22,8 @@ const StepOne = () => {
   const [initialValues] = useState({ email: "" });
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
-  const [validationSchema, setValidationSchema] = useState(
-    RegisterValidation()
-  );
+  const [validationSchema, setValidationSchema] =
+    useState(RegisterValidation());
 
   useEffect(() => {
     setValidationSchema(RegisterValidation());
@@ -89,25 +88,25 @@ const StepOne = () => {
         validationSchema={validationSchema}
       >
         {({ errors, touched }) => (
-          <Form className="w-full flex justify-center">
+          <Form className="w-full  flex justify-center">
             <motion.div
               variants={containerVariant}
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+              className={`flex flex-col  md:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
                 isDark ? "bg-[#333]" : "bg-white"
               }`}
             >
-              <div className="w-full lg:w-[47.44%] flex justify-center items-center">
+              <div className="w-full  hidden  lg:w-[47.44%] md:flex justify-center items-center md:mt-5 md:mr-2 ">
                 <motion.div
                   variants={imageVariant}
                   initial="hidden"
                   animate="visible"
-                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
+                  className={`  w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
                     isDark ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
                     onClick={toggleTheme}
-                    className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
+                    className={`  cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
                       isDark
                         ? "bg-yellow-300/40 justify-end"
                         : "bg-blue-900/30 justify-start"
@@ -124,14 +123,14 @@ const StepOne = () => {
                     alt="regone"
                   />
                   <span
-                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
+                    className={`font-bold  text-xl sm:text-2xl md:text-xl lg:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
                       isDark ? "text-white" : "text-[#005B77]"
                     }`}
                   >
                     {t("registerStepOne.start_learning")}
                   </span>
                   <p
-                    className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
+                    className={`w-[85%] sm:w-[80%]  md:mb-6 lg:mb-0 text-center transition-colors duration-500 ${
                       isDark ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
@@ -141,20 +140,33 @@ const StepOne = () => {
               </div>
 
               <div
-                className={`w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500 `}
+                className={`w-full   lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500 `}
               >
                 <motion.div
                   variants={fadeInOnly(0.5)}
                   initial="hidden"
                   animate="visible"
+                  className="  mb-25 sm:mb-25 md:mb-10 flex items-center justify-center"
                 >
                   <div
-                    className={`  w-[65%] flex items-center justify-between  mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 ${
+                    className={`  w-[90%] md:w-[85%] lg:w-[65%] flex items-center justify-between   md:mb-6 text-sm absolute top-4 sm:top-6 lg:top-10  ${
                       i18n.language === "fa"
-                        ? "right-4 sm:right-8 lg:right-30"
-                        : "left-4 sm:left-8 lg:left-30"
+                        ? "right-4 sm:right-8 lg:right-22 xl:right-30"
+                        : "left-4 sm:left-8 lg:left-22 xl:left-30"
                     } flex items-center`}
                   >
+                    <div
+                      onClick={toggleTheme}
+                      className={` flex md:hidden   cursor-pointer py-3 px-2 w-11 h-5 rounded-full  sm:top-6 sm:left-6 lg:top-8 lg:left-7  transition-colors duration-500 ${
+                        isDark
+                          ? "bg-yellow-300/40 justify-end"
+                          : "bg-blue-900/30 justify-start"
+                      }`}
+                    >
+                      <div className="w-3 h-[90%] rounded-full flex items-center">
+                        <img src={isDark ? sun : moon} alt="theme icon" />
+                      </div>
+                    </div>
                     <Link to="/">
                       <HomeIcon
                         className={`ml-2 transition-colors duration-500 ${
@@ -162,7 +174,7 @@ const StepOne = () => {
                         }`}
                       />
                       <span
-                        className={`font-bold transition-colors duration-500 ${
+                        className={`font-bold  transition-colors duration-500 ${
                           isDark ? "text-gray-300" : "text-[#005B77]"
                         }`}
                       >
@@ -177,7 +189,7 @@ const StepOne = () => {
                   variants={fadeInUp(0.6)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-xl text-center sm:text-2xl md:text-2xl font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
+                  className={`  mb-3 text-xl text-center sm:text-2xl md:text-2xl font-bold md:mb-2 sm:mb-3 transition-colors duration-500 ${
                     isDark ? "text-white" : "text-[#008C78]"
                   }`}
                 >
@@ -188,7 +200,7 @@ const StepOne = () => {
                   variants={fadeInUp(0.9)}
                   initial="hidden"
                   animate="visible"
-                  className={` mb-4 text-center sm:mb-6 md:mb-8 ${
+                  className={`  mb-8 md:mb-4 text-center sm:mb-6 md:mb-8 ${
                     isDark ? "text-white" : "text-[#333333]"
                   }`}
                 >
@@ -204,8 +216,8 @@ const StepOne = () => {
                   <EmailIcon
                     className={`absolute top-3 ${
                       i18n.language === "fa"
-                        ? "right-4 sm:right-6 md:right-20"
-                        : "left-4 sm:left-6 md:left-20"
+                        ? "right-8 sm:right-20 md:right-13 lg:right-20 "
+                        : "left-8 sm:left-20 md:left-13 lg:left-19"
                     } transition-colors duration-500 ${
                       isDark ? "text-gray-400" : "text-[grey]"
                     }`}
@@ -215,7 +227,7 @@ const StepOne = () => {
                     type="text"
                     name="email"
                     placeholder={t("registerStepOne.gmail_placeholder")}
-                    className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
+                    className={`rounded-4xl py-3 px-12 sm:px-16 mb-7  sm:mb-6 md:mb-6  w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       isDark
                         ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
@@ -226,8 +238,8 @@ const StepOne = () => {
                     <div
                       className={`text-red-500 text-sm absolute font-semibold ${
                         i18n.language === "fa"
-                          ? "right-20 top-14"
-                          : "left-20 top-14"
+                          ? "right-8 sm:right-20 top-15 sm:top-14"
+                          : "left-8 sm:left-20 top-15 sm:top-14"
                       }`}
                     >
                       {errors.email}
@@ -265,7 +277,7 @@ const StepOne = () => {
                   variants={fadeInUp(1.8)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-center text-sm mt-4 sm:mt-6 transition-colors duration-500 ${
+                  className={`text-center  text-sm mt-8 mb-8 md:mb-0 sm:mt-6 transition-colors duration-500 ${
                     isDark ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >

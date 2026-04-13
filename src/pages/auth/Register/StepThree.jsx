@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import RegisterStepThreeApi from "../../../core/services/api/post/registerStepThree";
 import { ClockLoader } from "react-spinners";
 import { setItem } from "../../../utils/helper/storage.services";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();
@@ -55,11 +56,11 @@ const StepThree = () => {
     confirmPassword: "",
   });
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
   const toggleEyepassword = () => setShowPassword(!showPassword);
   const toggleEyeconfirmpassword = () =>
     setShowConfirmPassword(!showConfirmPassword);
@@ -101,7 +102,7 @@ const StepThree = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
+        isDark ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       }`}
     >
       <Formik
@@ -112,31 +113,31 @@ const StepThree = () => {
         {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
             <div
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-[#333]" : "bg-white"
+              className={`flex flex-col md:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+                isDark ? "bg-[#333]" : "bg-white"
               }`}
             >
               <motion.div
                 variants={imageVariant}
                 initial="hidden"
                 animate="visible"
-                className="w-full lg:w-[47.44%] flex justify-center items-center"
+                className="w-full  lg:w-[47.44%] hidden md:flex justify-center items-center"
               >
                 <div
-                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
+                  className={`w-[95%]  sm:w-[90%] md:w-[95%]  md:h-[97%] lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center md:mb-4 md:mt-4 lg:mt-0 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
+                    isDark ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
-                    onClick={toggleDarkMode}
+                    onClick={toggleTheme}
                     className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-yellow-300/40 justify-end"
                         : "bg-blue-900/30 justify-start"
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
-                      <img src={`${darkMode ? sun : moon}`} alt="theme icon" />
+                      <img src={`${isDark ? sun : moon}`} alt="theme icon" />
                     </div>
                   </div>
 
@@ -146,15 +147,15 @@ const StepThree = () => {
                     alt="regone"
                   />
                   <span
-                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
-                      darkMode ? "text-white" : "text-[#005B77]"
+                    className={`font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
+                      isDark ? "text-white" : "text-[#005B77]"
                     }`}
                   >
                     {t("registerStepThree.start_learning")}
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
-                      darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+                      isDark ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
                     {t("registerStepThree.description")}
@@ -167,18 +168,37 @@ const StepThree = () => {
                   variants={fadeInOnly(0.5)}
                   initial="hidden"
                   animate="visible"
+                  className=" mb-25 sm:mb-25 md:mb-25 flex items-center justify-center"
                 >
-                  <div className="  w-[65%] flex items-center justify-between mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                  <div
+                    className={`  w-[90%] md:w-[85%] lg:w-[65%] flex items-center justify-between   md:mb-6 text-sm absolute top-4 sm:top-6 lg:top-7  ${
+                      i18n.language === "fa"
+                        ? "right-4 sm:right-8 lg:right-22 xl:right-30"
+                        : "left-4 sm:left-8 lg:left-22 xl:left-30"
+                    } flex items-center`}
+                  >
+                    <div
+                      onClick={toggleTheme}
+                      className={` flex md:hidden cursor-pointer py-3 px-2 w-11 h-5 rounded-full transition-colors duration-500 ${
+                        isDark
+                          ? "bg-yellow-300/40 justify-end"
+                          : "bg-blue-900/30 justify-start"
+                      }`}
+                    >
+                      <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
+                        <img src={`${isDark ? sun : moon}`} alt="theme icon" />
+                      </div>
+                    </div>
                     <Link to="/RegisterStepTwo">
                       <div>
                         <EastIcon
                           className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                            isDark ? "text-gray-300" : "text-[#005B77]"
                           }`}
                         />
                         <span
                           className={`cursor-pointer font-bold transition-colors duration-500 ${
-                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                            isDark ? "text-gray-300" : "text-[#005B77]"
                           }`}
                         >
                           {t("registerStepThree.back")}
@@ -194,7 +214,7 @@ const StepThree = () => {
                   initial="hidden"
                   animate="visible"
                   className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
-                    darkMode ? "text-white" : "text-[#008C78]"
+                    isDark ? "text-white" : "text-[#008C78]"
                   }`}
                 >
                   {t("registerStepThree.create_account")}
@@ -205,7 +225,7 @@ const StepThree = () => {
                   initial="hidden"
                   animate="visible"
                   className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
+                    isDark ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
                   {t("registerStepThree.complete_info")}
@@ -219,11 +239,11 @@ const StepThree = () => {
                 >
                   <PhoneIphoneIcon
                     className={`absolute top-3 ${
-                      i18n.language === "fa" ? "right-4" : "left-4"
-                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
-                      i18n.language === "fa" ? "right-20" : "left-20"
+                      i18n.language === "fa"
+                        ? "right-8 sm:right-20 md:right-13 lg:right-20 "
+                        : "left-8 sm:left-20 md:left-13 lg:left-19"
                     } transition-colors duration-500 ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
@@ -231,7 +251,7 @@ const StepThree = () => {
                     name="phoneNumber"
                     placeholder={t("registerStepThree.placeholder.email")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
@@ -240,8 +260,8 @@ const StepThree = () => {
                     <div
                       className={` text-red-500 text-sm absolute  font-semibold text-center ${
                         i18n.language === "fa"
-                          ? "  right-20 top-14"
-                          : "left-20 top-14"
+                          ? " right-10 sm:right-20 md:right-20 top-14"
+                          : " left-10 sm:left-20 md:left-20 top-14"
                       }  `}
                     >
                       {errors.phoneNumber}
@@ -250,11 +270,11 @@ const StepThree = () => {
 
                   <LockIcon
                     className={`absolute top-25 ${
-                      i18n.language === "fa" ? "right-4" : "left-4"
-                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
-                      i18n.language === "fa" ? "right-20" : "left-20"
+                      i18n.language === "fa"
+                        ? "right-8 sm:right-20 md:right-13 lg:right-20 "
+                        : "left-8 sm:left-20 md:left-13 lg:left-19"
                     } transition-colors duration-500 ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
@@ -262,17 +282,17 @@ const StepThree = () => {
                     name="password"
                     placeholder={t("registerStepThree.placeholder.password")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
                   {touched.password && errors.password && (
                     <div
-                      className={`text-red-500 text-sm absolute font-semibold text-center  ${
+                      className={`text-red-500  text-[11px]  sm:text-sm absolute font-semibold text-center  ${
                         i18n.language === "fa"
-                          ? "  right-20 top-36"
-                          : "left-20 top-36"
+                          ? " right-10 sm:right-20 md:right-20 top-36"
+                          : " left-10 sm:left-20 md:left-20 top-36"
                       }   `}
                     >
                       {errors.password}
@@ -281,30 +301,31 @@ const StepThree = () => {
                   <VisibilityOffIcon
                     onClick={toggleEyepassword}
                     className={`absolute top-25 ${
-                      i18n.language === "fa" ? "left-4" : "right-4"
-                    } sm:${i18n.language === "fa" ? "left-6" : "right-6"} md:${
-                      i18n.language === "fa" ? "left-20" : "right-20"
-                    } transition-colors duration-500 cursor-pointer ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      i18n.language === "fa"
+                        ? "left-8 sm:left-20 md:left-13 lg:left-20 "
+                        : "right-8 sm:right-20 md:right-13 lg:right-19"
+                    } transition-colors duration-500 ${
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
 
                   <LockIcon
-                    className={`absolute top-47 right-4" : "left-4"
-                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
-                      i18n.language === "fa" ? "right-20" : "left-20"
+                    className={`absolute top-47 ${
+                      i18n.language === "fa"
+                        ? "right-8 sm:right-20 md:right-13 lg:right-20 "
+                        : "left-8 sm:left-20 md:left-13 lg:left-19"
                     } transition-colors duration-500 ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder={t(
-                      "registerStepThree.placeholder.confirmPassword"
+                      "registerStepThree.placeholder.confirmPassword",
                     )}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
@@ -313,8 +334,8 @@ const StepThree = () => {
                     <div
                       className={` text-red-500 text-sm absolute font-semibold text-center ${
                         i18n.language === "fa"
-                          ? " right-20 top-58"
-                          : "left-20 top-58"
+                          ? " right-10 sm:right-20 md:right-20 top-58"
+                          : " left-10 sm:left-20 md:left-20 top-58"
                       }  `}
                     >
                       {errors.confirmPassword}
@@ -323,11 +344,11 @@ const StepThree = () => {
                   <VisibilityOffIcon
                     onClick={toggleEyeconfirmpassword}
                     className={`absolute top-47 ${
-                      i18n.language === "fa" ? "left-4" : "right-4"
-                    } sm:${i18n.language === "fa" ? "left-6" : "right-6"} md:${
-                      i18n.language === "fa" ? "left-20" : "right-20"
-                    } transition-colors duration-500 cursor-pointer ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      i18n.language === "fa"
+                        ? "left-8 sm:left-20 md:left-13 lg:left-20 "
+                        : "right-8 sm:right-20 md:right-13 lg:right-19"
+                    } transition-colors duration-500 ${
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
 
@@ -339,8 +360,8 @@ const StepThree = () => {
                   >
                     <button
                       type="submit"
-                      className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
-                        darkMode
+                      className={`text-center mt-6 md:mt-5 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
+                        isDark
                           ? "bg-[#008C78] text-[white] hover:bg-[#008C78]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
@@ -360,14 +381,14 @@ const StepThree = () => {
                     variants={fadeInUp(1.8)}
                     initial="hidden"
                     animate="visible"
-                    className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${
-                      darkMode ? "text-gray-300" : "text-[#333333]"
+                    className={`  text-sm mt-8 mb-8 md:mb-6 sm:mt-6 text-center transition-colors duration-500 ${
+                      isDark ? "text-gray-300" : "text-[#333333]"
                     }`}
                   >
                     {t("registerStepThree.have_account")}{" "}
                     <span
                       className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                        darkMode ? "text-[#008C78]" : "text-[#008C78]"
+                        isDark ? "text-[#008C78]" : "text-[#008C78]"
                       }`}
                     >
                       <Link to="/login">{t("registerStepThree.login")}</Link>
