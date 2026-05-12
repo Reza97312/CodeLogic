@@ -10,9 +10,8 @@ import imgg from "../../../assets/Images/A/teachersDetail/2.png";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 import img2 from "../../../assets/Images/HTML5Course.png";
 
-
-
-const textClass = "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
+const textClass =
+  "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
 
 const MyCourse = ({ item }) => {
   const Animate = {
@@ -65,7 +64,7 @@ const MyCourse = ({ item }) => {
         </div>
         <div className="flex justify-center w-30">
           <span
-            className={`py-[2px] px-[10px] font-regular text-base 
+            className={`py-[2px] px-[10px] font-regular text-base
             ${
               item.paymentStatus === "پرداخت شده"
                 ? " text-[#008C78] bg-[#EEFFFC]"
@@ -120,7 +119,7 @@ const MyCourse = ({ item }) => {
         </div>
         <div className="flex justify-center">
           <span
-            className={`py-[2px] px-[10px] font-regular text-base 
+            className={`py-[2px] px-[10px] font-regular text-base
             ${
               item.paymentStatus === "پرداخت شده"
                 ? " text-[#008C78] bg-[#EEFFFC]"

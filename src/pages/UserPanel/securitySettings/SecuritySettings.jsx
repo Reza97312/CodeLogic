@@ -41,7 +41,7 @@ const SecuritySettings = () => {
   const isRTL = i18n.language === "fa";
   //// validation ////
   const [validationSchema, setValidationSchema] = useState(
-    securitySettingsVal()
+    securitySettingsVal(),
   );
   useEffect(() => {
     setValidationSchema(securitySettingsVal());
@@ -128,7 +128,7 @@ const SecuritySettings = () => {
   };
 
   return (
-    <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full h-full p-8 flex flex-col gap-5 my-6 rounded-4xl ">
+    <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full h-full p-8 md:p-6 lg:p-8 flex flex-col gap-5 my-6 rounded-4xl ">
       <div>
         <Formik
           initialValues={{ oldPassword: "", newPassword: "" }}
@@ -140,23 +140,23 @@ const SecuritySettings = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <div className=" flex justify-between flex-wrap">
+              <div className="  flex justify-between flex-col lg:flex-row  lg:flex-wrap">
                 <motion.div
                   variants={rightAnimate}
                   initial="hidden"
                   animate="visible"
-                  className=" w-[45%] flex flex-col gap-4  "
+                  className=" w-[100%] lg:w-[45%]  flex flex-col gap-4  "
                 >
-                  <label className="text-[16px] dark:text-[#848484] ">
+                  <label className="  text-center text-[16px] dark:text-[#848484] ">
                     {t("securitySetting.currentPassword")}
                   </label>
-                  <div className="w-full relative">
+                  <div className=" mb-10 md:mb-6 lg:mb-0 w-full relative">
                     <Field
                       placeholder={t("securitySetting.currentPassPlaceHolder")}
                       type={`${isHide1 ? "password" : "text"}`}
                       name="oldPassword"
                       id="oldPassword"
-                      className={`w-full relative bg-[#FFFFFF] dark:text-[#ffff] dark:bg-[#454545] placeholder:text-[16px] focus:outline-none
+                      className={`w-full relative bg-[#FFFFFF] dark:text-[#ffff] dark:bg-[#454545] placeholder:text-[12px] sm:placeholder:text-[14px] md:placeholder:text-[13px] lg:placeholder:text-[16px] focus:outline-none
                              ${
                                errors.oldPassword && touched.oldPassword
                                  ? "border border-red-600"
@@ -174,7 +174,7 @@ const SecuritySettings = () => {
                     <ErrorMessage
                       name={"oldPassword"}
                       component={"span"}
-                      className="text-[#EF5350] text-[14px] absolute top-14 right-0 "
+                      className="text-[#EF5350] text-[14px] absolute top-12  right-3  "
                     />
                   </div>
                 </motion.div>
@@ -182,9 +182,9 @@ const SecuritySettings = () => {
                   variants={leftAnimate}
                   initial="hidden"
                   animate="visible"
-                  className="w-[45%] flex flex-col gap-4 dark:text-[#848484]"
+                  className="w-[100%] lg:w-[45%] flex flex-col gap-4 dark:text-[#848484]"
                 >
-                  <label className="text-[16px] dark:text-[#848484]">
+                  <label className="text-[16px] text-center dark:text-[#848484]">
                     {t("securitySetting.newPassword")}
                   </label>
                   <div className="w-full relative ">
@@ -193,7 +193,7 @@ const SecuritySettings = () => {
                       type={`${isHide2 ? "password" : "text"}`}
                       name="newPassword"
                       id="newPassword"
-                      className={`w-full dark:text-[#ffff] dark:bg-[#454545] bg-[#FFFFFF] placeholder:text-[16px] focus:outline-none
+                      className={`w-full dark:text-[#ffff] dark:bg-[#454545] bg-[#FFFFFF] placeholder:text-[12px] sm:placeholder:text-[14px] md:placeholder:text-[13px] lg:placeholder:text-[16px] focus:outline-none
                           ${
                             errors.newPassword && touched.newPassword
                               ? "border border-red-600"
@@ -211,7 +211,7 @@ const SecuritySettings = () => {
                     <ErrorMessage
                       name={"newPassword"}
                       component={"span"}
-                      className="text-[#EF5350] text-[14px] absolute top-14 right-0 "
+                      className="text-[#EF5350] text-[14px] absolute top-12  right-3  "
                     />
                   </div>
                 </motion.div>
@@ -222,7 +222,7 @@ const SecuritySettings = () => {
                   whileHover="hover"
                   whileTap="tap"
                   type="submit"
-                  className="px-4 py-3 mt-9 text-[#ffff] text-[16px] bg-[#008C78] cursor-pointer rounded-[16px]"
+                  className="  px-4 py-3 mt-9 md:mt-8 lg:mt-9 text-[#ffff] text-[16px] bg-[#008C78] cursor-pointer rounded-[16px]"
                 >
                   {t("securitySetting.changePass")}
                 </motion.button>
@@ -231,7 +231,7 @@ const SecuritySettings = () => {
           )}
         </Formik>
       </div>
-      <div className="mt-7">
+      <div className="mt-7 md:mt-0 lg:mt-7">
         <Formik
           initialValues={{
             twoStepAuth: "",
@@ -250,15 +250,15 @@ const SecuritySettings = () => {
                 variants={buttonAnimate}
                 initial="hidden"
                 animate="visible"
-                className="flex flex-col gap-4 w-[45%] "
+                className="flex flex-col gap-4 w-[100%] lg:w-[45%] "
               >
-                <div className="w-full relative">
+                <div className="w-full relative ">
                   <Field
                     type="text"
                     name="telegramUsername"
                     id="telegramUsername"
                     placeholder={t("securitySetting.telegramId")}
-                    className={`w-full dark:text-[#ffff] dark:bg-[#454545] bg-[#FFFFFF] placeholder:text-[16px] focus:outline-none
+                    className={`w-full dark:text-[#ffff] dark:bg-[#454545] bg-[#FFFFFF] placeholder:text-[12px] sm:placeholder:text-[14px] md:placeholder:text-[13px] lg:placeholder:text-[16px] focus:outline-none
                           ${
                             errors.telegramUsername && touched.telegramUsername
                               ? "border border-red-600"
@@ -268,12 +268,12 @@ const SecuritySettings = () => {
                   <ErrorMessage
                     name="telegramUsername"
                     component={"span"}
-                    className="text-[#EF5350] text-[14px] absolute top-14 right-0"
+                    className="text-[#EF5350] text-[14px] absolute top-12  right-3 "
                   />
                 </div>
 
-                <div className="flex gap-3 mt-6">
-                  <label className="text-[16px] dark:text-[#ffff] ">
+                <div className="flex gap-3 mt-6  ">
+                  <label className=" text-[16px] dark:text-[#ffff] md:whitespace-nowrap lg:whitespace-normal ">
                     {t("securitySetting.twpStepEnabled")}
                   </label>
                   <Field type="checkbox" id="twoStepAuth" name="twoStepAuth" />
@@ -286,7 +286,7 @@ const SecuritySettings = () => {
                 whileHover="hover"
                 whileTap="tap"
                 type="submit"
-                className="px-4 py-3 mt-7 text-[#ffff] text-[16px] bg-[#008C78] cursor-pointer rounded-[16px]"
+                className=" w-[100%]  lg:w-auto px-4 py-3 mt-7 md:mt-4 lg:mt-7 text-[#ffff] text-[16px] bg-[#008C78] cursor-pointer rounded-[16px]"
               >
                 {t("securitySetting.saveSettings")}
               </motion.button>

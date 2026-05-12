@@ -85,7 +85,7 @@ const AnswerComment = ({
       if (!id) return;
       toggleLikeDislike({ id, isLike });
     },
-    [toggleLikeDislike]
+    [toggleLikeDislike],
   );
 
   const {
@@ -128,30 +128,32 @@ const AnswerComment = ({
     <div className="flex flex-col w-full ">
       <div className="w-full bg-white shadow-md rounded-3xl p-5 mt-4 dark:bg-[#333] border border-gray-100 dark:border-[#333]">
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex  gap-3 flex-wrap items-center justify-center">
             <img
               src={image}
               className="w-10 h-10 rounded-full object-cover"
               alt="avatar"
             />
             <div>
-              <p className="font-bold text-[#1E1E1E] text-[14px] dark:text-[white]">
+              <p className="font-bold text-[#1E1E1E] text-[14px] dark:text-[white] text-center sm:text-start">
                 {name}
               </p>
-              <p className="text-[12px] text-[#848484] mt-1">{date}</p>
+              <p className="text-[12px] text-[#848484] mt-1 text-center sm:text-start">
+                {date}
+              </p>
             </div>
           </div>
         </div>
 
         <div className="mt-3 text-gray-700 text-sm leading-6">
-          <p className="w-full text-[#1E1E1E] text-[14px] mb-1 font-semibold dark:text-[white]">
+          <p className="w-full break-words text-[#1E1E1E] text-[14px] mb-1 font-semibold dark:text-[white]">
             {title}
           </p>
-          <p className="text-[#848484] text-[13px]">{text}</p>
+          <p className="text-[#848484] text-[13px] break-words">{text}</p>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-4 text-gray-600 text-xs">
+        <div className="flex items-center justify-between mt-4  flex-wrap sm:flex-row gap-4">
+          <div className="flex flex-wrap items-center  sm:justify-start gap-4 text-gray-600 text-xs">
             <div
               onClick={() => handleToggleLikeDislike(commentId, false)}
               className={`flex items-center gap-1 cursor-pointer ${
@@ -164,8 +166,8 @@ const AnswerComment = ({
                 fontSize="small"
                 className={
                   isDisliked
-                    ? "text-current"
-                    : "text-[#1E1E1E] dark:text-[#848484]"
+                    ? "text-current !text-[20px] sm:!text-[25px]"
+                    : "text-[#1E1E1E] dark:text-[#848484] !text-[20px] sm:!text-[25px]"
                 }
               />
               <span>{dislikeCount}</span>
@@ -174,7 +176,7 @@ const AnswerComment = ({
               onClick={() => handleToggleLikeDislike(commentId, true)}
               className={`flex items-center gap-1 cursor-pointer ${
                 isLiked
-                  ? "text-[#008C78] dark:text-[#00BFA5]"
+                  ? "text-[#008C78] dark:text-[#00BFA5] "
                   : "text-[#1E1E1E] dark:text-[#848484]"
               }`}
             >
@@ -182,8 +184,8 @@ const AnswerComment = ({
                 fontSize="small"
                 className={
                   isLiked
-                    ? "text-current"
-                    : "text-[#1E1E1E] dark:text-[#848484]"
+                    ? "text-current !text-[20px] sm:!text-[25px]"
+                    : "text-[#1E1E1E] dark:text-[#848484] !text-[20px] sm:!text-[25px]"
                 }
               />
               <span>{likeCount}</span>

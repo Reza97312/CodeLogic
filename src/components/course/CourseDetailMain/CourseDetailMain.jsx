@@ -14,7 +14,7 @@ import PersonalCommentCourses from "../PersonalCommentCourses/PersonalCommentCou
 
 const CourseDetailMain = ({ course, courseId }) => {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("courseActiveTab") || "detail"
+    localStorage.getItem("courseActiveTab") || "detail",
   );
 
   useEffect(() => {
@@ -32,22 +32,22 @@ const CourseDetailMain = ({ course, courseId }) => {
   const commentsList = Array.isArray(commentsResponse)
     ? commentsResponse
     : Array.isArray(commentsResponse?.data)
-    ? commentsResponse.data
-    : Array.isArray(commentsResponse?.result)
-    ? commentsResponse.result
-    : Array.isArray(commentsResponse?.comments)
-    ? commentsResponse.comments
-    : Array.isArray(commentsResponse?.value)
-    ? commentsResponse.value
-    : Array.isArray(commentsResponse?.data?.items)
-    ? commentsResponse.data.items
-    : (() => {
-        if (!commentsResponse) return [];
-        const firstArray = Object.values(commentsResponse).find((v) =>
-          Array.isArray(v)
-        );
-        return Array.isArray(firstArray) ? firstArray : [];
-      })();
+      ? commentsResponse.data
+      : Array.isArray(commentsResponse?.result)
+        ? commentsResponse.result
+        : Array.isArray(commentsResponse?.comments)
+          ? commentsResponse.comments
+          : Array.isArray(commentsResponse?.value)
+            ? commentsResponse.value
+            : Array.isArray(commentsResponse?.data?.items)
+              ? commentsResponse.data.items
+              : (() => {
+                  if (!commentsResponse) return [];
+                  const firstArray = Object.values(commentsResponse).find((v) =>
+                    Array.isArray(v),
+                  );
+                  return Array.isArray(firstArray) ? firstArray : [];
+                })();
 
   const totalCommentCount = commentsList.length;
 
@@ -58,7 +58,7 @@ const CourseDetailMain = ({ course, courseId }) => {
 
     onSuccess: () => {
       toast.success(
-        t("نظر شما با موفقیت ارسال شد. لطفا منتظر تایید ادمین باشید")
+        t("نظر شما با موفقیت ارسال شد. لطفا منتظر تایید ادمین باشید"),
       );
       queryClient.invalidateQueries(["CourseCommnets", courseId]);
     },
@@ -86,7 +86,7 @@ const CourseDetailMain = ({ course, courseId }) => {
 
   const [initialValues] = useState({ titlecomment: "", description: "" });
   const [validationSchema, setValidationSchema] = useState(
-    NewsCommentValcomment()
+    NewsCommentValcomment(),
   );
 
   return (

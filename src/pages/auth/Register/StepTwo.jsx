@@ -283,7 +283,7 @@ const StepTwo = () => {
                         onKeyDown={(e) =>
                           handleKeyDown(e, index, values, setFieldValue)
                         }
-                        className={`  w-9 h-9 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-14 lg:h-14 mx-0.5 sm:mx-3 md:mx-1 lg:mx-3 text-center text-lg rounded-xl md:rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
+                        className={`  w-9 h-9 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-14 xl:h-14 mx-0.5 sm:mx-3 md:mx-1 lg:mx-3 text-center text-lg rounded-xl md:rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
                           digit
                             ? "border-2 border-[#008C78]"
                             : touched.code?.[index]

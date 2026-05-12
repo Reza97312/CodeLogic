@@ -31,7 +31,7 @@ const NewsPage = () => {
       setSearchQuery(value);
       setCurrentPage(0);
     }, 700),
-    []
+    [],
   );
 
   const handleSearchChange = (e) => {
@@ -50,7 +50,7 @@ const NewsPage = () => {
   }, [location.search]);
 
   const [isDarkMode, setIsDarkMode] = useState(
-    document.documentElement.classList.contains("dark")
+    document.documentElement.classList.contains("dark"),
   );
 
   useEffect(() => {
@@ -83,12 +83,12 @@ const NewsPage = () => {
 
     if (selectedCategory)
       result = result.filter(
-        (news) => news.newsCatregoryName === selectedCategory
+        (news) => news.newsCatregoryName === selectedCategory,
       );
 
     if (searchQuery?.trim())
       result = result.filter((news) =>
-        news.title.toLowerCase().includes(searchQuery.toLowerCase())
+        news.title.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
     if (sortOption === "newest")
@@ -135,7 +135,9 @@ const NewsPage = () => {
   };
 
   const getCardWidthClass = () =>
-    selectedView === "list" ? "w-full" : "w-full sm:w-[calc(33.333%-10.66px)]";
+    selectedView === "list"
+      ? "w-full"
+      : "w-full sm:w-[48%] lg:w-[31%] xl:w-[calc(33.333%-10.66px)]";
 
   if (isLoading) {
     return (
@@ -164,12 +166,12 @@ const NewsPage = () => {
         </p>
       </motion.div>
 
-      <motion.div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <motion.div className="  flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <motion.div
           variants={fadeInOnly(0.3)}
           initial="hidden"
           animate="visible"
-          className="ml-5 w-full sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0 sm:mt-17.5"
+          className=" sm:ml-5 w-full sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0 sm:mt-17.5"
         >
           <Formik
             initialValues={{ search: "" }}
@@ -190,7 +192,7 @@ const NewsPage = () => {
                         field.onChange(e);
                         handleSearchChange(e);
                       }}
-                      className="shadow-md font-medium text-[#848484] dark:text-[#ccc] bg-[#fff] dark:bg-[#333] rounded-xl px-4 py-3 text-sm outline-none w-full transition-all duration-300 pr-10"
+                      className="  shadow-md font-medium text-[#848484] dark:text-[#ccc] bg-[#fff] dark:bg-[#333] rounded-xl px-4 py-3 text-sm outline-none w-full transition-all duration-300 pr-10 sm:pr-3 md:pr-5 lg:pr-5 xl:pr-10"
                     />
                   )}
                 </Field>
@@ -215,15 +217,15 @@ const NewsPage = () => {
           />
         </motion.div>
 
-        <div className="w-full sm:w-3/4 lg:w-[79%] sm:ml-6">
+        <div className="  w-full sm:w-3/4 lg:w-[79%] sm:ml-6">
           <motion.div
             variants={fadeInOnly(0.3)}
             initial="hidden"
             animate="visible"
-            className="bg-[#fff] dark:bg-[#333] mb-5 mt-5 sm:mt-17 shadow-md rounded-xl px-4 py-3 sm:px-10 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0"
+            className="  bg-[#fff] dark:bg-[#333] mb-5 mt-5 sm:mt-17 shadow-md rounded-xl px-4 py-3 sm:px-10  md:flex  md:flex-row justify-between items-center space-y-3 sm:space-y-0"
           >
-            <div className="flex flex-wrap justify-center sm:justify-start items-center !gap-4">
-              <span className="dark:text-[#fff] text-sm">
+            <div className="  md:w-[100%]  flex flex-wrap md:mt-5 lg:mt-0  justify-center sm:justify-start sm:mb-5 lg:mb-0 items-center !gap-4">
+              <span className=" w-[100%] md:w-auto   flex md:hidden lg:flex justify-center dark:text-[#fff] text-sm">
                 {t("newsPage.sortBy")}
               </span>
               <NewsSelectOne
@@ -244,26 +246,26 @@ const NewsPage = () => {
               />
             </div>
 
-            <div className="!gap-3 flex justify-center items-center">
+            <div className=" py-2 sm:py-0   !gap-3 flex justify-center items-center">
               <div
                 onClick={() => setSelectedView("list")}
-                className={`mr-3 sm:mr-5 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
+                className={`mr-3 sm:mr-0 md:mr-5 flex items-center justify-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "list"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
                 }`}
               >
-                <FormatListBulletedIcon className="!text-xl sm:!text-2xl" />
+                <FormatListBulletedIcon className="!text-2xl sm:!text-2xl" />
               </div>
               <div
                 onClick={() => setSelectedView("grid")}
-                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
+                className={`flex items-center justify-center w-12 h-12 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "grid"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
                 }`}
               >
-                <GridViewIcon className="!text-xl sm:!text-2xl" />
+                <GridViewIcon className="!text-2xl sm:!text-2xl" />
               </div>
             </div>
           </motion.div>
@@ -273,7 +275,7 @@ const NewsPage = () => {
             variants={cardContainerVariants}
             initial="hidden"
             animate="visible"
-            className={`flex flex-wrap gap-4 justify-center sm:justify-start ${
+            className={`  flex flex-wrap gap-4 justify-center md:justify-start ${
               selectedView === "list" ? "flex-col" : "flex-row"
             }`}
           >

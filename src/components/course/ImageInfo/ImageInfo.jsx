@@ -130,8 +130,11 @@ const ImageInfo = ({ course }) => {
     }
   };
 
+  console.log("technologyList:", course.technologyList);
+  console.log("techs:", techs);
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       <img
         src={
           course?.imageAddress && !course.imageAddress.includes("undefined")
@@ -142,8 +145,8 @@ const ImageInfo = ({ course }) => {
             md:h-[240px] md:rounded-2xl
             lg:h-[443px] lg:rounded-[25px]"
       />
-      <div className="flex justify-between">
-        <div>
+      <div className="flex justify-between ">
+        <div className="border-5">
           {techs &&
             techs.length > 0 &&
             techs.map((tech, index) => (
@@ -155,7 +158,7 @@ const ImageInfo = ({ course }) => {
               </span>
             ))}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 ">
           <div
             className={`flex gap-2 py-2 px-3 ${
               likeInfo.userIsDissLike

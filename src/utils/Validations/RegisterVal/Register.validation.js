@@ -13,16 +13,18 @@ export const RegisterValidation = () => {
 export const RegisterStepTwo = () =>
   Yup.object().shape({
     code: Yup.array().of(
-      Yup.string().required(i18n.t("registerStepTwo.validation.required"))
+      Yup.string().required(i18n.t("registerStepTwo.validation.required")),
     ),
   });
 
 export const RegisterStepThree = () =>
   Yup.object().shape({
     phoneNumber: Yup.string()
-      .required("شماره موبایل خود را وارد کنید *")
-      .test("phoneNumber", "شماره موبایل نامعتبر است * ", (value) =>
-        checkNumber(value)
+      .required(i18n.t("registerStepThree.validation.phone_required"))
+      .test(
+        "phoneNumber",
+        i18n.t("registerStepThree.validation.phone_invalid"),
+        (value) => checkNumber(value),
       ),
     password: Yup.string()
       .required(i18n.t("registerStepThree.validation.password_required"))
@@ -35,6 +37,6 @@ export const RegisterStepThree = () =>
       .required(i18n.t("registerStepThree.validation.confirmPassword_required"))
       .oneOf(
         [Yup.ref("password")],
-        i18n.t("registerStepThree.validation.confirmPassword_match")
+        i18n.t("registerStepThree.validation.confirmPassword_match"),
       ),
   });

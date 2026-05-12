@@ -24,7 +24,7 @@ const SelectComp = ({
           control: ({ isFocused }) => {
             const classes = [
               "font-medium",
-              "w-[150px] sm:w-[150px] md:w-[200px] lg:w-[250px]",
+              "w-[150px] sm:w-[150px] md:w-[200px] lg:w-[150px] xl:w-[250px]",
               "border-none",
               "outline-none",
               "focus:outline-none",
@@ -74,7 +74,7 @@ const SelectComp = ({
                 "bg-white",
                 "text-black",
                 "dark:bg-[#333]",
-                "dark:text-white"
+                "dark:text-white",
               );
             return cls.join(" ");
           },

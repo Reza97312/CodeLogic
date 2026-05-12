@@ -52,7 +52,7 @@ const CourseListSide = ({
   handleSetPrice,
 }) => {
   return (
-    <div className="w-full flex flex-col gap-4 md:w-[284px]">
+    <div className="  w-full flex flex-col gap-4 md:w-[240px] lg:w-[284px]">
       <>
         <CourseNewsSearch handleSearchSubmit={handleSearchSubmit} />
         <StartEndDate

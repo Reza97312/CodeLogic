@@ -23,7 +23,7 @@ const StartEndDate = ({ handleSetStartDate, handleSetEndDate }) => {
   };
 
   return (
-    <div className="flex flex-col w-full p-4 bg-[#FFFFFF] rounded-[15px] gap-4 dark:bg-[#454545] md:w-[284px]">
+    <div className="flex flex-col w-full p-4 bg-[#FFFFFF] rounded-[15px] gap-4 dark:bg-[#454545] md:w-[100%] lg:w-[284px]">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between cursor-pointer dark:text-[#DDDDDD]"

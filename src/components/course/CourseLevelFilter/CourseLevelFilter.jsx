@@ -24,7 +24,7 @@ const CourseLevelFilter = ({ handleSetCourseLevel }) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]">
+    <div className="flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[100%] lg:w-[284px]">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-full cursor-pointer dark:text-[#DDDDDD]"

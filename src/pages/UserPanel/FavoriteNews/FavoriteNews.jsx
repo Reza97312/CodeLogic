@@ -21,6 +21,7 @@ import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
+import img2 from "../../../assets/Images/HTML5Course.png";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -63,7 +64,7 @@ const FavoriteNews = () => {
   const favNews = favNewsData?.myFavoriteNews || [];
   const filteredNews = favNews
     .filter((n) =>
-      n.news.title.trim().toLowerCase().includes(query.trim().toLowerCase())
+      n.news.title.trim().toLowerCase().includes(query.trim().toLowerCase()),
     )
     .sort((a, b) => {
       const dateA = new Date(a.news.updateDate);
@@ -390,12 +391,16 @@ const FavoriteNews = () => {
               {overViewData.title}
             </h2>
             <img
-              className="rounded-4xl shadow-md w-[60%] mx-auto"
-              src={
-                !overViewData.currentImageAddress
-                  ? reactImg
-                  : overViewData.currentImageAddress
-              }
+              className="rounded-4xl shadow-md w-[60%] mx-auto "
+              // src={
+              //   !overViewData.currentImageAddress
+              //     ? reactImg
+              //     : overViewData.currentImageAddress
+              // }
+              src={overViewData?.currentImageAddress || img2}
+              onError={(e) => {
+                e.target.src = img2;
+              }}
               alt=""
             />
             <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">

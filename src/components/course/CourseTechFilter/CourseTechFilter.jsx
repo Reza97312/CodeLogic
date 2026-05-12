@@ -83,7 +83,7 @@ const CourseTechFilter = ({ handleSetTechnologies }) => {
     const fetchData = async () => {
       const data = await getCourseTechnologies();
       const unique = Array.from(
-        new Map(data.map((item) => [item.techName, item])).values()
+        new Map(data.map((item) => [item.techName, item])).values(),
       );
       setTechnologies(unique);
     };
@@ -100,7 +100,7 @@ const CourseTechFilter = ({ handleSetTechnologies }) => {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]">
+    <div className="flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[100%] lg:w-[284px]">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-full cursor-pointer dark:text-[#DDDDDD]"

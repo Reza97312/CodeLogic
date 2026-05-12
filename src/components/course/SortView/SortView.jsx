@@ -86,10 +86,12 @@ const SortView = ({
 
   return (
     <div
-      className="flex justify-between items-center bg-[#FFFFFF] w-full h-14 px-4 rounded-[12px] dark:bg-[#454545]  
-    sm:w-[520px]
-    lg:w-[720px] lg:h-18 lg:rounded-[15px]
-    xl:w-[1044px]"
+      className="   flex justify-between items-center bg-[#FFFFFF] w-full h-30 sm:h-14 px-4 rounded-[12px] dark:bg-[#454545]  
+    sm:w-[100%]
+    lg:w-[100%] lg:h-18 lg:rounded-[15px]
+    xl:w-[100%]
+    2xl:w-[1080px]
+    "
     >
       {isLoading ? (
         <div className="flex items-center gap-4 w-full">
@@ -106,26 +108,28 @@ const SortView = ({
         </div>
       ) : (
         <>
-          <div className="flex items-center gap-1 w-full md:gap-4">
-            <span className="hidden font-regular text-base text-[#1E1E1E] dark:text-[#DDDDDD] sm:block">
+          <div className="  flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-5 sm:gap-1 w-full md:gap-2 lg:gap-4">
+            <span className="  w-[100%] sm:w-[49%] md:w-auto font-regular md:text-sm md:whitespace-nowrap lg:whitespace-normal lg:text-base text-[#1E1E1E] dark:text-[#DDDDDD] text-center ">
               {t("sortView.title")}
             </span>
-            <TimeDropDown
-              currentSortType={currentSortType}
-              sortType={sortType}
-              setSortType={setSortType}
-            />
-            <ShowNumberDropDown
-              currentPageSize={currentPageSize}
-              onPageSizeChange={onPageSizeChange}
-            />
+            <div className="  w-[100%] md:w-auto flex justify-center sm:justify-start items-center gap-4 md:gap-1 lg:gap-4">
+              <TimeDropDown
+                currentSortType={currentSortType}
+                sortType={sortType}
+                setSortType={setSortType}
+              />
+              <ShowNumberDropDown
+                currentPageSize={currentPageSize}
+                onPageSizeChange={onPageSizeChange}
+              />
+            </div>
           </div>
-          <div className="flex gap-1 dark:text-[#CCCCCC] md:gap-4">
+          <div className="flex gap-1 dark:text-[#CCCCCC] lg:gap-4">
             <button
               onClick={() => {
                 handleViewChange(VIEW_TYPE_LIST);
               }}
-              className={`hidden p-2 rounded-[48px] sm:block ${
+              className={`hidden p-2 md:p-1.5 lg:p-2 rounded-[48px] sm:block ${
                 currentView === VIEW_TYPE_LIST
                   ? "text-[#FFFFFF] bg-[#008C78]"
                   : ""
@@ -137,7 +141,7 @@ const SortView = ({
               onClick={() => {
                 handleViewChange(VIEW_TYPE_GRID);
               }}
-              className={`hidden p-2 rounded-[48px] sm:block ${
+              className={`hidden p-2 md:p-1.5 lg:p-2 rounded-[48px] sm:block ${
                 currentView === VIEW_TYPE_GRID
                   ? "text-[#FFFFFF] bg-[#008C78]"
                   : ""

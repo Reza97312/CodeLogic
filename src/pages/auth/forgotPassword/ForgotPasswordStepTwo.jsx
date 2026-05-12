@@ -60,12 +60,12 @@ const ForgotPasswordStepTwo = () => {
   });
 
   return (
-    <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
+    <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center ">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 "
+        className=" flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2  "
       >
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -76,12 +76,24 @@ const ForgotPasswordStepTwo = () => {
             stiffness: 300,
             delay: 0.5,
           }}
-          className=" flex flex-1 flex-col  p-15  gap-14 "
+          className="  md:h-full md:w-[50%] flex flex-1 flex-col  py-8 px-2 sm:p-17 md:p-10 mt-0 md:mt-10  gap-15 "
         >
-          <div className="flex items-center justify-between">
+          <div className="  flex items-center justify-around">
+            <div
+              onClick={toggleTheme}
+              className={` flex md:hidden cursor-pointer py-3 px-2  w-12 h-6   rounded-full    ${
+                isDark
+                  ? "bg-yellow-300/40 justify-end "
+                  : "bg-blue-900/30  justify-start"
+              } `}
+            >
+              <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center ">
+                <img src={isDark ? sun : moon} alt="" />
+              </div>
+            </div>
             <Link
               to={"/forgotPassOne"}
-              className=" pr-8  bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 
+              className="pr-7 sm:pr-9 mx-2 sm:mx-0  bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 
                             transition duration-300"
               style={{ backgroundImage: `url(${back})` }}
             >
@@ -89,7 +101,7 @@ const ForgotPasswordStepTwo = () => {
             </Link>
             <TranslateButton />
           </div>
-          <div className="flex flex-col justify-center items-center gap-3 px-5 ">
+          <div className="flex flex-col justify-center items-center gap-3 sm:px-5 md:px-0 ">
             <div className="flex flex-col justify-center items-center gap-2  ">
               <h2 className="text-[24px] font-bold text-[#008C78] mb-2 ">
                 {t("forgotPass.ForgotPassword")}
@@ -98,7 +110,7 @@ const ForgotPasswordStepTwo = () => {
                 {t("forgotPass.SetNewPass")}
               </h3>
             </div>
-            <div className="w-full mt-6 px-6  ">
+            <div className="w-full mt-6 sm:px-6 md:px-0  ">
               <Formik
                 initialValues={resetData2}
                 onSubmit={(value) => {
@@ -113,14 +125,14 @@ const ForgotPasswordStepTwo = () => {
               >
                 {({ errors, touched }) => (
                   <Form>
-                    <div className=" flex flex-col gap-6 ">
-                      <div className=" relative mt-5 ">
+                    <div className=" w-[75%] sm:w-full mx-auto flex flex-col gap-10  items-center sm:items-stretch ">
+                      <div className=" w-full flex flex-col gap-1 relative  items-center sm:items-stretch">
                         <Field
                           className={` focus:outline-none  bg-no-repeat    ${
                             isRTL
                               ? "bg-[right_20px_center]"
                               : "bg-[left_20px_center]"
-                          } bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          } bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-[95%] sm:w-full rounded-full px-12 py-3  placeholder:text-[15px] ${
                             errors.newPassword && touched.newPassword
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -135,44 +147,17 @@ const ForgotPasswordStepTwo = () => {
                           onClick={handleFirstPassword}
                           src={showFirstPassword ? eyeClose : eyeOpen}
                           alt=""
-                          className={` cursor-pointer absolute ${
-                            isRTL ? "left-7" : "right-7"
-                          } top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover `}
+                          className={`cursor-pointer absolute top-1/2 -translate-y-1/2
+      w-[17px] h-[15px] object-cover
+      ${isRTL ? "left-5 sm:left-4" : "right-5 sm:right-4"}
+    `}
                         />
                         <ErrorMessage
                           name={"newPassword"}
                           component={"span"}
-                          className="text-[#EF5350] text-[14px] absolute top-16 right-0 "
+                          className="text-[#EF5350] text-[14px] whitespace-nowrap absolute top-16 right-5 sm:right-4 "
                         />
                       </div>
-
-                      {/* <div className=" relative mt-6 ">
-                        <Field
-                          className={` focus:outline-none bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full pl-13 pr-6 py-3  placeholder:text-[15px] ${
-                            errors.confirmPassword && touched.confirmPassword
-                              ? "border-[#EF5350] border-1 "
-                              : ""
-                          } `}
-                          type={showSecondPassword ? "text" : "password"}
-                          name="resetValue"
-                          id="resetValue"
-                          placeholder={t("forgotPass.resetValue")}
-                        />
-                        <img
-                          onClick={handleSecondPassword}
-                          src={showSecondPassword ? eyeClose : eyeOpen}
-                          alt=""
-                          className={` cursor-pointer absolute  ${
-                            isRTL ? "left-7" : "right-7"
-                          } top-1/2 -translate-y-1/2
-                             w-[17px] h-[15px] object-cover  `}
-                        />
-                        <ErrorMessage
-                          name={"resetValue"}
-                          component={"span"}
-                          className="text-[#EF5350] text-[14px] absolute top-16 right-0 "
-                        />
-                      </div> */}
 
                       <motion.button
                         whileHover={{
@@ -182,7 +167,7 @@ const ForgotPasswordStepTwo = () => {
                         whileTap={{ scale: "0.98" }}
                         transition={{ type: "spring", stiffness: 300 }}
                         type="submit"
-                        className=" mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] "
+                        className=" w-[95%]  py-2 sm:px-5 sm:py-3 whitespace-nowrap sm:w-full text-center mt-2 bg-[#008C78] text-white text-[16px] rounded-full  "
                       >
                         {t("forgotPass.RegisterNewPass")}
                       </motion.button>
@@ -202,7 +187,7 @@ const ForgotPasswordStepTwo = () => {
             stiffness: 300,
             delay: 0.5,
           }}
-          className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
+          className=" hidden md:flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
         >
           <div
             onClick={toggleTheme}
@@ -219,16 +204,16 @@ const ForgotPasswordStepTwo = () => {
           <div className=" mt-5 flex flex-col  items-center justify-center gap-6">
             <div className=" flex flex-col justify-center items-center  ">
               <img
-                className=" max-w-[435px] w-full min-h-[409.592529296875px]  "
+                className=" max-w-[435px] w-full md:h-[100%] lg:h-[300px] xl:min-h-[409.592529296875px]  "
                 src={forgot2}
                 alt=""
               />
             </div>
             <div className=" flex flex-col justify-center items-center  gap-4">
-              <h2 className="text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold ">
+              <h2 className="text-[#005B77]  tracking-wide mt-2 md:text-[19px] lg:text-[24px] font-bold dark:text-[white] ">
                 {t("forgotPass.title2")}
               </h2>
-              <p className="text-[16px] text-center">
+              <p className=" md:text-sm lg:text-[16px] text-center">
                 {t("forgotPass.caption2")}
               </p>
             </div>

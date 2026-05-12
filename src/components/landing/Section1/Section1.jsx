@@ -39,7 +39,7 @@ const Section1 = () => {
     lg:py-8"
     >
       {sectionData.map((item, index) => {
-        return <Section1Card item={item} key={index} isLoading={isLoading}/>;
+        return <Section1Card item={item} key={index} isLoading={isLoading} />;
       })}
     </div>
   );

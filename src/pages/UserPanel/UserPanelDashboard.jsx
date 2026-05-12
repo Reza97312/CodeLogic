@@ -91,42 +91,42 @@ const UserPanelDashboard = () => {
   ];
 
   const filledFieldsCount = profileFields.filter(
-    (field) => field !== undefined && field !== null && field !== ""
+    (field) => field !== undefined && field !== null && field !== "",
   ).length;
 
   const percentage = Math.round(
-    (filledFieldsCount / profileFields.length) * 100
+    (filledFieldsCount / profileFields.length) * 100,
   );
 
   return (
-    <div className=" w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
-      <div className=" w-full h-full flex flex-col justify-between ">
-        <div className=" w-full h-[25%] flex flex-col gap-5 md:flex-row md:justify-between">
+    <div className="  w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
+      <div className="  w-full h-full flex flex-col justify-between ">
+        <div className="  w-full h-[25%] flex flex-col gap-5 md:flex-row md:justify-between">
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full md:w-[30%] rounded-3xl bg-white dark:bg-[#454545]  "
+            className="  h-full md:w-[30%] rounded-3xl bg-white dark:bg-[#454545]  "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex items-center gap-2 py-4 pr-6 ${
-                isRtl ? "" : "pl-6"
+              className={`  flex items-center gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-4 lg:pr-6 ${
+                isRtl ? "" : "pl-6 md:pl-3 lg:pl-6"
               }`}
             >
-              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
+              <p className=" text-[20px] sm:text-[20px] md:text-[13px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.my_courses_title")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
                 <Link to={"/userPanel/myCourses"}>
-                  <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
+                  <NorthWestIcon className=" !text-[24px] md:!text-[16px] lg:!text-[24px]  text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
                 </Link>
               </div>
             </motion.div>
 
             <motion.span
               variants={itemVariants}
-              className={` text-[#008C78] text-[48px] pr-6 ${
+              className={`  text-[#008C78] text-[48px] sm:text-[48px] md:text-[40px] lg:text-[48px] pr-6 ${
                 isRtl ? "" : "pl-6"
               } `}
             >
@@ -137,27 +137,27 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full  md:w-[30%] rounded-3xl bg-white dark:bg-[#454545] "
+            className="  h-full  md:w-[30%] rounded-3xl bg-white dark:bg-[#454545] "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex items-center gap-2 py-4 pr-6 ${
-                isRtl ? "" : "pl-6"
+              className={`  flex items-center px-2 sm:px-0 md:px-2 lg:px-0 gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-4 lg:pr-6 ${
+                isRtl ? "" : "pl-6 md:pl-3 lg:pl-6"
               }`}
             >
-              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
+              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.unpaid_periods")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
                 <Link to={"/userPanel/myReservedCourses"}>
-                  <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
+                  <NorthWestIcon className=" !text-[24px] md:!text-[16px] lg:!text-[24px] text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
                 </Link>
               </div>
             </motion.div>
 
             <motion.span
               variants={itemVariants}
-              className={` text-[#008C78] text-[48px] pr-6 ${
+              className={` text-[#008C78] text-[48px] sm:text-[48px] md:text-[40px] lg:text-[48px] pr-6 ${
                 isRtl ? "" : "pl-6"
               } `}
             >
@@ -169,25 +169,26 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className="h-full md:w-[35%] py-4 rounded-3xl bg-white dark:bg-[#454545] 
+            className="  h-full md:w-[35%] py-4 rounded-3xl bg-white dark:bg-[#454545] 
              relative flex flex-col md:block p-4"
           >
             <motion.div
               variants={headerVariants}
-              className="flex flex-row items-center gap-2 md:absolute md:top-5 md:right-6 z-10"
+              className="  flex flex-row items-center gap-2  z-10"
             >
-              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] whitespace-nowrap">
+              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] whitespace-nowrap">
                 {t("paneldashboard.profile_completed")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
-                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
+              <div className=" p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
+                <NorthWestIcon className="text-[#1e1e1e] !text-[24px] md:!text-[16px] lg:!text-[24px]  dark:text-[#848484]" />
               </div>
             </motion.div>
 
             <div
-              className={`relative w-26 h-26 md:absolute md:top-10 md:w-[21%] md:h-[54%] 
-                flex items-center justify-center rounded-full mt-4 md:mt-0
-                ${isRtl ? "md:mr-65" : "md:ml-65"}`}
+              className={`relative w-26 h-26 md:absolute md:top-10 md:w-14 md:h-14 
+                lg:w-[21%] lg:h-[54%]
+                flex items-center justify-center rounded-full mt-4 md:mt-4 lg:mt-0
+                ${isRtl ? "lg:mr-65" : "lg:ml-65"}`}
             >
               <svg
                 width="100%"

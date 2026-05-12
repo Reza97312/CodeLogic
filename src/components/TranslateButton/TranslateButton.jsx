@@ -18,7 +18,7 @@ const TranslateButton = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-full cursor-pointer transition-all duration-300 shadow-md"
+      className="   cursor-pointer  bg-[#008c78] text-white font-bold lg:font-semibold xl:font-bold rounded-full px-4 py-2 sm:px-4 sm:py-2 md:px-3 md:py-2 lg:px-4 lg:py-2 xl:px-6 xl:py-3   text-xs sm:text-sm md:text-sm lg:text-base transition-colors duration-300 hover:bg-[#007563] "
     >
       {currentLang === "fa" ? "English" : "فارسی"}
     </button>

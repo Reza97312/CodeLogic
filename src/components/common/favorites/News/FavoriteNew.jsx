@@ -7,6 +7,7 @@ import openEye from "../../../../assets/Icons/A/openEye.png";
 import { useTranslation } from "react-i18next";
 import reactImg from "../../../../assets/Images/A/teachersDetail/1.png";
 import { PersianDateConverter } from "../../../../utils/helper/dateConverter.js";
+import img2 from "../../../../assets/Images/Rectanglepc.png";
 const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
   const { t } = useTranslation();
   const handleDelete = () => {
@@ -38,11 +39,15 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
         <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
-            src={
-              !items.news.currentImageAddress
-                ? reactImg
-                : items.news.currentImageAddress
-            }
+            // src={
+            //   !items.news.currentImageAddress
+            //     ? reactImg
+            //     : items.news.currentImageAddress
+            // }
+            src={items?.currentImageAddress || img2}
+            onError={(e) => {
+              e.target.src = img2;
+            }}
             alt=""
           />
           {items.news.title}
@@ -53,7 +58,7 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
         <div className="px-4 flex-1 truncate">
           {PersianDateConverter(items.news.updateDate)}
         </div>
-        <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
+        <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4 ">
           <div
             onClick={handleOverView}
             style={{ backgroundImage: `url(${greenEye})` }}

@@ -34,12 +34,12 @@ const TeachersPage = () => {
   const startIndex = (currentPage - 1) * TeachersPerPage;
   const endIndex = startIndex + TeachersPerPage;
   const filteredTeachers = teachersData.filter((teachers) =>
-    teachers.fullName.toLowerCase().includes(searchTerm.trim().toLowerCase())
+    teachers.fullName.toLowerCase().includes(searchTerm.trim().toLowerCase()),
   );
   const currentTeachers = filteredTeachers.slice(startIndex, endIndex);
   const totalPage = Math.max(
     1,
-    Math.ceil(filteredTeachers.length / TeachersPerPage)
+    Math.ceil(filteredTeachers.length / TeachersPerPage),
   );
   //// functions ////
   const handleSelectCount = (num) => {
@@ -125,7 +125,7 @@ const TeachersPage = () => {
             >
               {/* ///// filtering //// */}
               <div
-                className="flex flex-col md:flex-row gap-4 md:gap-0 md:w-[60%] mx-auto md:m-0 h-full 
+                className="flex flex-col md:flex-row gap-4 md:gap-4 md:w-[60%] mx-auto md:m-0 h-full 
               md:items-center md:justify-between "
               >
                 <div className=" md:w-[80%] h-full   ">
@@ -154,7 +154,7 @@ const TeachersPage = () => {
                 </div>
                 <div
                   className="flex h-full items-center dark:bg-[#1E1E1E] dark:text-[#ffff] 
-                rounded-xl border shadow-md p-1 mx-auto md:m-0 border-[#EAEAEA] "
+                rounded-xl border shadow-md p-1 mx-auto md:m-0 border-[#EAEAEA]  "
                 >
                   <span className="text-[16px] ps-1">
                     {t("teachersPage.filters.ShowMore")}
@@ -164,7 +164,7 @@ const TeachersPage = () => {
                     onChange={(e) => {
                       setTempCount(Number(e.target.value));
                     }}
-                    className=" rounded-xl text-sm cursor-pointer px-2 py-1  dark:bg-[#1E1E1E] dark:text-[#ffff]"
+                    className=" rounded-xl text-sm cursor-pointer px-2 py-1   dark:bg-[#1E1E1E] dark:text-[#ffff]"
                   >
                     <option value={16}>16</option>
                     <option value={20}>20</option>

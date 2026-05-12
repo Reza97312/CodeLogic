@@ -112,7 +112,7 @@ const CourseList = () => {
         const courseTechsStr = (course.technologyList || "").toLowerCase();
 
         techCondition = selectedTechs.every((tech) =>
-          courseTechsStr.includes(tech.toLowerCase())
+          courseTechsStr.includes(tech.toLowerCase()),
         );
       }
 
@@ -138,7 +138,7 @@ const CourseList = () => {
   let result = sortedCourses.length;
 
   return (
-    <div className="flex flex-col items-center w-full dark:bg-[#1E1E1E]">
+    <div className="flex flex-col items-center w-full dark:bg-[#1E1E1E] ">
       {isLoading ? (
         <>
           <div className="flex gap-1 pt-10 font-regular text-sm">
@@ -152,7 +152,7 @@ const CourseList = () => {
         </>
       ) : (
         <>
-          <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
+          <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm ">
             <Link to={"/"}>{t("courseListNav.landing")}</Link>
             {">"}
             <span to={"/courseList"}>{t("courseListNav.courseList")}</span>
@@ -168,7 +168,7 @@ const CourseList = () => {
         </>
       )}
 
-      <div className="flex flex-col items-center gap-4 w-full pt-8 px-10 md:flex md:flex-row md:items-start md:gap-8">
+      <div className="flex flex-col items-center gap-4 w-full pt-8 px-10 md:flex md:flex-row md:items-start md:gap-8 ">
         <CourseListSide
           handleSearchSubmit={handleSearchSubmit}
           handleSetStartDate={handleSetStartDate}
