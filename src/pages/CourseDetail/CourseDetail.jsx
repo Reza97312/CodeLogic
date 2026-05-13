@@ -42,22 +42,22 @@ const CourseDetail = () => {
       : courseData.title;
 
   return (
-    <div className="flex flex-col items-center   dark:bg-[#1E1E1E]">
-      <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
+    <div className="flex flex-col items-center   dark:bg-[#1E1E1E] ">
+      <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm ">
         <Link to={"/"}>{t("courseDetailNav.landing")}</Link>
         {">"}
         <Link to={"/courseList"}>{t("courseDetailNav.courseList")}</Link>
         {">"}
         <span>{titleSlice}</span>
       </div>
-      <div className="flex flex-col items-center pt-4">
-        <h2 className="font-bold text-[28px] text-[#1E1E1E]  dark:text-[#EEEEEE]">
+      <div className="flex flex-col items-center pt-4 ">
+        <h2 className="font-bold text-[22px] sm:text-[28px] text-[#1E1E1E]  dark:text-[#EEEEEE]">
           {titleSlice}
         </h2>
       </div>
       <div
-        className="flex flex-col gap-12 pt-8 px-6 pb-[170px]
-      md:flex md:flex-row md:px-10"
+        className="flex w-full md:justify-around lg:justify-center xl:justify-center flex-col gap-6 md:gap-0 lg:gap-12 pt-8 pb-[170px] 
+      md:flex md:flex-row "
       >
         <CourseDetailSide course={courseData} />
 

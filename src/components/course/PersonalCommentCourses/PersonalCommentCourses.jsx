@@ -77,7 +77,7 @@ const PersonalCommentCourses = ({ courseId }) => {
         }));
       }
     },
-    [courseId, handleOpen]
+    [courseId, handleOpen],
   );
   const { mutate: addReply, isPending: isAddingReply } = useMutation({
     mutationFn: addReplyCourseComments,
@@ -154,7 +154,7 @@ const PersonalCommentCourses = ({ courseId }) => {
       if (!commentId) return;
       toggleLikeDislike({ commentId, isLike });
     },
-    [toggleLikeDislike]
+    [toggleLikeDislike],
   );
 
   const { data: commentsResponse, isLoading: commentsLoading } = useQuery({
@@ -166,25 +166,25 @@ const PersonalCommentCourses = ({ courseId }) => {
   let commentsList = Array.isArray(commentsResponse)
     ? commentsResponse
     : Array.isArray(commentsResponse?.data)
-    ? commentsResponse.data
-    : Array.isArray(commentsResponse?.result)
-    ? commentsResponse.result
-    : Array.isArray(commentsResponse?.comments)
-    ? commentsResponse.comments
-    : Array.isArray(commentsResponse?.value)
-    ? commentsResponse.value
-    : Array.isArray(commentsResponse?.data?.items)
-    ? commentsResponse.data.items
-    : (() => {
-        if (!commentsResponse) return [];
-        const firstArray = Object.values(commentsResponse).find((v) =>
-          Array.isArray(v)
-        );
-        return Array.isArray(firstArray) ? firstArray : [];
-      })();
+      ? commentsResponse.data
+      : Array.isArray(commentsResponse?.result)
+        ? commentsResponse.result
+        : Array.isArray(commentsResponse?.comments)
+          ? commentsResponse.comments
+          : Array.isArray(commentsResponse?.value)
+            ? commentsResponse.value
+            : Array.isArray(commentsResponse?.data?.items)
+              ? commentsResponse.data.items
+              : (() => {
+                  if (!commentsResponse) return [];
+                  const firstArray = Object.values(commentsResponse).find((v) =>
+                    Array.isArray(v),
+                  );
+                  return Array.isArray(firstArray) ? firstArray : [];
+                })();
 
   commentsList = commentsList.sort(
-    (a, b) => new Date(b.inserDate) - new Date(a.inserDate)
+    (a, b) => new Date(b.inserDate) - new Date(a.inserDate),
   );
 
   const toggleShowAllComments = () => setShowAllComments((prev) => !prev);
@@ -247,8 +247,8 @@ const PersonalCommentCourses = ({ courseId }) => {
             const persistentStatus = comment.currentUserIsLike
               ? 1
               : comment.currentUserIsDissLike
-              ? -1
-              : 0;
+                ? -1
+                : 0;
 
             const currentLikeStatus =
               userLikeStatus[cid] !== undefined
@@ -296,7 +296,7 @@ const PersonalCommentCourses = ({ courseId }) => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-5 mt-4 text-gray-600 text-sm">
+                <div className="flex flex-wrap items-center gap-5 mt-4 text-gray-600 text-sm">
                   <div
                     onClick={() => handleToggleLikeDislike(cid, false)}
                     className={`flex items-center gap-1 cursor-pointer ${
@@ -382,7 +382,7 @@ const PersonalCommentCourses = ({ courseId }) => {
                             name="title"
                             className="w-full px-5 py-3 text-[#848484] mb-10 rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-black"
                             placeholder={t(
-                              "personalComment.replyForm.titlePlaceholder"
+                              "personalComment.replyForm.titlePlaceholder",
                             )}
                           />
 
@@ -395,7 +395,7 @@ const PersonalCommentCourses = ({ courseId }) => {
                             name="answer"
                             className="w-full px-5 pb-15 text-[#848484] h-[100px] mb-7  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
                             placeholder={t(
-                              "personalComment.replyForm.textPlaceholder"
+                              "personalComment.replyForm.textPlaceholder",
                             )}
                           />
                           <div className="text-[red] absolute right-5 top-48">
@@ -427,10 +427,10 @@ const PersonalCommentCourses = ({ courseId }) => {
                 )}
               </div>
             );
-          }
+          },
         )
       ) : (
-        <div className="w-full ">
+        <div className="w-full  ">
           <Lottie
             className="w-[200px] h-[170px] my-10 mx-auto "
             animationData={empty}
@@ -483,7 +483,7 @@ const PersonalCommentCourses = ({ courseId }) => {
         onClose={handleClose}
       >
         {isLoading ? (
-          <div className="w-[500px] flex items-center justify-evenly mx-auto py-10 font-semibold text-[#848484]">
+          <div className="w-[200px] sm:w-[500px] flex items-center justify-between sm:justify-evenly mx-auto py-10 font-semibold text-[#848484]">
             <p> {t("answerComment.loading")} </p>
             <PacmanLoader size={18} color="#848484" />
           </div>
@@ -492,8 +492,8 @@ const PersonalCommentCourses = ({ courseId }) => {
             const replyList = Array.isArray(repliesResponse)
               ? repliesResponse
               : Array.isArray(repliesResponse?.data)
-              ? repliesResponse.data
-              : [];
+                ? repliesResponse.data
+                : [];
 
             return replyList.length > 0 ? (
               [...replyList]
@@ -524,9 +524,9 @@ const PersonalCommentCourses = ({ courseId }) => {
                   />
                 ))
             ) : (
-              <div className="w-[500px] mx-auto">
+              <div className=" w-[150px] sm:w-[400px] md:w-[500px] mx-auto ">
                 <Lottie
-                  className="w-[200px] h-[170px] my-10 mx-auto"
+                  className=" w-[150px] sm:w-[200px] h-[170px] my-10 mx-auto"
                   animationData={empty}
                   loop={true}
                 />

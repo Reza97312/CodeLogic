@@ -65,42 +65,56 @@ const UserPanelHeader = () => {
   return (
     <>
       <motion.div
-        className="  relative w-[100%] h-[8.59%] min-h-[8.59%] flex justify-between items-center bg-[#F3F4F6] rounded-3xl px-[2%] py-10 dark:bg-[#333]"
+        className=" flex-col md:flex-row relative w-[100%] h-[8.59%] min-h-[8.59%] flex justify-between items-center bg-[#F3F4F6] rounded-3xl px-[2%] py-10 dark:bg-[#333]"
         variants={headerVariants}
         initial="initial"
         animate="animate"
       >
         <motion.div
-          className="   flex items-center gap-5"
+          className="   flex flex-col md:flex-row items-center gap-3 sm:gap-5 relative "
           variants={itemVariants}
         >
           <img
             src={profileData?.currentPictureAddress}
             alt="user"
-            className=" object-cover rounded-full w-[8%] h-[8%]"
+            className=" object-cover hover:opacity-60 hover:scale-105  
+            transition-all duration-200 cursor-pointer rounded-full w-[75%]  sm:w-[85%]   md:w-[25%] "
             onClick={() => setOpenMulti((prev) => !prev)}
           />
-          <div className=" hidden sm:flex flex-col">
-            <p className="text-[20px] text-black dark:text-[#848484]">
+          <div className=" flex flex-col">
+            <p className=" text-[18px] sm:text-[20px] md:text-[18px] lg:text-[20px] mb-4 md:mb-0 text-black dark:text-[#848484]">
               {profileData?.fName + " " + profileData?.lName}
             </p>
           </div>
+          <AnimatePresence>
+            {openMulti && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setOpenMulti(false)}
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              />
+            )}
+          </AnimatePresence>
           {openMulti && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+              }}
               animate={{
                 opacity: 1,
-                y: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 300,
-                  duration: 300,
-                },
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
               }}
               onClick={(e) => e.stopPropagation()}
-              className={`  bg-[#eee] rounded-xl flex z-100  w-[300px] 
+              className={`  bg-[#eee] rounded-xl flex items-center justify-center z-50 w-[280px] sm:w-[400px] md:w-[300px] 
                 flex-col absolute ${
-                  isRTL ? "right-0" : "left-0"
+                  isRTL ? "  md:right-0" : "md:left-0"
                 } top-17 shadow-xl gap-6  py-4 dark:text-white dark:bg-[#333] `}
             >
               <h2 className="mx-auto">{t("multi.accs")}</h2>
@@ -142,7 +156,7 @@ const UserPanelHeader = () => {
           />
         )}
 
-        <div className=" flex items-center gap-2 sm:gap-6">
+        <div className="  flex items-center gap-4 sm:gap-6">
           <motion.div variants={itemVariants}>
             <TranslateButton />
           </motion.div>

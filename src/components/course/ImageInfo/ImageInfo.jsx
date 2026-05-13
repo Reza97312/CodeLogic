@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import img2 from "../../../assets/Images/HTML5Course.png";
+import img2 from "../../../assets/Images/Rectanglee.png";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { disLikeCourses } from "../../../core/services/api/post/disLikeCourses";
@@ -136,16 +136,20 @@ const ImageInfo = ({ course }) => {
   return (
     <div className="flex flex-col gap-4 ">
       <img
-        src={
-          course?.imageAddress && !course.imageAddress.includes("undefined")
-            ? course.imageAddress
-            : img2
-        }
-        className="w-full h-[160px] rounded-xl
+        // src={
+        //   course?.imageAddress && !course.imageAddress.includes("undefined")
+        //     ? course.imageAddress
+        //     : img2
+        // }
+        src={course?.imageAddress || img2}
+        onError={(e) => {
+          e.target.src = img2;
+        }}
+        className="w-[85%] md:w-full mx-auto h-[200px] sm:h-[250px] rounded-xl
             md:h-[240px] md:rounded-2xl
-            lg:h-[443px] lg:rounded-[25px]"
+            lg:h-[350px] xl:h-[434px] lg:rounded-[25px]"
       />
-      <div className="flex justify-between ">
+      <div className="flex justify-between w-[85%] mx-auto md:mx-0 md:w-auto ">
         <div className="border-5">
           {techs &&
             techs.length > 0 &&
@@ -160,7 +164,7 @@ const ImageInfo = ({ course }) => {
         </div>
         <div className="flex gap-2 ">
           <div
-            className={`flex gap-2 py-2 px-3 ${
+            className={`flex items-center justify-center gap-2 py-1 px-2 md:py-2 md:px-3 ${
               likeInfo.userIsDissLike
                 ? "text-white bg-[#008C78] "
                 : "text-[#848484] bg-[#EAEAEA] dark:bg-[#393939]"
@@ -171,11 +175,11 @@ const ImageInfo = ({ course }) => {
             <span className="font-regular text-base">
               {likeInfo.dissLikeCount}
             </span>
-            <ThumbDownAltIcon />
+            <ThumbDownAltIcon className="!text-[20px] sm:!text-[25px]" />
           </div>
 
           <div
-            className={`flex gap-2 py-2 px-3 ${
+            className={`flex items-center justify-center gap-2 py-1 px-2 md:py-2 md:px-3 ${
               likeInfo.userIsLiked
                 ? "text-white bg-[#008C78] "
                 : "text-[#848484] bg-[#EAEAEA] dark:bg-[#393939]"
@@ -184,7 +188,7 @@ const ImageInfo = ({ course }) => {
             style={{ opacity: isLiking || isDisLiking ? 0.6 : 1 }}
           >
             <span className="font-regular text-base">{likeInfo.likeCount}</span>
-            <ThumbUpIcon />
+            <ThumbUpIcon className="!text-[20px] sm:!text-[25px]" />
           </div>
         </div>
       </div>

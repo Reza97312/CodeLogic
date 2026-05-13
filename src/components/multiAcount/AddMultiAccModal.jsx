@@ -48,7 +48,7 @@ const AddMultiAccModal = ({ handleClose, isOpen }) => {
   };
   return (
     <Modal open={isOpen} onClose={handleClose}>
-      <div className="w-full max-w-md mx-auto mt-20 py-6 flex flex-col items-center  px-6 bg-white dark:bg-[#454545] rounded-xl shadow-lg">
+      <div className=" w-[95%] sm:w-full max-w-md mx-auto mt-20 py-6 flex flex-col items-center  px-6 bg-white dark:bg-[#454545] rounded-xl shadow-lg">
         <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78]  font-bold mb-4">
           افزودن اکانت
         </h2>
