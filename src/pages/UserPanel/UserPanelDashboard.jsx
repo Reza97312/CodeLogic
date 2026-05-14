@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import img2 from "../../assets/Images/HTML5Course.png";
+import img3 from "../../assets/Images/Rectanglee.png";
 import { Link } from "react-router-dom";
 import GetProfileInfo from "../../core/services/api/Get/GetProfileInfo";
 import GetReservedDashboard from "../../core/services/api/Get/GetReservedDashboard";
@@ -110,14 +111,14 @@ const UserPanelDashboard = () => {
           >
             <motion.div
               variants={itemVariants}
-              className={`  flex items-center gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-4 lg:pr-6 ${
+              className={`  flex items-center gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-0 lg:mt-5 lg:pr-6 ${
                 isRtl ? "" : "pl-6 md:pl-3 lg:pl-6"
               }`}
             >
-              <p className=" text-[20px] sm:text-[20px] md:text-[13px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
+              <p className=" text-[20px] sm:text-[20px] md:text-[13px] lg:text-[16px] xl:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.my_courses_title")}
               </p>
-              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-0.5 xl:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
                 <Link to={"/userPanel/myCourses"}>
                   <NorthWestIcon className=" !text-[24px] md:!text-[16px] lg:!text-[24px]  text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
                 </Link>
@@ -141,16 +142,16 @@ const UserPanelDashboard = () => {
           >
             <motion.div
               variants={itemVariants}
-              className={`  flex items-center px-2 sm:px-0 md:px-2 lg:px-0 gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-4 lg:pr-6 ${
-                isRtl ? "" : "pl-6 md:pl-3 lg:pl-6"
+              className={`  flex items-center  px-2 sm:px-0 md:px-2 lg:px-0 gap-2 py-4 pr-6 md:py-3 md:pr-3 lg:py-0 lg:mt-5 lg:pr-2 xl:pr-6 ${
+                isRtl ? "" : "pl-6 md:pl-3 lg:pl-2 xl:pl-6"
               }`}
             >
-              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
+              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[16px] xl:text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.unpaid_periods")}
               </p>
-              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+              <div className="p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-0.5 xl:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
                 <Link to={"/userPanel/myReservedCourses"}>
-                  <NorthWestIcon className=" !text-[24px] md:!text-[16px] lg:!text-[24px] text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
+                  <NorthWestIcon className="  !text-[24px] md:!text-[16px] lg:!text-[24px] text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
                 </Link>
               </div>
             </motion.div>
@@ -176,19 +177,20 @@ const UserPanelDashboard = () => {
               variants={headerVariants}
               className="  flex flex-row items-center gap-2  z-10"
             >
-              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] whitespace-nowrap">
+              <p className="text-[20px] sm:text-[20px] md:text-[12px] lg:text-[16px] xl:text-[20px] text-[#1e1e1e] dark:text-[#848484] whitespace-nowrap">
                 {t("paneldashboard.profile_completed")}
               </p>
-              <div className=" p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
+              <div className=" p-1 md:px-1 md:py-0.5 sm:p-1 lg:p-0.5 xl:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
                 <NorthWestIcon className="text-[#1e1e1e] !text-[24px] md:!text-[16px] lg:!text-[24px]  dark:text-[#848484]" />
               </div>
             </motion.div>
 
-            <div
-              className={`relative w-26 h-26 md:absolute md:top-10 md:w-14 md:h-14 
+            <motion.div
+              variants={itemVariants}
+              className={`  relative w-26 h-26 md:absolute md:top-10 md:w-14 md:h-14 
                 lg:w-[21%] lg:h-[54%]
-                flex items-center justify-center rounded-full mt-4 md:mt-4 lg:mt-0
-                ${isRtl ? "lg:mr-65" : "lg:ml-65"}`}
+                flex items-center justify-center rounded-full mt-4 md:mt-4 lg:mt-3 xl:mt-3
+                ${isRtl ? "2xl:mr-65" : "2xl:ml-65"}`}
             >
               <svg
                 width="100%"
@@ -224,7 +226,7 @@ const UserPanelDashboard = () => {
               </svg>
 
               <p className="absolute text-[#008c78] font-bold">{percentage}%</p>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
         <div className=" w-full md:h-[70%]  flex flex-col md:flex-row md:justify-between">
@@ -236,30 +238,31 @@ const UserPanelDashboard = () => {
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   md:w-[45%] px-6 py-4 md:pr-6 ${
+              className={`  flex justify-start gap-3 sm:gap-5 sm:justify-start items-center   md:w-[100%] px-6 py-4 md:pr-6 ${
                 isRtl ? "" : "md:pl-6 md:w-[65%]"
               }`}
             >
               <p
-                className={` text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
+                className={` text-[18px] sm:text-[20px] md:text-[16px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
                   isRtl ? "" : "w-[100%]   "
                 } `}
               >
                 {t("paneldashboard.reserved_courses")}
               </p>
-              <div
-                className={` p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] ${
+              <Link
+                to={"/userPanel/myReservedCourses"}
+                className={` hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer p-0.5 sm:p-1 md:p-0.5 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] dark:text-[#848484]   ${
                   isRtl ? "" : "mr-20"
                 } `}
               >
-                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
-              </div>
+                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white]" />
+              </Link>
             </motion.div>
 
             {latestCourses.map((item) => {
               const shortTitle =
-                item.courseName.length > 48
-                  ? item.courseName.slice(0, 48) + "…"
+                item.courseName.length > 31
+                  ? item.courseName.slice(0, 31) + "…"
                   : item.courseName;
 
               const statusBg = item.accept ? "#D7FFE8" : "#FFD7D7";
@@ -274,17 +277,15 @@ const UserPanelDashboard = () => {
                     !item.currentImageAddress.toLowerCase().includes("local") &&
                     !item.currentImageAddress.toLowerCase().includes("fakepath")
                       ? item.currentImageAddress
-                      : img2
+                      : img3
                   }
                   title={shortTitle}
                   status={
                     <span
+                      className="px-[10px] py-[1px] rounded-[8px] text-[14px] md:text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[16px]"
                       style={{
                         color: statusColor,
                         backgroundColor: statusBg,
-                        padding: "4px 10px",
-                        borderRadius: "8px",
-                        fontSize: "14px",
                       }}
                     >
                       {item.accept ? "تایید شده" : "تایید نشده"}
@@ -296,7 +297,7 @@ const UserPanelDashboard = () => {
             <Link to="/userPanel/myReservedCourses">
               <motion.p
                 variants={itemVariants}
-                className="text-[16px] text-[#848484] text-center cursor-pointer  "
+                className="text-[16px] md:text-[14px] lg:text-[16px] text-[#848484] text-center cursor-pointer  "
               >
                 {t("paneldashboard.view_all")}
               </motion.p>
@@ -310,30 +311,31 @@ const UserPanelDashboard = () => {
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   md:w-[45%] py-4 pr-6 ${
+              className={` flex justify-start gap-3 md:gap-5  items-center   md:w-[100%] py-4 pr-6 ${
                 isRtl ? "" : "pl-6 md:w-[65%]"
               }`}
             >
               <p
-                className={`  text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
+                className={` text-[18px] sm:text-[20px] md:text-[16px] lg:text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
                   isRtl ? "" : "md:w-[40%]   "
                 } `}
               >
                 {t("paneldashboard.latest_news")}
               </p>
-              <div
-                className={` p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] ${
+              <Link
+                to={"/news"}
+                className={` hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer p-0.5 sm:p-1 md:p-0.5 lg:p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] ${
                   isRtl ? "ml-5" : "mr-30"
                 } `}
               >
-                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
-              </div>
+                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white]" />
+              </Link>
             </motion.div>
 
             {sortedNews.map((item) => {
               const shortTitle =
-                item.title.length > 48
-                  ? item.title.slice(0, 48) + "…"
+                item.title.length > 29
+                  ? item.title.slice(0, 29) + "…"
                   : item.title;
 
               return (
