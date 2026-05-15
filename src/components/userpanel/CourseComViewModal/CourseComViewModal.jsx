@@ -5,6 +5,8 @@ import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#898989]";
 const titleClass = "font-semibold text-base text-[#1E1E1E] dark:text-[#fff]  ";
+const textClass1 =
+  "font-semibold text-base text-[#1E1E1E] break-words dark:text-[#fff]  ";
 
 const CourseComViewModal = ({ item, handleToggleViewModal }) => {
   const { t } = useTranslation();
@@ -34,19 +36,19 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
           <span className={titleClass}>
             {t("courseComViewModal.courseTitle")}
           </span>
-          <span className={textClass}>{item.course.title}</span>
+          <span className={textClass1}>{item.course.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("courseComViewModal.commentTitle")}
           </span>
-          <span className={textClass}>{item.title}</span>
+          <span className={textClass1}>{item.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("courseComViewModal.commentText")}
           </span>
-          <span className={textClass}>{item.describe}</span>
+          <span className={textClass1}>{item.describe}</span>
         </div>
         <div className="flex justify-center gap-2">
           <span className={titleClass}>{t("courseComViewModal.status")}</span>

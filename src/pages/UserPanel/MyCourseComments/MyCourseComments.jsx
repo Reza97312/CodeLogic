@@ -157,7 +157,9 @@ const MyCourseComments = () => {
               ))
             ) : currentComments.length > 0 ? (
               currentComments.map((item, index) => {
-                return <MyCourseComment item={item} key={index} />;
+                return (
+                  <MyCourseComment type="mobile" item={item} key={index} />
+                );
               })
             ) : (
               <div className="w-full py-6">
@@ -225,7 +227,9 @@ const MyCourseComments = () => {
                     ))
                   ) : currentComments.length > 0 ? (
                     currentComments.map((item, index) => {
-                      return <MyCourseComment item={item} key={index} />;
+                      return (
+                        <MyCourseComment type="table" item={item} key={index} />
+                      );
                     })
                   ) : (
                     <tr>

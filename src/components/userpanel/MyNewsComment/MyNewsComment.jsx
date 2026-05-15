@@ -12,7 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
-const MyNewsComment = ({ item }) => {
+const MyNewsComment = ({ item, type }) => {
   const { t } = useTranslation();
 
   const Animate = {
@@ -44,79 +44,99 @@ const MyNewsComment = ({ item }) => {
     },
   });
 
+  if (type === "mobile") {
+    return (
+      <>
+        <motion.div
+          variants={Animate}
+          initial="hidden"
+          animate="visible"
+          className="rounded-2xl border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
+        >
+          <div className="flex items-center gap-4">
+            <div className="min-w-0 flex-1">
+              <span
+                className={`${textClass} block truncate text-[15px] font-semibold`}
+              >
+                آموزش ری اکت
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myNewsComments.title2")}:
+              </span>
+
+              <span className={`${textClass} truncate text-sm`}>
+                {item.title}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myNewsComments.title3")}:
+              </span>
+
+              <span className={`${textClass} truncate text-sm`}>
+                {item.describe}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myNewsComments.title4")}:
+              </span>
+
+              <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
+                {PersianDateConverter(item.inserDate)}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-center justify-end gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                handleToggleViewModal(true);
+              }}
+              className="transition-transform duration-200 hover:scale-110"
+            >
+              <Eye />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                handleToggleDeleteModal(true);
+              }}
+              className="transition-transform duration-200 hover:scale-110"
+            >
+              <Garbage />
+            </button>
+          </div>
+        </motion.div>
+
+        {isOpenViewModal && (
+          <NewsComViewModal
+            item={item}
+            handleToggleViewModal={handleToggleViewModal}
+          />
+        )}
+
+        {isOpenDeleteModal && (
+          <NewsComDeleteModal
+            handleToggleDeleteModal={handleToggleDeleteModal}
+            deleteNewsCom={deleteNewsCom}
+          />
+        )}
+      </>
+    );
+  }
+
   return (
     <>
-      <motion.div
-        variants={Animate}
-        initial="hidden"
-        animate="visible"
-        className="rounded-2xl border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
-      >
-        <div className="flex items-center gap-4">
-          <div className="min-w-0 flex-1">
-            <span
-              className={`${textClass} block truncate text-[15px] font-semibold`}
-            >
-              آموزش ری اکت
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myNewsComments.title2")}:
-            </span>
-
-            <span className={`${textClass} truncate text-sm`}>
-              {item.title}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myNewsComments.title3")}:
-            </span>
-
-            <span className={`${textClass} truncate text-sm`}>
-              {item.describe}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myNewsComments.title4")}:
-            </span>
-
-            <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
-              {PersianDateConverter(item.inserDate)}
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex items-center justify-end gap-4">
-          <button
-            type="button"
-            onClick={() => {
-              handleToggleViewModal(true);
-            }}
-            className="transition-transform duration-200 hover:scale-110"
-          >
-            <Eye />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              handleToggleDeleteModal(true);
-            }}
-            className="transition-transform duration-200 hover:scale-110"
-          >
-            <Garbage />
-          </button>
-        </div>
-      </motion.div>
-
       <motion.tr
         variants={Animate}
         initial="hidden"

@@ -56,7 +56,7 @@ const MyReservedCourses = () => {
   };
 
   return (
-    <div className="flex  flex-col gap-5 md:gap-10 lg:gap-0 h-[85%]  border-1 mt-5 md:mt-0 p-5 bg-[#F3F4F6] rounded-4xl  w-full sm:w-auto dark:bg-[#333333]">
+    <div className="flex  flex-col gap-5 md:gap-10 lg:gap-0 h-[85%]   mt-5 md:mt-0 p-5 bg-[#F3F4F6] rounded-4xl  w-full sm:w-auto dark:bg-[#333333]">
       <div className="flex  flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center  w-full md:w-auto lg:w-[95%] lg:mx-auto">
         <UserPanelSearch width={"  md:w-[439px]"} handleSearch={handleSearch} />
         <div className=" flex flex-row justify-between sm:gap-5  w-full md:w-auto">
@@ -111,7 +111,7 @@ const MyReservedCourses = () => {
             ))
           ) : currentCourses.length > 0 ? (
             currentCourses.map((item, index) => (
-              <MyReservedCourse item={item} key={index} />
+              <MyReservedCourse type="mobile" item={item} key={index} />
             ))
           ) : (
             <div className="flex w-full flex-col items-center justify-center py-6">
@@ -170,7 +170,7 @@ const MyReservedCourses = () => {
                   ))
                 ) : currentCourses.length > 0 ? (
                   currentCourses.map((item, index) => (
-                    <MyReservedCourse item={item} key={index} />
+                    <MyReservedCourse type="table" item={item} key={index} />
                   ))
                 ) : (
                   <tr>

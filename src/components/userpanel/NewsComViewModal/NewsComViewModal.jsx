@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#898989]";
+const textClass1 =
+  "font-regular text-base text-[#1E1E1E] break-words  dark:text-[#898989]";
 const titleClass = "font-semibold text-base text-[#1E1E1E] dark:text-[#fff]";
 
 const NewsComViewModal = ({ item, handleToggleViewModal }) => {
@@ -38,13 +40,13 @@ const NewsComViewModal = ({ item, handleToggleViewModal }) => {
           <span className={titleClass}>
             {t("newsCommentModal.commentTitle")}
           </span>
-          <span className={textClass}>{item.title}</span>
+          <span className={textClass1}>{item.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("newsCommentModal.commentText")}
           </span>
-          <span className={textClass}>{item.describe}</span>
+          <span className={textClass1}>{item.describe}</span>
         </div>
         <div className="flex justify-center gap-2">
           <span className={titleClass}>{t("newsCommentModal.status")}</span>

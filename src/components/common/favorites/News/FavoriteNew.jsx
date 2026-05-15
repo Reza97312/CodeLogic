@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import greenEye from "../../../../assets/Icons/A/greenEye.png";
-import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
-import htmlImg from "../../../../assets/Images/HTML5Course.png";
-import openEye from "../../../../assets/Icons/A/openEye.png";
 import { useTranslation } from "react-i18next";
-import reactImg from "../../../../assets/Images/A/teachersDetail/1.png";
 import { PersianDateConverter } from "../../../../utils/helper/dateConverter.js";
 import img2 from "../../../../assets/Images/Rectanglepc.png";
-const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
+import Eye from "../../../../assets/Icons/Eye.jsx";
+import Garbage from "../../../../assets/Icons/Garbage.jsx";
+const FavoriteNew = ({ items, deleteItem, getOverViewData, type }) => {
   const { t } = useTranslation();
   const handleDelete = () => {
     deleteItem(items.id);
@@ -17,7 +14,6 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
     getOverViewData(items.news);
   };
 
-  //// framer ////
   const Animate = {
     hidden: { opacity: 0, y: -20 },
     visible: {
@@ -26,111 +22,189 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
       transition: { ease: "easeOut", duration: 0.35 },
     },
   };
-  return (
-    <>
+
+  if (type === "mobile") {
+    return (
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className=" dark:bg-[#454545] dark:text-[#ffff] w-full text-[16px] text-center font-semibold
-       bg-[#ffff] rounded-t-4xl hidden md:flex items-center py-5 border-b border-[#EAEAEA] "
-        style={{ direction: "rtl" }}
+        className="rounded-2xl border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
       >
-        <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
+        <div className="flex items-center gap-4">
           <img
-            className="w-[28px] h-[28px] rounded-full object-cover"
-            // src={
-            //   !items.news.currentImageAddress
-            //     ? reactImg
-            //     : items.news.currentImageAddress
-            // }
-            src={items?.currentImageAddress || img2}
-            onError={(e) => {
-              e.target.src = img2;
-            }}
-            alt=""
+            className="h-14 w-14 shrink-0 rounded-full object-cover"
+            src={
+              items?.news?.currentImageAddress &&
+              !items.news.currentImageAddress.includes("undefined") &&
+              items.news.currentImageAddress.startsWith("http") &&
+              !items.news.currentImageAddress.toLowerCase().includes("local") &&
+              !items.news.currentImageAddress.toLowerCase().includes("fakepath")
+                ? items.news.currentImageAddress
+                : img2
+            }
+            alt={items.news?.title || ""}
           />
-          {items.news.title}
+
+          <div className="min-w-0 flex-1">
+            <span
+              className={` block truncate text-[15px] font-semibold text-[#1E1E1E] dark:text-[#DDDDDD]`}
+            >
+              {items.news.title}
+            </span>
+          </div>
         </div>
-        <div className="px-4 flex-1">43</div>
-        <div className="px-4 flex-1">666</div>
-        <div className="px-1 flex-1">36</div>
-        <div className="px-4 flex-1 truncate">
-          {PersianDateConverter(items.news.updateDate)}
+
+        <div className="mt-5 flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {t("favoriteNews.commentsCount")}:
+            </span>
+
+            <span className="truncate text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {items.news.commentsCount ?? 43}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {t("favoriteNews.viewsCount")}:
+            </span>
+
+            <span className="truncate text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {items.news.viewsCount ?? 666}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {t("favoriteNews.likesCount")}:
+            </span>
+
+            <span className="truncate text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {items.news.likesCount ?? 36}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-sm text-[#1E1E1E] dark:text-[#DDDDDD]">
+              {t("favoriteNews.lastUpdated")}:
+            </span>
+
+            <span className="truncate text-[12px] text-[#1E1E1E] dark:text-[#DDDDDD] sm:text-sm">
+              {PersianDateConverter(items.news.updateDate)}
+            </span>
+          </div>
         </div>
-        <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4 ">
-          <div
+
+        <div className="mt-5 flex items-center justify-end gap-4">
+          <button
+            type="button"
             onClick={handleOverView}
-            style={{ backgroundImage: `url(${greenEye})` }}
-            className="w-6 h-4 cursor-pointer bg-no-repeat bg-[center_center] "
-          ></div>
-          <div
+            className="transition-transform duration-200 hover:scale-110"
+          >
+            <Eye />
+          </button>
+
+          <button
+            type="button"
             onClick={handleDelete}
-            style={{ backgroundImage: `url(${greenBasket})` }}
-            className="w-4 h-4 cursor-pointer bg-[url(/icons/greenBasket.png)] bg-no-repeat bg-[center_center] "
-          ></div>
+            className="transition-transform duration-200 hover:scale-110"
+          >
+            <Garbage />
+          </button>
         </div>
       </motion.div>
-      <div
-        className="flex md:hidden flex-col items-center gap-4 dark:text-white dark:bg-[#333]
-      w-[60%] bg-[#eee] rounded-3xl mx-auto mt-4 py-4
-      "
-      >
-        <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
-          {items.news.title}
-        </h2>
-        <img
-          className="rounded-4xl shadow-md w-[55%] mx-auto"
-          src={
-            !items.news.currentImageAddress
-              ? reactImg
-              : items.news.currentImageAddress
-          }
-          alt=""
-        />
-        <div className="flex items-center gap-4 text-[14px] text-[#848484] dark:text-[#848484]">
-          <div className="flex items-center gap-2 ">
-            <img
-              className="w-4 h-4"
-              src="https://img.icons8.com/?size=100&id=11167&format=png&color=000000"
-              alt=""
-            />
-            43
-          </div>
-          <div className="flex gap-2 items-center">
-            <img
-              className="w-4 h-4"
-              src="https://img.icons8.com/?size=100&id=85028&format=png&color=000000"
-              alt=""
-            />
-            666
-          </div>
-          <div className="flex gap-2 items-center">
-            <img
-              className="w-4 h-4"
-              src="https://img.icons8.com/?size=100&id=82788&format=png&color=000000"
-              alt=""
-            />
-            36
-          </div>
+    );
+  }
+
+  return (
+    <motion.tr
+      variants={Animate}
+      initial="hidden"
+      animate="visible"
+      className="hidden bg-white transition-colors duration-200 hover:bg-[#FAFAFA] dark:bg-[#454545] dark:hover:bg-[#505050] lg:table-row"
+    >
+      <td className="border-b border-[#EAEAEA] px-3 py-4 lg:py-3.5 xl:px-4 xl:py-[11px] 2xl:py-4 dark:border-[#5a5a5a]">
+        <div className="flex min-w-0 items-center gap-3 xl:gap-4">
+          <img
+            className="h-11 w-11 shrink-0 rounded-full object-cover xl:h-12 xl:w-12 2xl:h-14 2xl:w-14"
+            src={
+              items?.news?.currentImageAddress &&
+              !items.news.currentImageAddress.includes("undefined") &&
+              items.news.currentImageAddress.startsWith("http") &&
+              !items.news.currentImageAddress.toLowerCase().includes("local") &&
+              !items.news.currentImageAddress.toLowerCase().includes("fakepath")
+                ? items.news.currentImageAddress
+                : img2
+            }
+            alt={items.news?.title || ""}
+          />
+
+          <span
+            className={`
+           
+            min-w-0 truncate
+            text-[12px] font-semibold text-[#1E1E1E]
+            dark:text-[#DDDDDD]
+            xl:text-[13px] 2xl:text-[14px]
+          `}
+          >
+            {items.news.title}
+          </span>
         </div>
-        <span className=" mx-auto text-[14px] text-[#848484] dark:text-[#848484]">
+      </td>
+
+      <td className="border-b border-[#EAEAEA] px-3 py-4 text-center text-[12px] font-medium text-[#1E1E1E] dark:border-[#5a5a5a] dark:text-[#DDDDDD] xl:text-[13px] 2xl:text-[14px]">
+        {items.news.commentsCount ?? 43}
+      </td>
+
+      <td className="border-b border-[#EAEAEA] px-3 py-4 text-center text-[12px] font-medium text-[#1E1E1E] dark:border-[#5a5a5a] dark:text-[#DDDDDD] xl:text-[13px] 2xl:text-[14px]">
+        {items.news.viewsCount ?? 666}
+      </td>
+
+      <td className="border-b border-[#EAEAEA] px-3 py-4 text-center text-[12px] font-medium text-[#1E1E1E] dark:border-[#5a5a5a] dark:text-[#DDDDDD] xl:text-[13px] 2xl:text-[14px]">
+        {items.news.likesCount ?? 36}
+      </td>
+
+      <td className="border-b border-[#EAEAEA] px-3 py-4 text-center text-[12px] font-medium whitespace-nowrap text-[#1E1E1E] dark:border-[#5a5a5a] dark:text-[#DDDDDD] xl:text-[13px] 2xl:text-[14px]">
+        <span className="inline lg:hidden">
           {PersianDateConverter(items.news.updateDate)}
         </span>
-        <div className="  flex items-center  gap-4">
-          <div
+
+        <span className="hidden lg:inline xl:hidden">
+          {PersianDateConverter(items.news.updateDate).slice(0, 15)}...
+        </span>
+
+        <span className="hidden xl:inline 2xl:hidden">
+          {PersianDateConverter(items.news.updateDate).slice(0, 19)}...
+        </span>
+
+        <span className="hidden 2xl:inline">
+          {PersianDateConverter(items.news.updateDate).slice(0, 23)}...
+        </span>
+      </td>
+
+      <td className="border-b border-[#EAEAEA] px-3 py-4 dark:border-[#5a5a5a]">
+        <div className="flex items-center justify-center gap-4 lg:gap-2 2xl:gap-4">
+          <button
+            type="button"
             onClick={handleOverView}
-            style={{ backgroundImage: `url(${greenEye})` }}
-            className="w-6 h-4 cursor-pointer bg-no-repeat bg-[center_center] "
-          ></div>
-          <div
+            className="transition-transform duration-200 hover:scale-110"
+          >
+            <Eye />
+          </button>
+
+          <button
+            type="button"
             onClick={handleDelete}
-            style={{ backgroundImage: `url(${greenBasket})` }}
-            className="w-4 h-4 cursor-pointer bg-[url(/icons/greenBasket.png)] bg-no-repeat bg-[center_center] "
-          ></div>
+            className="transition-transform duration-200 hover:scale-110"
+          >
+            <Garbage />
+          </button>
         </div>
-      </div>
-    </>
+      </td>
+    </motion.tr>
   );
 };
 

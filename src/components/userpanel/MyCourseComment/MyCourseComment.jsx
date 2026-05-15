@@ -11,7 +11,7 @@ import CourseComDeleteModal from "../CourseComDeleteModal/CourseComDeleteModal.j
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
-const MyCourseComment = ({ item }) => {
+const MyCourseComment = ({ item, type }) => {
   const { t } = useTranslation();
 
   const Animate = {
@@ -43,50 +43,51 @@ const MyCourseComment = ({ item }) => {
     },
   });
 
-  return (
-    <>
-      <motion.div
-        variants={Animate}
-        initial="hidden"
-        animate="visible"
-        className="rounded-2xl  border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
-      >
-        <div className="flex items-center gap-4">
-          <div className="min-w-0 flex-1">
-            <span
-              className={`${textClass} block truncate text-[15px] font-semibold`}
-            >
-              {item.course.title}
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myCourseComments.title2")}:
-            </span>
-            <span className={`${textClass} truncate text-sm`}>
-              {item.title}
-            </span>
+  if (type === "mobile") {
+    return (
+      <>
+        <motion.div
+          variants={Animate}
+          initial="hidden"
+          animate="visible"
+          className="rounded-2xl  border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
+        >
+          <div className="flex items-center gap-4">
+            <div className="min-w-0 flex-1">
+              <span
+                className={`${textClass} block truncate text-[15px] font-semibold`}
+              >
+                {item.course.title}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myCourseComments.title3")}:
-            </span>
-            <span className={`${textClass} truncate text-sm`}>
-              {item.describe}
-            </span>
-          </div>
+          <div className="mt-5 flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myCourseComments.title2")}:
+              </span>
+              <span className={`${textClass} truncate text-sm`}>
+                {item.title}
+              </span>
+            </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myCourseComments.title4")}:
-            </span>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myCourseComments.title3")}:
+              </span>
+              <span className={`${textClass} truncate text-sm`}>
+                {item.describe}
+              </span>
+            </div>
 
-            <span
-              className={`
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myCourseComments.title4")}:
+              </span>
+
+              <span
+                className={`
               rounded-lg px-1 sm:px-3 py-1 text-[12px] sm:text-sm font-medium
               ${
                 item.accept
@@ -94,46 +95,65 @@ const MyCourseComment = ({ item }) => {
                   : "bg-[#FFECEC] text-[#E7000B]"
               }
             `}
+              >
+                {item.accept
+                  ? t("myCourseComment.accepted")
+                  : t("myCourseComment.notAccepted")}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t("myCourseComments.title5")}:
+              </span>
+              <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
+                {PersianDateConverter(item.insertDate)}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-center justify-end gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                handleToggleViewModal(true);
+              }}
+              className="transition-transform duration-200 hover:scale-110"
             >
-              {item.accept
-                ? t("myCourseComment.accepted")
-                : t("myCourseComment.notAccepted")}
-            </span>
+              <Eye />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                handleToggleDeleteModal(true);
+              }}
+              className="cursor-pointer transition-transform duration-200 hover:scale-110"
+            >
+              <Garbage />
+            </button>
           </div>
+        </motion.div>
 
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("myCourseComments.title5")}:
-            </span>
-            <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
-              {PersianDateConverter(item.insertDate)}
-            </span>
-          </div>
-        </div>
+        {isOpenViewModal && (
+          <CourseComViewModal
+            item={item}
+            handleToggleViewModal={handleToggleViewModal}
+          />
+        )}
 
-        <div className="mt-5 flex items-center justify-end gap-4">
-          <button
-            type="button"
-            onClick={() => {
-              handleToggleViewModal(true);
-            }}
-            className="transition-transform duration-200 hover:scale-110"
-          >
-            <Eye />
-          </button>
+        {isOpenDeleteModal && (
+          <CourseComDeleteModal
+            handleToggleDeleteModal={handleToggleDeleteModal}
+            deleteCourseCom={deleteCourseCom}
+          />
+        )}
+      </>
+    );
+  }
 
-          <button
-            type="button"
-            onClick={() => {
-              handleToggleDeleteModal(true);
-            }}
-            className="cursor-pointer transition-transform duration-200 hover:scale-110"
-          >
-            <Garbage />
-          </button>
-        </div>
-      </motion.div>
-
+  return (
+    <>
       <motion.tr
         variants={Animate}
         initial="hidden"

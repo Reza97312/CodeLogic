@@ -9,7 +9,7 @@ import PaymentModal from "../PaymentModal/PaymentModal";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 import img2 from "../../../assets/Images/Rectanglee.png";
 
-const MyReservedCourse = ({ item }) => {
+const MyReservedCourse = ({ item, type }) => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,56 +33,57 @@ const MyReservedCourse = ({ item }) => {
     setOpenPaymentModal(value);
   };
 
-  return (
-    <>
-      <motion.div
-        variants={Animate}
-        initial="hidden"
-        animate="visible"
-        className="rounded-2xl border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
-      >
-        <div className="flex items-center gap-4">
-          <img
-            src={
-              item.image &&
-              !item.image.includes("undefined") &&
-              item.image.startsWith("http") &&
-              !item.image.toLowerCase().includes("local") &&
-              !item.image.toLowerCase().includes("fakepath")
-                ? item.image
-                : img2
-            }
-            alt={item.courseName}
-            className="h-14 w-14 shrink-0 rounded-full object-cover"
-          />
+  if (type === "mobile") {
+    return (
+      <>
+        <motion.div
+          variants={Animate}
+          initial="hidden"
+          animate="visible"
+          className="rounded-2xl border border-[#EAEAEA] bg-white p-4 shadow-sm dark:border-[#5a5a5a] dark:bg-[#454545] lg:hidden"
+        >
+          <div className="flex items-center gap-4">
+            <img
+              src={
+                item.image &&
+                !item.image.includes("undefined") &&
+                item.image.startsWith("http") &&
+                !item.image.toLowerCase().includes("local") &&
+                !item.image.toLowerCase().includes("fakepath")
+                  ? item.image
+                  : img2
+              }
+              alt={item.courseName}
+              className="h-14 w-14 shrink-0 rounded-full object-cover"
+            />
 
-          <div className="min-w-0 flex-1">
-            <span
-              className={`${textClass} block truncate text-[15px] font-semibold`}
-            >
-              {item.courseName.length > 30
-                ? item.courseName.slice(0, 30) + "..."
-                : item.courseName}
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              مدرس:
-            </span>
-            <span className={`${textClass} truncate text-sm`}>
-              {item.teacher}
-            </span>
+            <div className="min-w-0 flex-1">
+              <span
+                className={`${textClass} block truncate text-[15px] font-semibold`}
+              >
+                {item.courseName.length > 30
+                  ? item.courseName.slice(0, 30) + "..."
+                  : item.courseName}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              وضعیت:
-            </span>
-            <span
-              className={`
+          <div className="mt-5 flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                مدرس:
+              </span>
+              <span className={`${textClass} truncate text-sm`}>
+                {item.teacher}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                وضعیت:
+              </span>
+              <span
+                className={`
               rounded-lg px-1 sm:px-3 py-1 text-sm font-medium
               ${
                 item.accept
@@ -90,46 +91,62 @@ const MyReservedCourse = ({ item }) => {
                   : "bg-[#FFECEC] text-[#E7000B]"
               }
             `}
-            >
-              {item.accept
-                ? t("myReservedCourse.reserved")
-                : t("myReservedCourse.await")}
-            </span>
+              >
+                {item.accept
+                  ? t("myReservedCourse.reserved")
+                  : t("myReservedCourse.await")}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                تاریخ:
+              </span>
+              <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
+                {PersianDateConverter(item.insertDate)}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              تاریخ:
-            </span>
-            <span className={`${textClass} truncate text-[12px] sm:text-sm`}>
-              {PersianDateConverter(item.insertDate)}
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex items-center justify-end gap-4">
-          <button
-            type="button"
-            onClick={() => {
-              handleToggleModal(true);
-            }}
-            className="transition-transform duration-200 hover:scale-110"
-          >
-            <Eye />
-          </button>
-
-          {item.accept && (
+          <div className="mt-5 flex items-center justify-end gap-4">
             <button
               type="button"
-              onClick={() => setOpenPaymentModal(true)}
+              onClick={() => {
+                handleToggleModal(true);
+              }}
               className="transition-transform duration-200 hover:scale-110"
             >
-              <AddCardIcon className="text-[#008C78]" />
+              <Eye />
             </button>
-          )}
-        </div>
-      </motion.div>
 
+            {item.accept && (
+              <button
+                type="button"
+                onClick={() => setOpenPaymentModal(true)}
+                className="transition-transform duration-200 hover:scale-110"
+              >
+                <AddCardIcon className="text-[#008C78]" />
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {isOpen && (
+          <ReservedCoursesModal
+            item={item}
+            handleToggleModal={handleToggleModal}
+          />
+        )}
+
+        {openPaymentModal && (
+          <PaymentModal item={item} handleClosePayment={handleClosePayment} />
+        )}
+      </>
+    );
+  }
+
+  return (
+    <>
       <motion.tr
         variants={Animate}
         initial="hidden"

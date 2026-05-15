@@ -166,7 +166,7 @@ const MyNewsComments = () => {
               ))
             ) : currentComments.length > 0 ? (
               currentComments.map((item, index) => {
-                return <MyNewsComment item={item} key={index} />;
+                return <MyNewsComment type="mobile" item={item} key={index} />;
               })
             ) : (
               <div className="w-full py-6">
@@ -229,7 +229,9 @@ const MyNewsComments = () => {
                     ))
                   ) : currentComments.length > 0 ? (
                     currentComments.map((item, index) => {
-                      return <MyNewsComment item={item} key={index} />;
+                      return (
+                        <MyNewsComment type="table" item={item} key={index} />
+                      );
                     })
                   ) : (
                     <tr>

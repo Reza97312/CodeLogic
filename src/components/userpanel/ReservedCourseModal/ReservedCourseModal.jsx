@@ -20,7 +20,7 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
     "font-regular sm:text-base text-[#1E1E1E]  text-[12px] dark:text-[#DDDDDD]";
 
   const textClass1 =
-    "font-regular sm:text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
+    "font-regular sm:text-base text-[#1E1E1E]  break-words dark:text-[#DDDDDD]";
 
   return (
     <div

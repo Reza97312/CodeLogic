@@ -467,11 +467,16 @@ const UserPanelRight = ({ isMobileMenu }) => {
                 damping: 20,
               },
             }}
-            className=" w-[80%] md:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex
+            className=" w-[80%] md:w-[40%] 2xl:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex
                   flex-col justify-center mt-3 gap-10 items-center p-4 dark:text-white dark:bg-[#333] "
           >
-            <h2 className="font-bold">{t("panelside.logOut")}</h2>
+            <h3 className=" font-semibold sm:font-bold text-[15px]  text-center sm:text-[16px]">
+              {t("panelside.logOut")}
+            </h3>
             <div className="flex items-center gap-5 justify-between">
+              <button className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl">
+                {t("panelside.back")}
+              </button>
               <motion.button
                 whileHover={{
                   scale: 1.1,
@@ -495,9 +500,6 @@ const UserPanelRight = ({ isMobileMenu }) => {
               >
                 {t("panelside.yes")}
               </motion.button>
-              <button className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl">
-                {t("panelside.back")}
-              </button>
             </div>
           </motion.div>
         </motion.div>
