@@ -20,15 +20,15 @@ const CourseComDeleteModal = ({ handleToggleDeleteModal, deleteCourseCom }) => {
       onClick={() => {
         handleToggleDeleteModal(false);
       }}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 flex items-center justify-center"
     >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col justify-between dark:bg-[#333] items-center gap-6 w-144 h-44 py-8 bg-[#FFFFFF] border border-[#EAEAEA] 
-            rounded-xl fixed top-70 right-120 inset-0 z-48"
+        className="flex flex-col justify-between dark:bg-[#333] items-center gap-6 w-[90%] sm:w-[60%] md:w-[50%] lg:w-[40%] 2xl:w-[30%] py-8 bg-[#FFFFFF] border border-[#EAEAEA] 
+            rounded-xl  inset-0 z-48"
       >
         <h3 className="font-semibold dark:text-[#fff]">
           {t("courseComDeleteModal.title")}

@@ -21,14 +21,14 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
   return (
     <div
       onClick={() => handleToggleViewModal(false)}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 flex items-center justify-center"
     >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center dark:bg-[#333] gap-6 w-144 h-84 pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-      right-120 inset-0 z-48"
+        className="flex flex-col items-center dark:bg-[#333] gap-6 w-[90%] sm:w-[60%] md:w-[50%] lg:w-[40%] 2xl:w-[30%] pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] 
+        rounded-xl  z-48"
       >
         <div className="flex gap-2">
           <span className={titleClass}>

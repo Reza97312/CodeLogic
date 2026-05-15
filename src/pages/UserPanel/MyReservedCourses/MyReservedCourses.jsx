@@ -56,7 +56,7 @@ const MyReservedCourses = () => {
   };
 
   return (
-    <div className="flex  flex-col gap-5 md:gap-10 lg:gap-0 h-[85%] border-1 mt-5 md:mt-0 p-5 bg-[#F3F4F6] rounded-4xl  w-full sm:w-auto dark:bg-[#333333]">
+    <div className="flex  flex-col gap-5 md:gap-10 lg:gap-0 h-[85%]  border-1 mt-5 md:mt-0 p-5 bg-[#F3F4F6] rounded-4xl  w-full sm:w-auto dark:bg-[#333333]">
       <div className="flex  flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center  w-full md:w-auto lg:w-[95%] lg:mx-auto">
         <UserPanelSearch width={"  md:w-[439px]"} handleSearch={handleSearch} />
         <div className=" flex flex-row justify-between sm:gap-5  w-full md:w-auto">
@@ -73,7 +73,8 @@ const MyReservedCourses = () => {
                 setFilterOption(e.target.value);
                 setCurrentPage(1);
               }}
-              className="rounded-xl text-sm cursor-pointer  w-[100%] md:w-auto  px-3 py-1  text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
+              className="rounded-xl text-sm cursor-pointer  w-[100%] md:w-auto  px-3 py-1  text-gray-600   
+              dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
             >
               <option value="همه">({t("favoriteNews.all")})</option>
 
@@ -102,7 +103,7 @@ const MyReservedCourses = () => {
         </div>
       </div>
 
-      <div className="w-full rounded-2xl bg-[#f3f4f6] p-3 md:overflow-y-auto lg:overflow-y-hidden  dark:bg-[#333] sm:p-4 md:p-5 lg:p-6">
+      <div className="w-full rounded-2xl bg-[#f3f4f6]  p-3 md:overflow-y-auto lg:overflow-y-hidden  dark:bg-[#333] sm:p-4 md:p-5 lg:p-6">
         <div className="flex flex-col gap-4 lg:hidden ">
           {isPending ? (
             [...Array(coursesPerPage)].map((_, index) => (
