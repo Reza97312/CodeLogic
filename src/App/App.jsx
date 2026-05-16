@@ -12,7 +12,7 @@ function App() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ToastContainer position="top-center" toastClassName="font-toast" />
-        {/* <ChatBot /> */}
+        <ChatBot />
         <RouterProvider router={router} />
       </QueryClientProvider>
     </Provider>
