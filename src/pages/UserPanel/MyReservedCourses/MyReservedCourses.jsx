@@ -204,7 +204,7 @@ const MyReservedCourses = () => {
               marginPagesDisplayed={1}
               pageRangeDisplayed={3}
               forcePage={currentPage - 1}
-              containerClassName="flex flex-wrap items-center gap-2"
+              containerClassName="flex flex-wrap items-center gap-2 cursor-pointer "
               pageClassName="list-none"
               pageLinkClassName="flex h-[38px] min-w-[38px] items-center justify-center rounded-xl bg-[#EAEAEA] px-3 text-sm font-bold text-black transition-all duration-200 hover:scale-105 dark:bg-[#555] dark:text-white sm:h-[42px] sm:min-w-[42px]  sm:text-base"
               activeLinkClassName="!bg-[#008C78] !text-white"
