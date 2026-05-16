@@ -5,6 +5,8 @@ import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#898989]";
 const titleClass = "font-semibold text-base text-[#1E1E1E] dark:text-[#fff]  ";
+const textClass1 =
+  "font-semibold text-base text-[#1E1E1E] break-words dark:text-[#fff]  ";
 
 const CourseComViewModal = ({ item, handleToggleViewModal }) => {
   const { t } = useTranslation();
@@ -21,32 +23,32 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
   return (
     <div
       onClick={() => handleToggleViewModal(false)}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 flex items-center justify-center"
     >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center dark:bg-[#333] gap-6 w-144 h-84 pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-      right-120 inset-0 z-48"
+        className="flex flex-col items-center dark:bg-[#333] gap-6 w-[90%] sm:w-[60%] md:w-[50%] lg:w-[40%] 2xl:w-[30%] pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] 
+        rounded-xl  z-48"
       >
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("courseComViewModal.courseTitle")}
           </span>
-          <span className={textClass}>{item.course.title}</span>
+          <span className={textClass1}>{item.course.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("courseComViewModal.commentTitle")}
           </span>
-          <span className={textClass}>{item.title}</span>
+          <span className={textClass1}>{item.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
             {t("courseComViewModal.commentText")}
           </span>
-          <span className={textClass}>{item.describe}</span>
+          <span className={textClass1}>{item.describe}</span>
         </div>
         <div className="flex justify-center gap-2">
           <span className={titleClass}>{t("courseComViewModal.status")}</span>

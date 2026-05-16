@@ -32,7 +32,7 @@ const PaymentModal = ({ item, handleClosePayment }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
+      className=" fixed inset-0 bg-black/50 backdrop-blur  flex justify-center items-center "
       onClick={() => handleClosePayment(false)}
     >
       <motion.div
@@ -46,7 +46,7 @@ const PaymentModal = ({ item, handleClosePayment }) => {
             duration: 300,
           },
         }}
-        className=" bg-[#eee] rounded-3xl flex z-20
+        className=" bg-[#eee] rounded-3xl flex z-20 
           flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
       >
         <p>{t("payment.q1")}</p>
