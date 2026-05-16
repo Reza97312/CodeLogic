@@ -16,7 +16,6 @@ const NEWS_BASE_URL = "https://sepehracademy.liara.run";
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 app.use((req, res, next) => {
-  res.setTimeout(120000);
   next();
 });
 
@@ -29,41 +28,11 @@ async function fetchNews() {
       headers: { "Content-Type": "application/json" },
     });
 
-    console.log("resNews", res);
-
     const data = await res.json();
     return data?.news || [];
   } catch (err) {
     console.error(" خطا در GET اخبار:", err);
     return [];
-  }
-}
-
-function normalize(text) {
-  return text
-    ?.toString()
-    .trim()
-    .toLowerCase()
-    .replace(/ي/g, "ی")
-    .replace(/ك/g, "ک");
-}
-
-function findRelatedNews(newsList, question) {
-  const q = normalize(question);
-  return newsList.filter((n) => {
-    const t = normalize(n.title);
-    const m = normalize(n.miniDescribe);
-
-    return t.includes(q) || (m && m.includes(q));
-  });
-}
-
-function safeExtractDescribe(describe) {
-  try {
-    const obj = JSON.parse(describe);
-    return obj?.blocks?.map((b) => b.data?.text || "").join("\n");
-  } catch (e) {
-    return "";
   }
 }
 
@@ -73,24 +42,8 @@ app.post("/api/chat", async (req, res) => {
     const userQuestion = userMessages[userMessages.length - 1]?.content || "";
 
     const newsList = await fetchNews();
-    const matched = findRelatedNews(newsList, userQuestion);
 
-    let newsContext = "هیچ خبری مطابق این موضوع یافت نشد.";
-
-    if (matched.length > 0) {
-      newsContext = matched
-        .map((n) => {
-          const fullDescribe = safeExtractDescribe(n.describe);
-
-          return `
-🔹 خبر یافت شد:
-عنوان: ${n.title}
-توضیح کوتاه: ${n.miniDescribe || "ندارد"}
-توضیح کامل: ${fullDescribe || "ندارد"}
-`;
-        })
-        .join("\n\n");
-    }
+    console.log("NEWS", newsList);
 
     const messagesForModel = [
       {
@@ -99,17 +52,21 @@ app.post("/api/chat", async (req, res) => {
 تو یک دستیار فارسی هستی. با لحن رسمی ولی ساده جواب بده.
 بر اساس اطلاعات زیر پاسخ بده:
 
-${newsContext}
+${newsList} این آرایه داده ورودی هست:
+
+در title هر خبر جستجو کن
 
 قوانین:
 - اگر خبر پیدا شد: عنوان + توضیح کوتاه + خلاصه‌ای از توضیح کامل را بگو.
-- اگر خبر نبود: فقط بگو خبری با این موضوع موجود نیست.
+- اگر خبر پیدا نشد: نزدیک ترین خبر مشابه را پیدا کن و به کاربر بگو.
+- در غیر اینصورت یک خبر رندوم از آرایه ورودی انتخاب کن و همراه با تایتل و دیسکریپشن بگو
+- در غیر اینطورت فقط جواب کاربر رو بصورت کاربردی بگو
+
+این سوال کاربره: ${userQuestion}
         `,
       },
       ...userMessages,
     ];
-
-    console.log("newsList", newsList);
 
     const response = await fetch(OPENROUTER_URL, {
       method: "POST",
@@ -126,7 +83,6 @@ ${newsContext}
     });
 
     const data = await response.json();
-    console.log(data);
     return res.json(data);
   } catch (err) {
     console.error(" خطا در چت:", err);
