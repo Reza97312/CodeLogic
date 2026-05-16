@@ -14,6 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 import RegisterStepTwoApi from "../../../core/services/api/post/registerStepTwo";
 import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
 import { ClockLoader } from "react-spinners";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const StepTwo = () => {
   const { t, i18n } = useTranslation();
@@ -21,7 +22,9 @@ const StepTwo = () => {
   const [searchParams] = useSearchParams();
   const gmail = searchParams.get("gmail");
   const [initialValues] = useState({ code: ["", "", "", "", "", ""] });
-  const [darkMode, setDarkMode] = useState(false);
+
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const inputsRef = useRef([]);
 
   const [time, setTime] = useState(120);
@@ -73,8 +76,6 @@ const StepTwo = () => {
       }
     },
   });
-
-  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleChange = (e, index, values, setFieldValue) => {
     const value = e.target.value.replace(/\D/, "");
@@ -132,7 +133,7 @@ const StepTwo = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
+        isDark ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       }`}
     >
       <Formik
@@ -143,27 +144,27 @@ const StepTwo = () => {
         {({ values, setFieldValue, touched }) => (
           <Form className="w-full flex justify-center">
             <motion.div
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-[#333]" : "bg-white"
+              className={` flex  flex-col md:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+                isDark ? "bg-[#333]" : "bg-white"
               }`}
             >
-              <div className="w-full lg:w-[47.44%] flex justify-center items-center">
+              <div className="w-full   hidden  lg:w-[47.44%] md:flex justify-center items-center">
                 <motion.div
                   variants={imageVariant}
-                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
+                  className={`  w-[95%] sm:w-[90%]  h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center md:mb-4 md:mt-4 lg:mt-0 lg:mb-0 mr-0 lg:mr-2  relative transition-colors duration-500 ${
+                    isDark ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
-                    onClick={toggleDarkMode}
+                    onClick={toggleTheme}
                     className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-yellow-300/40 justify-end"
                         : "bg-blue-900/30 justify-start"
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
-                      <img src={`${darkMode ? sun : moon}`} alt="theme icon" />
+                      <img src={`${isDark ? sun : moon}`} alt="theme icon" />
                     </div>
                   </div>
 
@@ -173,15 +174,15 @@ const StepTwo = () => {
                     alt="regtwo"
                   />
                   <span
-                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
-                      darkMode ? "text-white" : "text-[#005B77]"
+                    className={`font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
+                      isDark ? "text-white" : "text-[#005B77]"
                     }`}
                   >
                     {t("registerStepTwo.start_learning")}
                   </span>
                   <p
-                    className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
-                      darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+                    className={`w-[85%] sm:w-[80%] md:mb-6 lg:mb-0 text-center transition-colors duration-500 ${
+                      isDark ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
                     {t("registerStepTwo.description")}
@@ -189,23 +190,42 @@ const StepTwo = () => {
                 </motion.div>
               </div>
 
-              <div className="w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
+              <div className="w-full    lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
                 <motion.div
                   variants={fadeInOnly(0.5)}
                   initial="hidden"
                   animate="visible"
+                  className="mb-25 sm:mb-25 md:mb-10 flex items-center justify-center"
                 >
-                  <div className="w-[65%] flex items-center justify-between mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                  <div
+                    className={`  w-[90%] md:w-[85%] lg:w-[65%] flex items-center justify-between   md:mb-6 text-sm absolute top-4 sm:top-6 lg:top-10  ${
+                      i18n.language === "fa"
+                        ? "right-4 sm:right-8 lg:right-22 xl:right-30"
+                        : "left-4 sm:left-8 lg:left-22 xl:left-30"
+                    } flex items-center`}
+                  >
+                    <div
+                      onClick={toggleTheme}
+                      className={` flex md:hidden cursor-pointer py-3 px-2 w-11 h-5 rounded-full   transition-colors duration-500 ${
+                        isDark
+                          ? "bg-yellow-300/40 justify-end"
+                          : "bg-blue-900/30 justify-start"
+                      }`}
+                    >
+                      <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
+                        <img src={`${isDark ? sun : moon}`} alt="theme icon" />
+                      </div>
+                    </div>
                     <Link to="/RegisterStepOne">
                       <div>
                         <EastIcon
                           className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                            isDark ? "text-gray-300" : "text-[#005B77]"
                           }`}
                         />
                         <span
                           className={`cursor-pointer font-bold transition-colors duration-500 ${
-                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                            isDark ? "text-gray-300" : "text-[#005B77]"
                           }`}
                         >
                           {t("registerStepTwo.back")}
@@ -220,8 +240,8 @@ const StepTwo = () => {
                   variants={fadeInUp(0.6)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
-                    darkMode ? "text-white" : "text-[#008C78]"
+                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-3 sm:mb-3 transition-colors duration-500 ${
+                    isDark ? "text-white" : "text-[#008C78]"
                   }`}
                 >
                   {t("registerStepTwo.create_account")}
@@ -231,8 +251,8 @@ const StepTwo = () => {
                   variants={fadeInUp(0.9)}
                   initial="hidden"
                   animate="visible"
-                  className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
+                  className={`mb-6 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
+                    isDark ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
                   {t("registerStepTwo.enter_code")}
@@ -242,10 +262,10 @@ const StepTwo = () => {
                   variants={fadeInUp(1.2)}
                   initial="hidden"
                   animate="visible"
-                  className="flex flex-col items-center relative"
+                  className="flex flex-col items-center  relative   "
                 >
                   <div
-                    className="flex justify-center mb-2"
+                    className="flex justify-center mb-2   "
                     style={{ direction: "ltr" }}
                   >
                     {values.code.map((digit, index) => (
@@ -263,12 +283,12 @@ const StepTwo = () => {
                         onKeyDown={(e) =>
                           handleKeyDown(e, index, values, setFieldValue)
                         }
-                        className={`w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
+                        className={`  w-9 h-9 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-14 xl:h-14 mx-0.5 sm:mx-3 md:mx-1 lg:mx-3 text-center text-lg rounded-xl md:rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
                           digit
                             ? "border-2 border-[#008C78]"
                             : touched.code?.[index]
-                            ? "border-2 border-red-500"
-                            : "border-2 border-transparent focus:border-[#008C78]"
+                              ? "border-2 border-red-500"
+                              : "border-2 border-transparent focus:border-[#008C78]"
                         }`}
                       />
                     ))}
@@ -276,13 +296,13 @@ const StepTwo = () => {
 
                   {touched.code &&
                     values.code.some(
-                      (val, idx) => touched.code[idx] && !val
+                      (val, idx) => touched.code[idx] && !val,
                     ) && (
                       <div
                         className={` text-red-500 text-sm mt-1 font-semibold text-center absolute  ${
                           i18n.language === "fa"
-                            ? " top-16 right-18"
-                            : "left-18 top-16"
+                            ? " right-1 md:right-18 top-12 md:top-14 lg:top-16 "
+                            : " left-1 md:left-18 top-12 md:top-14 lg:top-16"
                         } `}
                       >
                         {t("registerStepTwo.validation.required")}
@@ -298,8 +318,8 @@ const StepTwo = () => {
                     <button
                       disabled={isPending}
                       type="submit"
-                      className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
-                        darkMode
+                      className={`  text-center mt-10 font-semibold py-3 rounded-4xl w-[70%] sm:w-[80%] md:w-[80%]  transition-colors duration-500 cursor-pointer ${
+                        isDark
                           ? "bg-[#008C78] text-[white]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
@@ -320,11 +340,11 @@ const StepTwo = () => {
                   variants={fadeInUp(1.8)}
                   initial="hidden"
                   animate="visible"
-                  className="text-sm mt-4 sm:mt-6 text-center transition-colors duration-500"
+                  className="text-sm mt-8 mb-8 md:mb-0  sm:mt-6 text-center transition-colors duration-500"
                 >
                   {!canResend ? (
                     <span
-                      className={darkMode ? "text-gray-300" : "text-[#333333]"}
+                      className={isDark ? "text-gray-300" : "text-[#333333]"}
                     >
                       {formatTime(time)}
                     </span>
@@ -334,7 +354,7 @@ const StepTwo = () => {
                       disabled={isResending}
                       onClick={() => resendCode()}
                       className={`font-bold  cursor-pointer transition-colors duration-500 ${
-                        darkMode ? "text-[#008C78] " : "text-[#008C78] "
+                        isDark ? "text-[#008C78] " : "text-[#008C78] "
                       }`}
                     >
                       {isResending ? (

@@ -9,7 +9,6 @@ import JoinTeachers from "../../components/landing/JoinTeachers/JoinTeachers";
 import NewsListSection from "../../components/landing/NewsListSection/NewsListSection";
 
 const Landing = () => {
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

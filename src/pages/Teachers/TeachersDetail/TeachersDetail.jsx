@@ -7,9 +7,6 @@ import DetailCard from "../../../components/common/TeachersDetail/DetailCard";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import GetAllCourses from "../../../core/services/api/Get/GetAllCourses";
-import loading from "../../../assets/Images/A/loading.gif";
-import leftIcon from "../../../assets/Icons/A/left.png";
-import rightIcon from "../../../assets/Icons/A/right.png";
 import searchIcon from "../../../assets/Icons/A/search.png";
 import { getDetail } from "../../../core/services/api/Get/GetTeachersDetail";
 import GetCoursesPaginate from "../../../core/services/api/Get/GetCoursesByPaginatio";
@@ -71,14 +68,6 @@ const TeachersDetail = () => {
       transition: { duration: 0.6, ease: "easeOut", delay },
     },
   });
-  const fadeOutUp = (delay) => ({
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut", delay },
-    },
-  });
 
   const sliderRef = useRef(null);
   useEffect(() => {
@@ -126,7 +115,7 @@ const TeachersDetail = () => {
         </div>
         <div className=" flex flex-col md:flex-row md:flex-nowrap gap-10 w-full  justify-between pt-4 pb-20 ">
           {isTeacherLoading ? (
-            <div className="w-[80%] md:w-[23%] mx-auto md:mx-0 ">
+            <div className="w-[80%] flex items-center justify-center md:block md:w-[23%] mx-auto md:mx-0 ">
               <TeacherSkeleton />
             </div>
           ) : (
@@ -134,21 +123,21 @@ const TeachersDetail = () => {
               <TeacherCard item={teacher} />
             </div>
           )}
-          <div className="w-[100%] md:w-[80%] flex flex-col justify-center mx-auto md:mx-0">
+          <div className="w-[100%]  md:w-[80%] flex flex-col justify-center mx-auto md:mx-0">
             <div
               className=" flex flex-col md:flex-row dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E]
-                             bg-[#ffff] md:h-[72px] w-full shadow-md  rounded-[15px]
-                              items-center md:justify-between md:px-5 py-3 "
+                             bg-[#ffff] md:h-[72px] w-[80%] md:w-full shadow-md  rounded-[15px]
+                              items-center md:justify-between md:px-5 py-3 mx-auto md:mx-0 "
             >
               {/* ///// filtering //// */}
               <div className="flex flex-col md:flex-row gap-4 md:w-[60%] h-full items-center md:justify-between ">
-                <div className=" md:w-[78%] h-full   ">
+                <div className=" md:w-[100%] lg:w-[78%] h-full flex justify-center   ">
                   <motion.input
                     whileFocus={{
                       boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                     }}
                     transition={{ duration: 0.3 }}
-                    className={` px-3 w-full h-full dark:placeholder:text-[#EEEE] outline-none border-[#EAEAEA] border-[1px]
+                    className={` px-3 py-2 md:py-0 w-[90%] md:w-full  h-full dark:placeholder:text-[#EEEE] outline-none border-[#EAEAEA] border-[1px]
                                              ${
                                                isRTL
                                                  ? "bg-[left_15px_center]"
@@ -166,7 +155,7 @@ const TeachersDetail = () => {
                     value={tempSearch}
                   />
                 </div>
-                <div className="flex md:w-[24%] items-center h-full dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
+                <div className=" flex md:w-[100%] lg:w-[40%] xl:w-[24%] items-center h-full dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
                   <span className="text-[16px] ps-1 ">
                     {t("teachersPage.filters.ShowMore")}
                   </span>

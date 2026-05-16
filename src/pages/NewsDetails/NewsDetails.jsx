@@ -60,7 +60,7 @@ const NewsDetails = () => {
     const filtered = data.news.filter(
       (item) =>
         item.newsCatregoryName === newsDetail.newsCatregoryName &&
-        item.id !== newsDetail.id
+        item.id !== newsDetail.id,
     );
 
     return filtered
@@ -81,7 +81,7 @@ const NewsDetails = () => {
     if (direction === "right") {
       const newPosition = Math.min(
         container.scrollLeft + scrollAmount,
-        maxScrollLeft
+        maxScrollLeft,
       );
       container.scrollTo({
         left: newPosition,
@@ -127,23 +127,26 @@ const NewsDetails = () => {
     const displayRating = hover || rating;
 
     return (
-      <div className="flex items-center gap-2">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span
-            key={star}
-            onClick={() => handleRate(star)}
-            onMouseEnter={() => setHover(star)}
-            onMouseLeave={() => setHover(null)}
-            className="cursor-pointer transition-transform transform hover:scale-110"
-          >
-            {star <= displayRating ? (
-              <StarIcon className="text-yellow-400 text-[28px]" />
-            ) : (
-              <StarBorderIcon className="text-yellow-400 text-[28px]" />
-            )}
-          </span>
-        ))}
-        <span className="font-[16px] text-[#848484] mr-40 ">
+      <div className="flex items-center gap-2 w-full justify-between ">
+        <div className="">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              onClick={() => handleRate(star)}
+              onMouseEnter={() => setHover(star)}
+              onMouseLeave={() => setHover(null)}
+              className="cursor-pointer transition-transform transform hover:scale-110"
+            >
+              {star <= displayRating ? (
+                <StarIcon className="text-yellow-400 text-[28px]" />
+              ) : (
+                <StarBorderIcon className="text-yellow-400 text-[28px]" />
+              )}
+            </span>
+          ))}
+        </div>
+
+        <span className="font-[16px] text-[#848484]   ">
           {rating.toFixed(1)}
           <span className="mr-1">امتیاز</span>
         </span>
@@ -187,9 +190,9 @@ const NewsDetails = () => {
     >
       <div className="bg-[#F3F4F6] dark:bg-[#1e1e1e] w-full">
         {" "}
-        <div className="pt-10 flex flex-col justify-center items-center px-4">
+        <div className="pt-10 flex flex-col justify-center items-center px-4 ">
           <motion.span
-            className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]"
+            className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]  text-center "
             variants={itemVariants}
           >
             <Link to="/">
@@ -213,9 +216,9 @@ const NewsDetails = () => {
             {newsDetail?.title}
           </motion.p>
         </div>
-        <div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="flex flex-col lg:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
           <motion.div
-            className="ml-5 w-full flex flex-wrap gap-10 sm:w-1/4 lg:w-[29%] relative mb-6 sm:mb-0"
+            className="ml-5 w-full flex flex-wrap gap-10 lg:w-1/4 lg:w-[29%] relative mb-6 lg:mb-0"
             variants={containerVariants}
           >
             <motion.div
@@ -290,7 +293,7 @@ const NewsDetails = () => {
           </motion.div>
 
           <motion.div
-            className="w-full flex flex-wrap sm:w-3/4 lg:w-[69%] sm:ml-6 "
+            className="w-full flex flex-wrap lg:w-3/4 lg:w-[69%] md:ml-6 "
             variants={itemVariants}
           >
             <TitleImage newsDetail={newsDetail} />
@@ -301,29 +304,29 @@ const NewsDetails = () => {
 
       <div className="w-full flex flex-wrap bg-[#F3F4F6] dark:bg-[#1e1e1e] ">
         <div className="w-full flex items-center justify-between py-2 px-15">
-          <p className="font-bold text-[#008C78] text-[24px]">
+          <p className="font-bold text-[#008C78] text-[16px] sm:text-[24px] ">
             {" "}
             {t("NewsDetails.relatedNews")}
           </p>
-          <div className="flex justify-between gap-5">
+          <div className="flex justify-between gap-5 hidden lg:flex">
             <div
               onClick={() => scrollHandler("right")}
               className="cursor-pointer text-[#008C78] rounded-full p-1 hover:bg-[#008C78] hover:text-white transition-all duration-300"
             >
-              <EastIcon className="!text-[34px] font-bold" />
+              <EastIcon className=" !text-[25px] sm:!text-[34px] font-bold" />
             </div>
             <div
               onClick={() => scrollHandler("left")}
               className="cursor-pointer text-[#008C78] rounded-full p-1 hover:bg-[#008C78] hover:text-white transition-all duration-300"
             >
-              <WestIcon className="!text-[34px] font-bold" />
+              <WestIcon className=" !text-[25px] sm:!text-[34px] font-bold" />
             </div>
           </div>
         </div>
 
         <motion.div
           ref={sliderRef}
-          className="w-full flex flex-row-reverse gap-4 md:gap-6 lg:gap-8 overflow-x-auto overflow-y-hidden scroll-smooth px-4 sm:px-6 md:px-8 lg:px-10 mb-20 scrollbar-none"
+          className=" w-full flex flex-row-reverse gap-4 md:gap-6 lg:gap-8 overflow-x-visible lg:overflow-x-hidden overflow-y-hidden scroll-smooth px-4 sm:px-6 md:px-8 lg:px-10 mb-20 lg:scrollbar-hide"
           variants={containerVariants}
         >
           {categoryNews.length === 0 ? (

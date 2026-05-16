@@ -53,8 +53,8 @@ const PaymentRedirectPage = () => {
         {status === "pending"
           ? t("payment.pending")
           : status === "success"
-          ? t("payment.success")
-          : t("payment.pending")}
+            ? t("payment.success")
+            : t("payment.pending")}
       </h2>
       {status === "pending" ? (
         <img className="w-[300px] h-[300px]" src={loading} />

@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
   otp: Yup.array().of(
     Yup.string()
       .matches(/^[0-9]$/, "فقط عدد مجاز است")
-      .required("نمتواند خالی باشد")
+      .required("نمتواند خالی باشد"),
   ),
 });
 const initialValues = { otp: ["", "", "", "", "", ""] };
@@ -80,7 +80,7 @@ const LoginValidationPage = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col  overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
+        className="  flex flex-col  overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
       >
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -91,9 +91,21 @@ const LoginValidationPage = () => {
             stiffness: 300,
             delay: 0.5,
           }}
-          className=" flex flex-1 flex-col  p-17  gap-10 "
+          className=" md:h-full md:w-[50%] flex flex-1 flex-col  p-5 sm:p-17 md:p-5 md:mt-10  gap-10 md:gap-20 lg:gap-10 xl:gap-20 "
         >
           <div className="flex justify-between items-center">
+            <div
+              onClick={toggleTheme}
+              className={` flex md:hidden cursor-pointer py-3 px-2  w-12 h-6   rounded-full   flex  ${
+                isDark
+                  ? "bg-yellow-300/40 justify-end "
+                  : "bg-blue-900/30  justify-start"
+              } `}
+            >
+              <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center ">
+                <img src={isDark ? sun : moon} alt="" />
+              </div>
+            </div>
             <Link
               to={"/login"}
               className=" pr-8 bg-no-repeat  bg-[right_1px_center]
@@ -104,8 +116,8 @@ const LoginValidationPage = () => {
             </Link>
             <TranslateButton />
           </div>
-          <div className="flex flex-col justify-center items-center gap-3 p-5 ">
-            <div className="flex flex-col justify-center items-center gap-2  ">
+          <div className="  w-full flex flex-col justify-center items-center gap-3 p-0 sm:p-5 md:p-0 lg:p-5 ">
+            <div className="  flex flex-col justify-center items-center gap-2  ">
               <h2 className="text-[24px] font-bold text-[#008C78] mb-2 ">
                 {t("login.LoginToUserAccount")}
               </h2>
@@ -113,18 +125,21 @@ const LoginValidationPage = () => {
                 {t("login.EnterTheOneTimePasswordSent")}
               </h3>
             </div>
-            <div className="w-full mt-7 px-7">
+            <div className="  w-full mt-7 px-0 sm:px-7 md:px-0 lg:px-7">
               <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => handleSubmit(values)}
                 validationSchema={validationSchema}
               >
                 {({ setFieldValue, touched, values }) => (
-                  <Form>
-                    <div className=" flex flex-col gap-4 px-3 ">
-                      <div className="flex justify-between  ">
+                  <Form className="">
+                    <div className="   flex flex-col items-center gap-4 px-0 sm:px-3 md:px-0 lg:px-3 ">
+                      <div className="  flex justify-between items-center  sm:w-full ">
                         {values.otp.map((digit, index) => (
-                          <div key={index} className=" flex flex-col gap-5">
+                          <div
+                            key={index}
+                            className="  flex flex-col items-center gap-5"
+                          >
                             <Field
                               innerRef={(el) => (inputsRef.current[index] = el)}
                               name={`otp[${index}]`}
@@ -138,12 +153,12 @@ const LoginValidationPage = () => {
                               onKeyDown={(e) =>
                                 handleKeyDown(e, index, values, setFieldValue)
                               }
-                              className={`w-12 h-12 text-center rounded-xl text-lg bg-[#F3F4F6] dark:bg-[#454545]  shadow-md outline-none transition-colors duration-200 ${
+                              className={` w-10 h-10 mx-0.5 md:w-10 md:h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 lg:mx-0.5 xl:mx-0  text-center rounded-xl text-lg bg-[#F3F4F6] dark:bg-[#454545]  shadow-md outline-none transition-colors duration-200 ${
                                 digit
                                   ? "border-2 border-[#008C78]"
                                   : touched.otp?.[index]
-                                  ? "border-2 border-red-500"
-                                  : "border-2 border-transparent focus:border-[#008C78]"
+                                    ? "border-2 border-red-500"
+                                    : "border-2 border-transparent focus:border-[#008C78]"
                               } `}
                             />
                           </div>
@@ -169,7 +184,7 @@ const LoginValidationPage = () => {
                         }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className=" mt-8  w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3  "
+                        className=" mt-8 w-[95%]  py-2 sm:px-5 sm:py-3  sm:w-full text-center mt-2 bg-[#008C78] text-white text-[16px] rounded-full  "
                       >
                         {t("login.OneTimePasswordVerification")}
                       </motion.button>
@@ -189,7 +204,7 @@ const LoginValidationPage = () => {
             stiffness: 300,
             delay: 0.5,
           }}
-          className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545]
+          className=" hidden md:flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545]
            rounded-[60px] relative"
         >
           <div
@@ -206,13 +221,19 @@ const LoginValidationPage = () => {
           </div>
           <div className=" mt-5 flex flex-col  items-center justify-center gap-6">
             <div className=" flex flex-col justify-center items-center  ">
-              <img className=" w-95 h-95  " src={login2} alt="" />
+              <img
+                className=" max-w-[435px] w-full md:h-[100%] lg:h-[300px] xl:h-[400px] 2xl:min-h-[409.592529296875px]  "
+                src={login2}
+                alt=""
+              />
             </div>
             <div className=" flex flex-col justify-center items-center  gap-4">
-              <h2 className="text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold ">
+              <h2 className="text-[#005B77]  tracking-wide mt-2 md:text-[19px] lg:text-[24px] font-bold dark:text-[white] ">
                 {t("login.Title2")}
               </h2>
-              <p className="text-[16px] text-center">{t("login.caption2")}</p>
+              <p className=" md:text-sm lg:text-[16px] text-center">
+                {t("login.caption2")}
+              </p>
             </div>
           </div>
         </motion.div>

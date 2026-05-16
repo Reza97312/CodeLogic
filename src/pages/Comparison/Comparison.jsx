@@ -9,12 +9,12 @@ import PsychologyIcon from "@mui/icons-material/Psychology";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import img1 from "../../assets/Images/HTML5Course.png";
 import Lottie from "lottie-react";
 import infinity from "../../assets/Images/Infinity Loader.json";
 import compare from "../../assets/Images/Compare.json";
 import ReduceCapacityIcon from "@mui/icons-material/ReduceCapacity";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import img2 from "../../assets/Images/Rectanglee.png";
 
 const ApiData = (Data) => {
   const categories = Array.isArray(Data.courseTech)
@@ -35,7 +35,7 @@ const ApiData = (Data) => {
 
   return {
     courseId: Data.courseId,
-    imageAddress: Data.imageAddress || img1,
+    imageAddress: Data.imageAddress || img2,
     title: Data.title,
     currentRate: String(Data.currentRate).slice(0, 3),
     categories: categories,
@@ -107,28 +107,133 @@ const CourseCard = ({ title, data }) => {
   ];
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-[white] dark:bg-[#333] shadow-2xl rounded-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 ">
-      <img
-        style={{ width: "100%", objectFit: "cover" }}
-        src={imageAddress}
-        alt={title}
-      />
-      <div className={`p-4  text-white`}>
-        <h3 className="text-lg font-bold text-center text-[black] dark:text-[#848484]">
+    <div
+      className="
+      group
+      w-full
+      max-w-[19rem]
+      sm:max-w-[22rem]
+      md:max-w-[24rem]
+      lg:max-w-[26rem]
+      xl:max-w-[28rem]
+      2xl:max-w-[30rem]
+      mx-auto
+      overflow-hidden
+      rounded-2xl
+      bg-white dark:bg-[#2f2f2f]
+      shadow-lg
+      hover:shadow-2xl
+      transition-all duration-500
+      hover:-translate-y-1
+    "
+    >
+      <div className="relative overflow-hidden">
+        <img
+          className="
+          w-full
+          h-[180px]
+          sm:h-[210px]
+          md:h-[230px]
+          lg:h-[250px]
+          xl:h-[270px]
+          2xl:h-[290px]
+          object-cover
+          transition-transform duration-700
+          group-hover:scale-105
+        "
+          src={imageAddress || img2}
+          onError={(e) => {
+            e.currentTarget.src = img2;
+          }}
+          alt={title}
+        />
+
+        <div
+          className="
+          absolute inset-0
+          bg-gradient-to-t
+          from-black/40
+          via-black/10
+          to-transparent
+        "
+        />
+      </div>
+
+      <div
+        className="
+        px-4
+        sm:px-5
+        md:px-6
+        pt-4
+        sm:pt-5
+        md:pt-6
+      "
+      >
+        <h3
+          className="
+          text-center
+          font-extrabold
+          leading-snug
+          tracking-tight
+          text-black dark:text-[#e2e2e2]
+          text-[1rem]
+          sm:text-[1.1rem]
+          md:text-[1.2rem]
+          lg:text-[1.3rem]
+        "
+        >
           {title}
         </h3>
       </div>
 
-      <div className="p-4   min-h-[5rem]">
-        <h4 className="text-sm font-semibold text-gray-600 mb-2 flex items-center dark:text-[#848484]">
-          <TagIcon className="ml-1 text-gray-600 w-4 h-4" />
+      <div
+        className="
+        px-4
+        sm:px-5
+        md:px-6
+        pt-5
+        min-h-[90px]
+        sm:min-h-[100px]
+      "
+      >
+        <h4
+          className="
+          mb-3
+          flex items-center
+          font-semibold
+          text-gray-700 dark:text-[#bdbdbd]
+          text-xs
+          sm:text-sm
+        "
+        >
+          <TagIcon
+            className="
+            ml-1
+            w-4 h-4
+            shrink-0
+            text-gray-600 dark:text-[#bdbdbd]
+          "
+          />
           تکنولوژی ها:
         </h4>
+
         <div className="flex flex-wrap gap-2">
           {categories.map((cat, index) => (
             <span
               key={index}
-              className="px-3  py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full "
+              className="
+              px-2.5
+              sm:px-3
+              py-1
+              rounded-full
+              bg-green-100
+              text-green-700
+              text-[10px]
+              sm:text-xs
+              md:text-sm
+              font-semibold
+              whitespace-nowrap
+            "
             >
               {cat}
             </span>
@@ -136,50 +241,184 @@ const CourseCard = ({ title, data }) => {
         </div>
       </div>
 
-      <div className="p-4 space-y-3">
+      <div
+        className="
+        px-4
+        sm:px-5
+        md:px-6
+        pt-5
+        space-y-3
+      "
+      >
         {details.map((item, index) => (
           <div
             key={index}
-            className="flex justify-between items-center text-sm pb-5 px-3 border-b border-gray-200  "
+            className="
+            flex
+            flex-col
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+            gap-2
+            border-b
+            border-gray-200 dark:border-[#444]
+            pb-4
+          "
           >
-            <div className="flex items-center text-gray-600 font-medium dark:text-[#848484]">
-              <span className="ml-2 w-5 h-5 flex items-center justify-center dark:text-[#848484]">
+            <div
+              className="
+              flex
+              items-center
+              text-gray-700 dark:text-[#bdbdbd]
+              font-medium
+              text-xs
+              sm:text-sm
+              md:text-[15px]
+            "
+            >
+              <span
+                className="
+                ml-2
+                flex
+                w-5 h-5
+                items-center
+                justify-center
+                shrink-0
+              "
+              >
                 {item.icon}
               </span>
-              {item.label}:
+
+              <span className="break-words">{item.label}:</span>
             </div>
+
             <div
-              className={`font-semibold dark:text-[#848484] ${
-                item.highlight ? "text-yellow-600" : "text-gray-800"
-              }`}
+              className={`
+              font-bold
+              text-xs
+              sm:text-sm
+              md:text-[15px]
+              break-words
+              ${
+                item.highlight
+                  ? "text-yellow-600"
+                  : "text-gray-800 dark:text-[#e5e5e5]"
+              }
+            `}
             >
               {item.value}
             </div>
           </div>
         ))}
 
-        <div className="pt-3  mt-3 flex justify-between items-center">
-          <div>
-            <p className="text-sm text-gray-600 ml-2 flex items-center dark:text-[#848484]">
-              <PeopleIcon className="w-4 h-4 ml-1 text-gray-600 dark:text-[#848484]" />
+        <div
+          className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          gap-3
+          pt-3
+        "
+        >
+          <div
+            className="
+            rounded-xl
+            border border-gray-100 dark:border-[#444]
+            bg-gray-50 dark:bg-[#262626]
+            p-3
+            sm:p-4
+          "
+          >
+            <p
+              className="
+              flex items-center
+              text-gray-600 dark:text-[#bdbdbd]
+              text-[11px]
+              sm:text-xs
+              md:text-sm
+            "
+            >
+              <PeopleIcon className="w-4 h-4 ml-1 shrink-0" />
               تعداد دانشجو:
             </p>
-            <p className="text-xl font-bold text-[#008C78]  mt-2">
-              {studentsCount}نفر
+
+            <p
+              className="
+              mt-3
+              font-extrabold
+              text-[#008C78]
+              text-lg
+              sm:text-xl
+              md:text-2xl
+              break-words
+            "
+            >
+              {studentsCount} نفر
             </p>
           </div>
-          <div>
-            <p className="text-sm text-gray-600 ml-2 flex items-center dark:text-[#848484]">
-              <AttachMoneyIcon className="w-4 h-4 ml-1 text-gray-600 dark:text-[#848484]" />
+
+          <div
+            className="
+            rounded-xl
+            border border-gray-100 dark:border-[#444]
+            bg-gray-50 dark:bg-[#262626]
+            p-3
+            sm:p-4
+          "
+          >
+            <p
+              className="
+              flex items-center
+              text-gray-600 dark:text-[#bdbdbd]
+              text-[11px]
+              sm:text-xs
+              md:text-sm
+            "
+            >
+              <AttachMoneyIcon className="w-4 h-4 ml-1 shrink-0" />
               قیمت دوره:
             </p>
-            <p className="text-xl font-bold text-[#008C78] mt-2 ">
-              {cost}تومان
+
+            <p
+              className="
+              mt-3
+              font-extrabold
+              text-[#008C78]
+              text-lg
+              sm:text-xl
+              md:text-2xl
+              break-words
+            "
+            >
+              {cost} تومان
             </p>
           </div>
         </div>
-        <Link to={`/courseDetail/${courseId}`}>
-          <div className="flex justify-center mt-10 bg-[#008C78] rounded-xl  text-[white] p-3 cursor-pointer">
+
+        <Link to={`/courseDetail/${courseId}`} className="block">
+          <div
+            className="
+            mt-6
+            sm:mt-7
+            md:mt-8
+            mb-4
+            rounded-xl
+            bg-[#008C78]
+            py-3
+            sm:py-3.5
+            text-center
+            text-white
+            font-bold
+            text-sm
+            sm:text-base
+            cursor-pointer
+            transition-all
+            duration-300
+            hover:bg-[#007565]
+            hover:shadow-lg
+            active:scale-[0.98]
+          "
+          >
             <button>جزئیات دوره</button>
           </div>
         </Link>
@@ -223,7 +462,7 @@ const Comparison = () => {
     return (
       <div className="min-h-screen flex flex-col justify-center items-center bg-[#F3F4F6] dark:bg-[#1e1e1e] ">
         <Lottie animationData={infinity} />
-        <h2 className="text-2xl text-[black] dark:text-[white]">
+        <h2 className=" text-lg sm:text-2xl text-[black] dark:text-[white]">
           درحال بارگذاری اطلاعات دوره‌ها...
         </h2>
       </div>
@@ -231,17 +470,140 @@ const Comparison = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] p-4 sm:p-10 dark:bg-[#1e1e1e] relative">
-      <h2 className="text-3xl font-extrabold text-center mb-12 text-[#1E1E1E] dark:text-[white]">
-        مقایسه دوره‌ها
-      </h2>
-      <div className="absolute left-138 top-60">
+    <div
+      className="
+      relative
+      min-h-screen
+      overflow-hidden
+      bg-[#F3F4F6]
+      dark:bg-[#1e1e1e]
+
+      px-3
+      py-6
+
+      sm:px-5
+      sm:py-8
+
+      md:px-8
+      md:py-10
+
+      lg:px-10
+      lg:py-12
+
+      xl:px-14
+      xl:py-14
+
+      2xl:px-20
+      2xl:py-16
+    "
+    >
+      <div
+        className="
+        absolute
+        top-[-120px]
+        right-[-120px]
+        w-[250px]
+        h-[250px]
+        sm:w-[320px]
+        sm:h-[320px]
+        md:w-[380px]
+        md:h-[380px]
+        rounded-full
+        bg-[#008C78]/20
+        blur-3xl
+        pointer-events-none
+      "
+      />
+      <div
+        className="
+        absolute
+        top-[-120px]
+        left-[-120px]
+        w-[250px]
+        h-[250px]
+        sm:w-[320px]
+        sm:h-[320px]
+        md:w-[380px]
+        md:h-[380px]
+        rounded-full
+        bg-[#008C78]/20
+        blur-3xl
+        pointer-events-none
+      "
+      />
+
+      <div className=" z-10">
+        <h2
+          className="
+          text-center
+          font-extrabold
+          tracking-tight
+          leading-snug
+          text-[#1E1E1E]
+          dark:text-white
+
+          text-2xl
+          sm:text-3xl
+          md:text-4xl
+          lg:text-5xl
+
+          mb-8
+          sm:mb-10
+          md:mb-12
+          lg:mb-14
+        "
+        >
+          مقایسه دوره‌ها
+        </h2>
+      </div>
+
+      <div
+        className="
+    absolute
+    inset-0
+   
+    flex
+    items-center
+    justify-center
+
+    pointer-events-none
+
+    z-0
+    
+  "
+      >
         <Lottie
-          style={{ width: "400px", height: "400px" }}
+          className=" lg:!w-[200px]  lg:!h-[200px] xl:!w-[300px] xl:!h-[300px] 2xl:!w-[400px] 2xl:!h-[400px]  hidden lg:block"
           animationData={compare}
         />
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+
+      <div
+        className="
+        relative
+        z-10
+
+        flex
+        flex-col
+        sm:flex-col
+        md:flex-row
+        lg:flex-row
+        xl:flex-row
+        2xl:flex-row
+
+        items-center
+        justify-center
+
+        gap-5
+        sm:gap-6
+        md:gap-8
+        lg:gap-10
+        xl:gap-12
+
+        max-w-[1800px]
+        mx-auto
+      "
+      >
         <CourseCard title={course1.title} data={course1} />
 
         <CourseCard title={course2.title} data={course2} />

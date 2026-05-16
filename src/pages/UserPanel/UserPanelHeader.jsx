@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "../../utils/hooks/useTheme/useTheme";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import Brightness7RoundedIcon from "@mui/icons-material/Brightness7Rounded";
 import BedtimeRoundedIcon from "@mui/icons-material/BedtimeRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import TranslateButton from "../../components/TranslateButton/TranslateButton";
 import UserPanelRight from "./UserPanelRight";
@@ -53,45 +53,68 @@ const UserPanelHeader = () => {
   });
   const [openAddMulti, setOpenAddMulti] = useState(false);
   const handleCloseMulti = () => setOpenAddMulti(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [menuOpen]);
+
   return (
     <>
       <motion.div
-        className="relative w-[100%] h-[8.59%] min-h-[8.59%] flex justify-between items-center bg-[#F3F4F6] rounded-3xl px-[2%] py-10 dark:bg-[#333]"
+        className=" flex-col md:flex-row relative w-[100%] h-[8.59%] min-h-[8.59%] flex justify-between items-center bg-[#F3F4F6] rounded-3xl px-[2%] py-10 dark:bg-[#333]"
         variants={headerVariants}
         initial="initial"
         animate="animate"
       >
         <motion.div
-          className="underpo flex items-center gap-5"
+          className="   flex flex-col md:flex-row items-center gap-3 sm:gap-5 relative "
           variants={itemVariants}
         >
           <img
             src={profileData?.currentPictureAddress}
             alt="user"
-            className="object-cover rounded-full w-[8%] h-[8%]"
+            className=" object-cover hover:opacity-60 hover:scale-105  
+            transition-all duration-200 cursor-pointer rounded-full w-[75%]  sm:w-[85%]   md:w-[25%] "
             onClick={() => setOpenMulti((prev) => !prev)}
           />
-          <div className="flex flex-col">
-            <p className="text-[20px] text-black dark:text-[#848484]">
+          <div className=" flex flex-col">
+            <p className=" text-[18px] sm:text-[20px] md:text-[18px] lg:text-[20px] mb-4 md:mb-0 text-black dark:text-[#848484]">
               {profileData?.fName + " " + profileData?.lName}
             </p>
           </div>
+          <AnimatePresence>
+            {openMulti && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setOpenMulti(false)}
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              />
+            )}
+          </AnimatePresence>
           {openMulti && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+              }}
               animate={{
                 opacity: 1,
-                y: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 300,
-                  duration: 300,
-                },
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
               }}
               onClick={(e) => e.stopPropagation()}
-              className={` bg-[#eee] rounded-xl flex z-100  w-[300px] 
+              className={`  bg-[#eee] rounded-xl flex items-center justify-center z-50 w-[280px] sm:w-[400px] md:w-[300px] 
                 flex-col absolute ${
-                  isRTL ? "right-0" : "left-0"
+                  isRTL ? "  md:right-0" : "md:left-0"
                 } top-17 shadow-xl gap-6  py-4 dark:text-white dark:bg-[#333] `}
             >
               <h2 className="mx-auto">{t("multi.accs")}</h2>
@@ -133,7 +156,7 @@ const UserPanelHeader = () => {
           />
         )}
 
-        <div className="flex items-center gap-6">
+        <div className="  flex items-center gap-4 sm:gap-6">
           <motion.div variants={itemVariants}>
             <TranslateButton />
           </motion.div>
@@ -141,32 +164,44 @@ const UserPanelHeader = () => {
           <motion.button
             variants={itemVariants}
             onClick={toggleTheme}
-            className={`text-[18px] p-2 rounded-full cursor-pointer ${
+            className={` text-[18px] p-1 sm:p-2 rounded-full cursor-pointer ${
               isDark ? "bg-[#FFDF9B]" : "bg-[#008C78]"
             }`}
           >
             {isDark ? (
-              <Brightness7RoundedIcon className="text-[#F8B524] !text-3xl" />
+              <Brightness7RoundedIcon className="text-[#F8B524] text-xl sm:!text-3xl" />
             ) : (
-              <BedtimeRoundedIcon className="text-[white] !text-3xl" />
+              <BedtimeRoundedIcon className="text-[white] text-xl sm:!text-3xl" />
             )}
           </motion.button>
 
           <motion.div
             variants={itemVariants}
-            className="bg-[#008C78] rounded-full p-2 cursor-pointer flex"
+            className="bg-[#008C78] rounded-full p-1 sm:p-2 cursor-pointer flex"
           >
             <Link to={"/"}>
-              <HomeRoundedIcon className="text-[white] !text-3xl" />
+              <HomeRoundedIcon className="text-[white] text-xl sm:!text-3xl" />
             </Link>
           </motion.div>
 
           <motion.button
             onClick={() => setMenuOpen(true)}
-            className="block md:hidden bg-[#008C78] p-2 rounded-full"
+            className="block md:hidden bg-[#008C78] p-1 sm:p-2 rounded-full "
           >
-            <MenuRoundedIcon className="text-white !text-3xl" />
+            <MenuRoundedIcon className="text-white text-xl sm:!text-3xl" />
           </motion.button>
+
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                onClick={() => setMenuOpen(false)}
+              />
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
 
@@ -174,16 +209,16 @@ const UserPanelHeader = () => {
         initial={{ x: "100%" }}
         animate={{ x: menuOpen ? 0 : "100%" }}
         transition={{ duration: 0.4 }}
-        className="fixed top-0 right-0 w-[70%] h-full bg-[#F3F4F6] dark:bg-[#333] z-999 shadow-lg md:hidden overflow-y-auto"
+        className="fixed top-0 right-0  w-[70%] sm:w-[40%] h-full bg-[#F3F4F6] dark:bg-[#333] z-999 shadow-lg md:hidden overflow-y-auto"
       >
         <button
           onClick={() => setMenuOpen(false)}
-          className="absolute top-5 left-5 bg-[#008C78] text-white p-2 rounded-full z-10"
+          className=" absolute top-5 left-5 bg-[#008C78] text-white px-2 py-[1px] rounded-full z-10"
         >
-          ✕
+          <p className="mt-1">✕</p>
         </button>
 
-        <div className="pt-20 h-full">
+        <div className="pt-15 h-full  ">
           <UserPanelRight isMobileMenu={true} />
         </div>
       </motion.div>

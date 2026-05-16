@@ -72,19 +72,19 @@ const UserPanelRight = ({ isMobileMenu }) => {
   const isActive = (path) => location.pathname === path;
   const token = getItem("token");
   const visibilityClasses = isMobileMenu
-    ? "w-full h-full"
-    : "hidden md:flex md:w-[28%] lg:w-[22.37%]";
+    ? "w-full h-full "
+    : "hidden md:flex md:w-[30%] lg:w-[24%] xl:w-[22.37%]";
 
   return (
     <motion.div
-      className={`${visibilityClasses} items-center justify-between transition-all duration-300 h-screen  `}
+      className={`${visibilityClasses}  items-center justify-between transition-all duration-300 h-screen  `}
       variants={containerVariants}
       initial="initial"
       animate="animate"
     >
-      <div className="bg-[#F3F4F6] h-[93.75%] w-[100%] rounded-4xl px-4 md:px-5 lg:px-6 py-5 md:py-6 dark:bg-[#333] overflow-y-auto scrollbar-thin scrollbar-thumb-[#008C78]/40">
+      <div className="  bg-[#F3F4F6] h-[93.75%] w-[100%] rounded-4xl px-4 md:px-5 lg:px-6 py-5 md:py-6 dark:bg-[#333] md:overflow-y-auto scrollbar-thin scrollbar-thumb-[#008C78]/40">
         <motion.div
-          className="flex gap-3 md:gap-4 mb-3"
+          className=" flex gap-3 md:gap-4 mb-3"
           variants={itemVariants}
         >
           <img
@@ -98,7 +98,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
         </motion.div>
 
         <motion.p
-          className="text-[#848484] text-[13px] md:text-[14px] lg:text-[15px] mb-2"
+          className="  text-[#848484] text-[13px] md:text-[14px] lg:text-[15px] mb-2"
           variants={itemVariants}
         >
           {t("panelside.menu")}
@@ -106,7 +106,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
 
         <Link to="/userPanel">
           <motion.div
-            className="flex items-center mb-4 rounded-4xl"
+            className="  flex items-center mb-4 rounded-4xl"
             variants={itemVariants}
           >
             <MenuIcon
@@ -236,7 +236,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
           <AnimatePresence>
             {isCommentsOpen && (
               <motion.div
-                className="flex flex-col pr-5 pt-2"
+                className="flex flex-col md:pr-1 2xl:pr-3 pt-4 md:pt-4 2xl:pt-4"
                 variants={subMenuVariants}
                 initial="initial"
                 animate="animate"
@@ -255,7 +255,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
                   />
                   <Link
                     to={"/userPanel/myCourseComments"}
-                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                    className={` whitespace-nowrap xl:whitespace-normal text-[13px] sm:text-[15px] md:text-[14px] xl:text-[17px] 2xl:text-[18px] mr-2 transition-all duration-100 ${
                       isActive("/userPanel/myCourseComments")
                         ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                         : "text-[#848484]"
@@ -277,7 +277,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
                   />
                   <Link
                     to={"/userPanel/MyNewsComments"}
-                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                    className={`text-[13px] sm:text-[15px] md:text-[14px] xl:text-[17px] 2xl:text-[18px] mr-2 transition-all duration-100 ${
                       isActive("/userPanel/MyNewsComments")
                         ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                         : "text-[#848484]"
@@ -298,14 +298,14 @@ const UserPanelRight = ({ isMobileMenu }) => {
           >
             <FavoriteIcon className="text-[18px] md:text-[20px] text-[#848484]" />
             <span
-              className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
+              className={` whitespace-nowrap xl:whitespace-normal text-[14px] sm:text-[15px] md:text-[15px] xl:text-[18px] text-[#848484] mr-2 ${
                 isRtl ? "" : "ml-2"
               }`}
             >
               {t("panelside.my_favorits")}
             </span>
             {isFavoritesOpen ? (
-              <ExpandLessIcon className="text-[18px] md:text-[20px] text-[#848484] mr-2" />
+              <ExpandLessIcon className=" brder text-[18px] md:text-[20px] text-[#848484] mr-2" />
             ) : (
               <ExpandMoreIcon className="text-[18px] md:text-[20px] text-[#848484] mr-2" />
             )}
@@ -314,7 +314,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
           <AnimatePresence>
             {isFavoritesOpen && (
               <motion.div
-                className="flex flex-col pr-5 pt-2"
+                className="flex flex-col  md:pr-1 2xl:pr-3 pt-4 md:pt-4 2xl:pt-4"
                 variants={subMenuVariants}
                 initial="initial"
                 animate="animate"
@@ -332,7 +332,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
                     }`}
                   />
                   <span
-                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                    className={` md:whitespace-nowrap xl:whitespace-normal text-[13px] sm:text-[15px] md:text-[14px] xl:text-[17px] 2xl:text-[18px] mr-2 transition-all duration-100 ${
                       isActive("/userPanel/favoriteCourses")
                         ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                         : "text-[#848484]"
@@ -355,7 +355,7 @@ const UserPanelRight = ({ isMobileMenu }) => {
                     }`}
                   />
                   <span
-                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                    className={`text-[13px] sm:text-[15px] md:text-[14px] xl:text-[17px] 2xl:text-[18px] mr-2 transition-all duration-100 ${
                       isActive("/userPanel/favoriteNews")
                         ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                         : "text-[#848484]"
@@ -419,13 +419,13 @@ const UserPanelRight = ({ isMobileMenu }) => {
         </motion.div>
 
         <motion.div
-          className="flex items-center cursor-pointer"
+          className="flex items-center cursor-pointer  "
           variants={itemVariants}
           onClick={() => setOpenLogoutModal(true)}
         >
-          <LogoutIcon className="text-[18px] md:text-[20px] text-[#848484]" />
+          <LogoutIcon className=" mb-5 md:mb-0 text-[18px] md:text-[20px] text-[#848484]" />
           <span
-            className={`text-[15px] md:text-[17px] lg:text-[18px] cursor-pointer text-[#848484] mr-2 ${
+            className={` mb-5 md:mb-0 text-[15px] md:text-[17px] lg:text-[18px] cursor-pointer text-[#848484] mr-2 ${
               isRtl ? "" : "ml-2"
             }`}
           >
@@ -467,11 +467,16 @@ const UserPanelRight = ({ isMobileMenu }) => {
                 damping: 20,
               },
             }}
-            className=" w-[80%] md:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex
+            className=" w-[80%] md:w-[40%] 2xl:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex
                   flex-col justify-center mt-3 gap-10 items-center p-4 dark:text-white dark:bg-[#333] "
           >
-            <h2 className="font-bold">{t("panelside.logOut")}</h2>
+            <h3 className=" font-semibold sm:font-bold text-[15px]  text-center sm:text-[16px]">
+              {t("panelside.logOut")}
+            </h3>
             <div className="flex items-center gap-5 justify-between">
+              <button className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl">
+                {t("panelside.back")}
+              </button>
               <motion.button
                 whileHover={{
                   scale: 1.1,
@@ -495,9 +500,6 @@ const UserPanelRight = ({ isMobileMenu }) => {
               >
                 {t("panelside.yes")}
               </motion.button>
-              <button className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl">
-                {t("panelside.back")}
-              </button>
             </div>
           </motion.div>
         </motion.div>
