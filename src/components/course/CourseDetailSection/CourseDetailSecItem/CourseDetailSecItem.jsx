@@ -6,10 +6,12 @@ const CourseDetailSecItem = ({ item }) => {
 
   return (
     <div
-      className="flex  flex-col justify-center items-center gap-2 w-full h-[81px] mt-4 bg-[#FFFFFF] rounded-[20px]
+      className="flex  flex-col  justify-center items-center gap-2 w-[85%] mx-auto md:mx-0 h-[81px] mt-4 bg-[#FFFFFF] rounded-[20px]
     dark:bg-[#393939]
     md:w-[160px]
-    lg:w-[186px]"
+    lg:w-[186px]
+    xl:w-[250px]
+    "
     >
       <span className="font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]">
         {t(`${item.title}`)}

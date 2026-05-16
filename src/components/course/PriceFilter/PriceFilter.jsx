@@ -17,17 +17,17 @@ const PriceFilter = ({ handleSetPrice }) => {
 
   return (
     <div
-      className="flex flex-col gap-6 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer   dark:bg-[#454545]
-        md:w-[284px]"
+      className="  flex flex-col gap-6 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer   dark:bg-[#454545]
+        md:w-[100%] lg:w-[284px]"
     >
       <div
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        className="flex justify-between items-center w-full
+        className="  flex justify-between items-center w-full
           dark:text-[#DDDDDD]"
       >
-        <span className="font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]">
+        <span className="  font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]">
           {t("priceFilter.title")}
         </span>
         <button className={`${isOpen ? "rotate-90" : "rotate-270"}`}>
@@ -35,8 +35,8 @@ const PriceFilter = ({ handleSetPrice }) => {
         </button>
       </div>
       {isOpen && (
-        <div className="flex flex-col">
-          <Box sx={{ width: 248, color: "bg-[#008C78]" }}>
+        <div className="  flex flex-col justify-center items-stretch px-4 ">
+          <Box sx={{ color: "bg-[#008C78]" }}>
             <Slider
               getAriaLabel={() => "Temperature range"}
               value={value}

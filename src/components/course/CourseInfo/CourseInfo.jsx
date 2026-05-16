@@ -38,7 +38,7 @@ const CourseInfo = ({ course }) => {
   const discountedPrice = course.cost * 0.5;
 
   const startDateShamsi = new Date(course.startTime).toLocaleDateString(
-    "fa-IR"
+    "fa-IR",
   );
   const endDateShamsi = new Date(course.endTime).toLocaleDateString("fa-IR");
 
@@ -47,15 +47,15 @@ const CourseInfo = ({ course }) => {
   };
 
   const titleSlice =
-    course.title.length > 10 ? course.title.slice(0, 10) + "..." : course.title;
+    course.title.length > 24 ? course.title.slice(0, 24) + "..." : course.title;
 
   return (
     <div
-      className="flex flex-col gap-12 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
+      className="flex  flex-col gap-12 w-[85%] sm:w-[85%] md:w-full p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
       dark:bg-[#393939]
-      lg:gap-16 lg:w-[380px]"
+      lg:gap-16  2xl:w-[380px]"
     >
-      <h3 className="font-bold text-xl text-[#1E1E1E] dark:text-[#DDDDDD]">
+      <h3 className="font-bold text-lg sm:text-xl text-[#1E1E1E] dark:text-[#DDDDDD]">
         {titleSlice}
       </h3>
 
@@ -118,7 +118,7 @@ const CourseInfo = ({ course }) => {
           </div>
 
           <div className="flex justify-between">
-            <span className="py-[10px] px-4 font-bold text-base text-[#FFFFFF] bg-[#EF5350] rounded-[15px]">
+            <span className="flex items-center justify-center py-[1px] sm:py-[10px] px-2 sm:px-4 font-bold text-[13px] lg:text-base text-[#FFFFFF] bg-[#EF5350] rounded-[15px]">
               {`50%`} {t("courseInfo.off")}
             </span>
 

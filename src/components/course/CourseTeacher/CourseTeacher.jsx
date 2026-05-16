@@ -8,10 +8,10 @@ const CourseTeacher = ({ course }) => {
 
   return (
     <div
-      className="flex flex-col items-center gap-8 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] 
+      className="flex flex-col items-center gap-8 w-[85%] md:w-full  p-4 bg-[#FFFFFF] rounded-[25px] 
         shadow-[0_0_10px_rgba(0,0,0,0.15)] 
         dark:bg-[#393939]
-        lg:gap-12 lg:w-[380px]"
+        lg:gap-12 2xl:w-[380px]"
     >
       <div className="flex flex-col gap-2 items-center">
         <img
@@ -30,8 +30,8 @@ const CourseTeacher = ({ course }) => {
       </div>
       <Link
         to={`/teacher/${course.teacherId}`}
-        className="py-2 font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px] cursor-pointer
-            lg:py-[9px] lg:px-24"
+        className="py-2 px-6  font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px] cursor-pointer
+            2xl:py-[9px] 2xl:px-24"
       >
         {t("courseTeacher.buttonText")}
       </Link>

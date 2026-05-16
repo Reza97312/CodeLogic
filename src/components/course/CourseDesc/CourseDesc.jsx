@@ -5,7 +5,7 @@ const CourseDesc = ({ course }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-2 pt-10">
+    <div className="flex flex-col gap-2 pt-10  w-[85%] md:w-auto mx-auto md:mx-0 ">
       <h3 className="font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]">
         {t("courseDesc.description")}
       </h3>

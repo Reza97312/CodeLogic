@@ -93,7 +93,7 @@ const AnswerCommentCourses = ({
       if (!id) return;
       toggleLikeDislike({ id, isLike });
     },
-    [toggleLikeDislike]
+    [toggleLikeDislike],
   );
 
   const {
@@ -110,8 +110,8 @@ const AnswerCommentCourses = ({
   const childComments = Array.isArray(childCommentsResponse)
     ? childCommentsResponse
     : Array.isArray(childCommentsResponse?.data)
-    ? childCommentsResponse.data
-    : [];
+      ? childCommentsResponse.data
+      : [];
 
   const { mutate: addReply, isPending: isAddingReply } = useMutation({
     mutationFn: addReplyCourseComments,
@@ -158,20 +158,20 @@ const AnswerCommentCourses = ({
               <p className="font-bold text-[#1E1E1E] text-[14px] dark:text-[white]">
                 {name}
               </p>
-              <p className="text-[12px] text-[#848484] mt-1">{date}</p>
+              <p className="text-[12px] text-[#848484] mt-1  ">{date}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-3 text-gray-700 text-sm leading-6">
-          <p className="w-full text-[#1E1E1E] text-[14px] mb-1 font-semibold dark:text-[white]">
+          <p className="w-full break-words text-[#1E1E1E] text-[14px] mb-1 font-semibold dark:text-[white]">
             {title}
           </p>
-          <p className="text-[#848484] text-[13px]">{text}</p>
+          <p className="text-[#848484] break-words text-[13px]">{text}</p>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-4 text-gray-600 text-xs">
+        <div className="flex items-center flex-wrap justify-between mt-4 gap-y-4 sm:gap-y-0 ">
+          <div className="flex items-center gap-2 sm:gap-4 text-gray-600 text-xs">
             <div
               onClick={() => handleToggleLikeDislike(commentId, false)}
               className={`flex items-center gap-1 cursor-pointer ${
@@ -212,17 +212,17 @@ const AnswerCommentCourses = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex  items-center gap-3">
             <button
               onClick={() => setShowChildComments(!showChildComments)}
-              className="text-[12px] text-[#008C78] cursor-pointer hover:underline"
+              className=" text-[12px] text-[#008C78]  cursor-pointer hover:underline"
             >
               {showChildComments ? "پنهان کردن پاسخ‌ها" : "مشاهده پاسخ‌ها"}
             </button>
 
             <button
               onClick={() => setShowReplyForm(!showReplyForm)}
-              className="flex items-center gap-1 text-[12px] text-[#1E1E1E] dark:text-[#848484] cursor-pointer hover:text-[#008C78]"
+              className="flex items-center gap-1 text-[12px]  text-[#1E1E1E] dark:text-[#848484] cursor-pointer hover:text-[#008C78]"
             >
               <ChatBubbleOutlineIcon style={{ fontSize: 16 }} />
               {t("personalComment.actions.answer")}

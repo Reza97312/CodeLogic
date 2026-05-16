@@ -14,7 +14,7 @@ import PersonalCommentCourses from "../PersonalCommentCourses/PersonalCommentCou
 
 const CourseDetailMain = ({ course, courseId }) => {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("courseActiveTab") || "detail"
+    localStorage.getItem("courseActiveTab") || "detail",
   );
 
   useEffect(() => {
@@ -32,22 +32,22 @@ const CourseDetailMain = ({ course, courseId }) => {
   const commentsList = Array.isArray(commentsResponse)
     ? commentsResponse
     : Array.isArray(commentsResponse?.data)
-    ? commentsResponse.data
-    : Array.isArray(commentsResponse?.result)
-    ? commentsResponse.result
-    : Array.isArray(commentsResponse?.comments)
-    ? commentsResponse.comments
-    : Array.isArray(commentsResponse?.value)
-    ? commentsResponse.value
-    : Array.isArray(commentsResponse?.data?.items)
-    ? commentsResponse.data.items
-    : (() => {
-        if (!commentsResponse) return [];
-        const firstArray = Object.values(commentsResponse).find((v) =>
-          Array.isArray(v)
-        );
-        return Array.isArray(firstArray) ? firstArray : [];
-      })();
+      ? commentsResponse.data
+      : Array.isArray(commentsResponse?.result)
+        ? commentsResponse.result
+        : Array.isArray(commentsResponse?.comments)
+          ? commentsResponse.comments
+          : Array.isArray(commentsResponse?.value)
+            ? commentsResponse.value
+            : Array.isArray(commentsResponse?.data?.items)
+              ? commentsResponse.data.items
+              : (() => {
+                  if (!commentsResponse) return [];
+                  const firstArray = Object.values(commentsResponse).find((v) =>
+                    Array.isArray(v),
+                  );
+                  return Array.isArray(firstArray) ? firstArray : [];
+                })();
 
   const totalCommentCount = commentsList.length;
 
@@ -58,7 +58,7 @@ const CourseDetailMain = ({ course, courseId }) => {
 
     onSuccess: () => {
       toast.success(
-        t("نظر شما با موفقیت ارسال شد. لطفا منتظر تایید ادمین باشید")
+        t("نظر شما با موفقیت ارسال شد. لطفا منتظر تایید ادمین باشید"),
       );
       queryClient.invalidateQueries(["CourseCommnets", courseId]);
     },
@@ -86,14 +86,16 @@ const CourseDetailMain = ({ course, courseId }) => {
 
   const [initialValues] = useState({ titlecomment: "", description: "" });
   const [validationSchema, setValidationSchema] = useState(
-    NewsCommentValcomment()
+    NewsCommentValcomment(),
   );
 
   return (
     <div
       className="flex flex-col gap-4 
-    md:w-[400px]
-    lg:w-[887px]"
+    md:w-[55%]
+    lg:w-[55%]
+    xl:w-[65%]
+    2xl:w-[950px]"
     >
       <ImageInfo course={course} />
       <CourseCommentsTab activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -104,7 +106,7 @@ const CourseDetailMain = ({ course, courseId }) => {
         </>
       )}
       {activeTab === "comment" && (
-        <div className="w-full  ">
+        <div className=" w-[85%] md:w-full  mx-auto md:mx-0 ">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -112,7 +114,7 @@ const CourseDetailMain = ({ course, courseId }) => {
           >
             {() => (
               <Form className="">
-                <div className="w-full bg-[white] rounded-t-3xl px-6 py-4 flex flex-wrap dark:bg-[#333] relative ">
+                <div className="w-full bg-[white] rounded-t-3xl px-6 py-4 flex justify-center md:justify-start flex-wrap dark:bg-[#333] relative ">
                   <p className="text-[black] font-bold text-[18px] w-full mb-7 dark:text-[white]">
                     {t("newsComment.comments.allComments")}
                     <span className="text-[#1E1E1E] mr-3 bg-[#EAEAEA] rounded-full px-3 py-1 font-bold text-[16px] dark:bg-[#1e1e1e] dark:text-[white]">
@@ -148,7 +150,7 @@ const CourseDetailMain = ({ course, courseId }) => {
                   </div>
 
                   <button
-                    className="bg-[#008C78] text-white mt-4 mr-3 px-9 py-2 cursor-pointer rounded-full"
+                    className="bg-[#008C78] text-white w-full md:w-auto mt-4 md:mr-3 px-9 py-2.5 md:py-2 cursor-pointer rounded-full   "
                     type="submit"
                     disabled={isPending}
                   >

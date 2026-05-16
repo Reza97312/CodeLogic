@@ -34,14 +34,15 @@ const CourseDetailSection = ({ course }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-8 pt-8">
-      <h3 className="font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]">
+    <div className="flex flex-col gap-8 pt-8 ">
+      <h3 className="font-bold text-[18px] text-[#1E1E1E]  w-[85%] md:w-auto mx-auto md:mx-0  dark:text-[#DDDDDD]">
         {t("courseDetailSection.title")}
       </h3>
       <div
         className="flex-col
+        
             md:flex md:flex-row md:gap-6
-            lg:gap-8"
+            "
       >
         {courseDetailItem.map((item, index) => (
           <CourseDetailSecItem item={item} key={index} />

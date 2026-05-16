@@ -90,8 +90,23 @@ const CourseListMain = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640 && currentView === VIEW_TYPE_LIST) {
+        setCurrentView(VIEW_TYPE_GRID);
+        localStorage.setItem("courseViewType", VIEW_TYPE_GRID);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [currentView]);
+
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className=" flex  flex-col gap-8 w-full  ">
       <SortView
         onViewChange={handleViewChange}
         currentView={currentView}
@@ -104,7 +119,7 @@ const CourseListMain = ({
 
       {comparedCourseIds.length > 0 && comparedCourseIds.length < 2 && (
         <div
-          className="bg-[#008c7711] border-l-4 border-[#008C78] text-[#008C78] rounded-2xl p-4 w-[93%]"
+          className="bg-[#008c7711]  border-l-4 border-[#008C78] text-[#008C78] rounded-2xl p-4 w-[100%] sm:w-[93%]"
           role="alert"
         >
           <p>
@@ -117,7 +132,7 @@ const CourseListMain = ({
       {isLoading ? (
         <CourseListMainSkeleton count={pageSize} />
       ) : coursesData?.courseFilterDtos?.length > 0 ? (
-        <div className="flex flex-row flex-wrap gap-y-8 gap-x-4 ">
+        <div className="flex  justify-center flex-row w-full  flex-wrap sm:justify-center md:justify-start gap-y-8 gap-x-4 ">
           {coursesData.courseFilterDtos.map((item, index) => (
             <CourseCardComponent
               item={item}
