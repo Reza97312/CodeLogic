@@ -37,7 +37,7 @@ const NewsSectionTop = ({ card }) => {
         delay: 0.3,
       }}
       viewport={{ once: true, amount: 0.5 }}
-      className=" w-[60%] md:w-[48%]  relative rounded-3xl overflow-hidden  shadow-lg  "
+      className=" w-[85%] md:w-[48%]  relative rounded-3xl overflow-hidden  shadow-lg  "
     >
       <img src={image1} alt="" className="w-full h-full  " />
       <div
