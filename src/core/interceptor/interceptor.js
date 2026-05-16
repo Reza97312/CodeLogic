@@ -6,7 +6,7 @@ import {
 } from "../../utils/helper/storage.services";
 import { toast } from "react-toastify";
 
-const baseURL = "https://sepehracademy.liara.run";
+const baseURL = "http://react.genzuni.website";
 
 const instance = new axios.create({
   baseURL: baseURL,
@@ -19,16 +19,16 @@ const onSuccess = (response) => {
 const onError = (err) => {
   const status = err?.response?.status;
 
-  if (status === 401) {
-    toast.error("لطفا ابتدا وارد شوید");
-    setItem("isLogin", false);
-  }
+  // if (status === 401) {
+  //   toast.error("لطفا ابتدا وارد شوید");
+  //   setItem("isLogin", false);
+  // }
   if (status === 403) {
     toast.error("شما به این اندپوینت دسترسی ندارید");
   }
-  if (status === 401) {
-    removeItem("token");
-  }
+  // if (status === 401) {
+  //   removeItem("token");
+  // }
 
   return Promise.reject(err);
 };
