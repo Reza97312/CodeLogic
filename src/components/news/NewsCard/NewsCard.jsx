@@ -47,7 +47,7 @@ const NewsCard = ({
   });
 
   const [isDarkMode, setIsDarkMode] = useState(
-    document.documentElement.classList.contains("dark")
+    document.documentElement.classList.contains("dark"),
   );
 
   useEffect(() => {
@@ -94,17 +94,17 @@ const NewsCard = ({
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5 }}
-        className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] transition-all duration-300
+        className={`  bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] transition-all duration-300
         ${
           isList
-            ? "flex w-full h-[150px] md:h-[180px] lg:h-[200px]"
-            : "w-full mt-3 mb-3"
+            ? "flex  w-full h-[150px] md:h-[180px] lg:h-[200px]"
+            : "w-full mt-3 mb-3 "
         }
       `}
         dir={isRtl ? "rtl" : "ltr"}
       >
         <div
-          className={`relative flex items-center justify-center bg-transparent dark:bg-[#282828]
+          className={`relative flex items-center  justify-center bg-transparent dark:bg-[#282828]
           ${
             isList
               ? "w-2/5 md:w-[35%] lg:w-[30%] flex-shrink-0"

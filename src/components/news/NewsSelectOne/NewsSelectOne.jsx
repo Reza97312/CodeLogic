@@ -13,7 +13,7 @@ const NewsSelectOne = ({ value, onChange }) => {
       { value: "newest", label: t("NewsSelectOne.dataone") },
       { value: "oldest", label: t("NewsSelectOne.datatwo") },
     ],
-    [i18n.language, t]
+    [i18n.language, t],
   );
 
   const defaultOption = useMemo(() => options[0], [options]);
@@ -45,8 +45,8 @@ const NewsSelectOne = ({ value, onChange }) => {
       backgroundColor: state.isSelected
         ? "#F3F4F6"
         : state.isFocused
-        ? "#008c7792"
-        : "white",
+          ? "#008c7792"
+          : "white",
       color: "#000000ff",
       cursor: "pointer",
       fontSize: "0.875rem",
@@ -59,7 +59,7 @@ const NewsSelectOne = ({ value, onChange }) => {
   };
 
   return (
-    <div className="w-28 sm:w-32 lg:w-40 flex-shrink-0">
+    <div className="w-[45%] sm:w-[47%] md:w-[45%] lg:w-40 flex-shrink-0 ">
       <Select
         key={i18n.language}
         options={options}
