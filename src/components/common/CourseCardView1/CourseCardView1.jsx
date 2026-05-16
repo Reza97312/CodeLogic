@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Teacher from "../../../assets/Icons/Teacher";
 import Level from "../../../assets/Icons/Level";
 import Star from "../../../assets/Icons/Star";
 import Heart from "../../../assets/Icons/Heart";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import img2 from "../../../assets/Images/HTML5Course.png";
+import img2 from "../../../assets/Images/Rectanglee.png";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Tilt from "react-parallax-tilt";
 import CompareIcon from "@mui/icons-material/Compare";
 import { useMutation } from "@tanstack/react-query";
 import { addFavCourses } from "../../../core/services/api/post/addFavCourses.js";
 import { toast } from "react-toastify";
+
 const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   const onToggleCompare = (e) => {
     e.preventDefault();
@@ -40,6 +57,9 @@ const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
 
   return (
     <Tilt
+      className="  flex flex-col justify-center mb-5 sm:mb-0 shadow-[0px_0px_1px_1px_#ccc]   flex-shrink-0 w-[100%] rounded-xl duration-300 relative
+
+         sm:w-[48%] md:w-[48%] xl:w-[32%] 2xl:w-[350px] sm:rounded-[20px]"
       tiltMaxAngleX={12}
       tiltMaxAngleY={12}
       scale={1.02}
@@ -52,18 +72,12 @@ const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
       glarePosition="all"
       reset={true}
     >
-      <div
-        dir={`${isRtl ? "rtl" : "ltr"}`}
-        className="flex flex-col shadow-[0px_0px_1px_1px_#ccc]  flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative
-
-        sm:w-[350px] sm:rounded-[20px]"
-      >
+      <div dir={`${isRtl ? "rtl" : "ltr"}`}>
         <img
-          src={
-            item.imageAddress && !item.imageAddress.includes("undefined")
-              ? item.imageAddress
-              : img2
-          }
+          src={item?.imageAddress || img2}
+          onError={(e) => {
+            e.target.src = img2;
+          }}
           className="w-full h-[160px] rounded-t-xl
             sm:h-[259px] sm:rounded-t-[20px]"
         />
@@ -78,7 +92,7 @@ const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
               {t(
                 item.title.length > 20
                   ? item.title.slice(0, 20) + "…"
-                  : item.title
+                  : item.title,
               )}
             </h2>
             <p className="max-w-[317px] max-h-[40px] font-regular text-sm  mb-5 dark:text-[#DDDDDD]">
@@ -90,10 +104,22 @@ const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
               <div className="flex justify-between truncate gap-2 font-regular text-sm mb-5 dark:text-[#DDDDDD]">
                 <div className=" overflow-hidden ">
                   <span>{t("courseCard.technologies")}</span>
-                  <span className="mr-1 text-ellipsis overflow-hidden whitespace-nowrap w-[100px] ">
+                  {/* <span className="mr-1 text-ellipsis overflow-hidden whitespace-nowrap w-[100px] ">
                     {item.technologyList.trim() !== ""
                       ? item.technologyList
                       : t("courseCard.withoutTechnology")}
+                  </span> */}
+                  <span className="mr-1 text-ellipsis overflow-hidden whitespace-nowrap w-[100px] ">
+                    {(() => {
+                      const text =
+                        item.technologyList.trim() !== ""
+                          ? item.technologyList
+                          : t("courseCard.withoutTechnology");
+
+                      return isMobile && text.length > 5
+                        ? text.slice(0, 5) + "..."
+                        : text;
+                    })()}
                   </span>
                 </div>
 

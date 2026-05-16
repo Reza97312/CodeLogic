@@ -11,7 +11,7 @@ import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { toast } from "react-toastify";
 import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
 import Tilt from "react-parallax-tilt";
-import imgg from "../../../assets/Images/A/teachersDetail/1.png";
+import imgg1 from "../../../assets/Images/Rectanglee.png";
 const DetailCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
   const navigate = useNavigate();
@@ -26,18 +26,21 @@ const DetailCard = ({ item }) => {
     onError: (err) => {
       toast.error(
         err.response?.data?.message ||
-          "این دوره قبلا به علاقه مندی اضافه شده است"
+          "این دوره قبلا به علاقه مندی اضافه شده است",
       );
     },
   });
   return (
     <Tilt
       dir="rtl"
-      className="flex flex-col flex-shrink-0 items-center w-[350px] md:basis-[calc(33.8%-1rem)] rounded-[20px] relative cursor-pointer  
+      className="  flex flex-col flex-shrink-0 items-center w-[250px] sm:w-[350px] md:w-[48%] lg:w-[31%] 2xl:w-[350px]   rounded-[20px] relative cursor-pointer  
         transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
-        src={item.imageAddress.slice(0.4) ? item.imageAddress : reactImg}
+        src={item?.imageAddress || imgg1}
+        onError={(e) => {
+          e.target.src = imgg1;
+        }}
         className="w-full h-[259px] rounded-t-[20px]"
       />
       <div

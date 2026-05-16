@@ -12,7 +12,7 @@ const UserPanelSearch = ({ width, handleSearch }) => {
     debounce((value) => {
       handleSearch(value);
     }, 750),
-    []
+    [],
   );
   const handleChange = (e) => {
     const value = e.target.value;
@@ -35,7 +35,7 @@ const UserPanelSearch = ({ width, handleSearch }) => {
 
   return (
     <AnimatePresence>
-      <motion.div className="flex items-center relative">
+      <motion.div className="flex w-full md:w-auto items-center relative">
         <motion.input
           type="search"
           variants={rightAnimate}
@@ -44,7 +44,7 @@ const UserPanelSearch = ({ width, handleSearch }) => {
           exit="exit"
           placeholder={t("userPanelSearch.placeholder")}
           onChange={handleChange}
-          className={`md:w-48 h-12 indent-[16px] font-regular text-base text-[#848484] bg-[#FFFFFF] border border-[#EAEAEA] 
+          className={` w-full md:w-auto md:w-48 h-12 indent-[16px] font-regular text-base text-[#848484] bg-[#FFFFFF] border border-[#EAEAEA] 
                 rounded-2xl outline-0   dark:text-[#CCCCCC] dark:bg-[#454545]
                 ${width}`}
         />
