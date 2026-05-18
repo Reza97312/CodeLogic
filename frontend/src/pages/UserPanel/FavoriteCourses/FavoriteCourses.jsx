@@ -9,7 +9,7 @@ import { useDebounce } from "use-debounce";
 import loadingIcon from "../../../assets/Images/A/loading.gif";
 import { getFavoriteCourses } from "../../../core/services/api/Get/GetFavoriteCourses";
 import { toast } from "react-toastify";
-import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import { deleteFavCourses } from "../../../core/services/api/Delete/deleteFavCourses";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react";
