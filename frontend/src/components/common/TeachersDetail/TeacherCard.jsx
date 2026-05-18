@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Linkedin from "../../../assets/Icons/Linkedin";
+import Linkedin from "../../../assets/Icons/LinkedIn";
 import Tilt from "react-parallax-tilt";
 import img1 from "../../../assets/Images/Ellipsee.png";
 const TeacherCard = ({ item }) => {
