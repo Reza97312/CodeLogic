@@ -4,7 +4,7 @@ import Section1 from "../../components/landing/Section1/Section1";
 import BeWithUs from "../../components/landing/BeWithUs/BeWithUs";
 import SliderCourses from "../../components/landing/SliderCourses/SliderCourses";
 import WhyUs from "../../components/landing/WhyUs/WhyUs";
-import SliderTeachers from "../../components/landing/Sliderteachers/SliderTeachers";
+import SliderTeachers from "../../components/landing/SliderTeachers/SliderTeachers";
 import JoinTeachers from "../../components/landing/JoinTeachers/JoinTeachers";
 import NewsListSection from "../../components/landing/NewsListSection/NewsListSection";
 
