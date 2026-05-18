@@ -1,10 +1,9 @@
 [build]
-  command = "npm run build"
+  command = "yarn build"
   publish = "dist"
 
 [build.environment]
-  VITE_USE_NODE_IMG = "true"
-  ROLLUP_SKIP_NATIVE_BUILD_CHECK = "true"
+  NETLIFY_USE_YARN = "true"
 
 [[redirects]]
   from = "/*"
