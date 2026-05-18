@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
 import MyReservedCourse from "../../../components/userpanel/MyReservedCourse/MyReservedCourse";
-import GetMyReservedCourses from "../../../core/services/api/get/GetMyReservedCourses";
+import GetMyReservedCourses from "../../../core/services/api/Get/GetMyReservedCourses";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";

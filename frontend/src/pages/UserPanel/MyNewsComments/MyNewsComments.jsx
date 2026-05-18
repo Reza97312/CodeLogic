@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
 import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyNewsComment from "../../../components/userpanel/MyNewsComment/MyNewsComment";
-import myNewsComments from "../../../core/services/api/get/myNewsComments";
+import myNewsComments from "../../../core/services/api/Get/myNewsComments";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";
 import Lottie from "lottie-react";
