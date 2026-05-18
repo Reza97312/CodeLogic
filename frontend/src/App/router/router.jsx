@@ -9,7 +9,7 @@ import StepThree from "../../pages/auth/Register/StepThree";
 import NewsDetails from "../../pages/NewsDetails/NewsDetails";
 import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
-import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
+import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/ForgotPasswordStepone";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
