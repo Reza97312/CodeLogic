@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import telephone from "../../assets/Icons/A/telephone.png";
 import textUs from "../../assets/Icons/A/textUs.png";
 import emailIcon from "../../assets/Icons/A/email.png";
-import userIcon from "../../assets/Icons/a/user.png";
+import userIcon from "../../assets/Icons/A/user.png";
 import { useTranslation } from "react-i18next";
 import { ContactVal } from "../../utils/Validations/contactUs/ContactVal";
 
