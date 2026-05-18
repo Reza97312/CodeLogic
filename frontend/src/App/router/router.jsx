@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "../../components/layouts/Layout";
+import Layout from "../../components/layouts/layout";
 import Landing from "../../pages/Landing/Landing";
 import CourseList from "../../pages/CourseList/CourseList";
 import StepOne from "../../pages/auth/Register/StepOne";
