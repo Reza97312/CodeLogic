@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
-import MyCourseComment from "../../../components/userPanel/MyCourseComment/MyCourseComment";
+import MyCourseComment from "../../../components/userpanel/MyCourseComment/MyCourseComment";
 import myCourseComments from "../../../core/services/api/get/MyCourseComments";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";

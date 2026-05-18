@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
 import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
-import MyNewsComment from "../../../components/userPanel/MyNewsComment/MyNewsComment";
+import MyNewsComment from "../../../components/userpanel/MyNewsComment/MyNewsComment";
 import myNewsComments from "../../../core/services/api/get/myNewsComments";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";
