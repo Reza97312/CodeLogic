@@ -12,7 +12,7 @@ import empty from "../../../assets/Images/empty.json";
 import { PacmanLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import load from "../../../assets/Images/Infinity Loader.json";
-import getCourseCommnets from "../../../core/services/api/get/getCourseComments";
+import getCourseCommnets from "../../../core/services/api/Get/getCourseComments";
 import GetCourseReplyComments from "../../../core/services/api/Get/GetCourseReplyComments";
 import { addReplyCourseComments } from "../../../core/services/api/post/addReplyCourseComments";
 import { addCourseCommentLike } from "../../../core/services/api/post/addCourseCommentLike";

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import getCourseCommnets from "../../../core/services/api/get/getCourseComments";
+import getCourseCommnets from "../../../core/services/api/Get/getCourseComments";
 import { addCommentCourses } from "../../../core/services/api/post/addCommentCourses";
 import { NewsCommentValcomment } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 import PersonalCommentCourses from "../PersonalCommentCourses/PersonalCommentCourses";

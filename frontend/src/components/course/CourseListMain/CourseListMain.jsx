@@ -4,7 +4,7 @@ import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
 import CourseCardView2 from "../../common/CourseCardView2/CourseCardView2";
 import SortView from "../SortView/SortView";
 import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
-import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import { deleteFavCourses } from "../../../core/services/api/Delete/deleteFavCourses";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import CourseListMainSkeleton from "../../common/skeleton/CourseListMainSkeleton/CourseListMainSkeleton";

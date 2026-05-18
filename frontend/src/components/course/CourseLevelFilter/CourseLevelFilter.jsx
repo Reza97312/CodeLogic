@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Arrow from "../../../assets/Icons/Arrow";
-import getCourseLevel from "../../../core/services/api/get/getCourseLevel";
+import getCourseLevel from "../../../core/services/api/Get/getCourseLevel";
 import { useTranslation } from "react-i18next";
 
 const CourseLevelFilter = ({ handleSetCourseLevel }) => {

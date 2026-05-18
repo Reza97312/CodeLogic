@@ -69,7 +69,7 @@
 
 import { useState, useEffect } from "react";
 import Arrow from "../../../assets/Icons/Arrow";
-import getCourseTechnologies from "../../../core/services/api/get/getCourseTechnologies";
+import getCourseTechnologies from "../../../core/services/api/Get/getCourseTechnologies";
 import { useTranslation } from "react-i18next";
 
 const CourseTechFilter = ({ handleSetTechnologies }) => {
