@@ -3,7 +3,8 @@
   publish = "dist"
 
 [build.environment]
-  NPM_FLAGS = "--include=optional"
+  VITE_USE_NODE_IMG = "true"
+  ROLLUP_SKIP_NATIVE_BUILD_CHECK = "true"
 
 [[redirects]]
   from = "/*"
