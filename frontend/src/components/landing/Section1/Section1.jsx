@@ -1,7 +1,7 @@
 import React from "react";
 import Section1Card from "../../common/Section1Card/Section1Card";
 import { useTranslation } from "react-i18next";
-import getLandingReports from "../../../core/services/api/Get/getLandingReports";
+import getLandingReports from "../../../core/services/api/get/getLandingReports";
 import { useQuery } from "@tanstack/react-query";
 
 const Section1 = () => {
@@ -16,19 +16,32 @@ const Section1 = () => {
     {
       id: 1,
       title: t("section1.title1"),
-      members: `${landingReportsData?.teacherCount}+`,
+      members:
+        landingReportsData?.teacherCount != null
+          ? `${landingReportsData.teacherCount}+`
+          : "-",
     },
     {
       id: 2,
       title: t("section1.title2"),
-      members: `${landingReportsData?.studentCount}+`,
+      members:
+        landingReportsData?.studentCount != null
+          ? `${landingReportsData.studentCount}+`
+          : "-",
     },
     {
       id: 3,
       title: t("section1.title3"),
-      members: `${landingReportsData?.courseCount}+`,
+      members:
+        landingReportsData?.courseCount != null
+          ? `${landingReportsData.courseCount}+`
+          : "-",
     },
-    { id: 4, title: t("section1.title4"), members: "15+" },
+    {
+      id: 4,
+      title: t("section1.title4"),
+      members: "15+",
+    },
   ];
 
   return (
