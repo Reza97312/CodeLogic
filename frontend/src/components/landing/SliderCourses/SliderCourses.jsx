@@ -8,12 +8,12 @@ import compareManager from "../../compareManager/compareManager";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
-import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import { deleteFavCourses } from "../../../core/services/api/Delete/deleteFavCourses";
 
 const SliderCourses = () => {
   const navigate = useNavigate();
   const [comparedCourseIds, setComparedCourseIds] = useState(
-    compareManager.get()
+    compareManager.get(),
   );
 
   useEffect(() => {

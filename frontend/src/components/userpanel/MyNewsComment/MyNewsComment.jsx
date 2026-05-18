@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Eye from "../../../assets/Icons/Eye";
 import Garbage from "../../../assets/Icons/Garbage";
 import { motion } from "framer-motion";
-import { deleteNewsComments } from "../../../core/services/api/delete/deleteNewsComments";
+import { deleteNewsComments } from "../../../core/services/api/Delete/deleteNewsComments";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import NewsComViewModal from "../NewsComViewModal/NewsComViewModal.jsx";

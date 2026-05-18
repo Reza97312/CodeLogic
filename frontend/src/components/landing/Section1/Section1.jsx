@@ -1,7 +1,7 @@
 import React from "react";
 import Section1Card from "../../common/Section1Card/Section1Card";
 import { useTranslation } from "react-i18next";
-import getLandingReports from "../../../core/services/api/get/getLandingReports";
+import getLandingReports from "../../../core/services/api/Get/getLandingReports";
 import { useQuery } from "@tanstack/react-query";
 
 const Section1 = () => {

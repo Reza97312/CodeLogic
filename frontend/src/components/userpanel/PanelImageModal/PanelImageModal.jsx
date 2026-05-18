@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AddProfileImage } from "../../../core/services/api/post/AddProfileImage";
 import { SelectPictureImage } from "../../../core/services/api/post/SelectPictureImage";
-import { DeleteProfileImage } from "../../../core/services/api/delete/DeleteProfileImage";
+import { DeleteProfileImage } from "../../../core/services/api/Delete/DeleteProfileImage";
 import { toast } from "react-toastify";
 import { ClockLoader } from "react-spinners";
 
@@ -42,8 +42,8 @@ const PanelImageModal = ({
     ...apiImagesData.filter(
       (img) =>
         !fixedImages.some(
-          (fImg) => fImg.puctureAddress === img.puctureAddress
-        ) && img.puctureAddress
+          (fImg) => fImg.puctureAddress === img.puctureAddress,
+        ) && img.puctureAddress,
     ),
   ];
 

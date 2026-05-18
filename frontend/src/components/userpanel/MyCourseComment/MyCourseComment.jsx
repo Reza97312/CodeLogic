@@ -3,7 +3,7 @@ import Eye from "../../../assets/Icons/Eye";
 import Garbage from "../../../assets/Icons/Garbage";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { deleteCoursesComments } from "../../../core/services/api/delete/deleteCoursesComments";
+import { deleteCoursesComments } from "../../../core/services/api/Delete/deleteCoursesComments";
 import { toast } from "react-toastify";
 import CourseComViewModal from "../CourseComViewModal/CourseComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
