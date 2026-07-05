@@ -43,7 +43,7 @@
   "whyUs": {
     "title1": "From the first line of code to",
     "titleSpan": " entering the labor market ",
-    "title2": "we are with you.",
+    "title2": "we are with you",
     "desc": "We make the path to learning programming simple, practical, and effective so you can enter the job market faster.",
     "cardTitle1": "Learning practical skills",
     "cardDesc1": "By focusing on real projects and market needs, you will learn skills that are truly applicable.",
@@ -152,7 +152,6 @@
     "have_account": "Already have an account?",
     "login": "Login",
     "validation": {
-      
       "phone_invalid": "Invalid phone number *",
       "phone_required": "Please enter your phone number *",
       "password_required": "Please enter your password *",
@@ -740,7 +739,7 @@
     "notAccepted": "Not Accepted",
     "closeModalBtn": "Close"
   },
-  "courseComDeleteModal":{
+  "courseComDeleteModal": {
     "title": "Do you want to delete this comment?",
     "closeModalBtn": "Close",
     "deleteBtn": "Delete"
@@ -817,4 +816,3 @@
     "accs": "Your accounts"
   }
 }
-
