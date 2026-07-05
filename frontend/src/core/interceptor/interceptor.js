@@ -6,7 +6,7 @@ import {
 } from "../../utils/helper/storage.services";
 import { toast } from "react-toastify";
 
-const baseURL = "http://react.genzuni.website";
+const baseURL = "http://188.121.104.25:3001";
 
 const instance = new axios.create({
   baseURL: baseURL,
